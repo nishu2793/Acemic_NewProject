@@ -1,0 +1,88 @@
+﻿using Microsoft.EntityFrameworkCore;
+using NewProject.Data.Contexts;
+using NewProject.Data.Repositories.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NewProject.Data.Infrastructure
+{
+    public interface IUnitOfWork<TContext> where TContext : IBaseContext
+    {
+
+        IAccountsRepository<TContext> AccountsRepository { get; }
+        
+        IAdminLoginRepository<TContext> AdminLoginRepository { get; }
+        IUserRegisterRepository<TContext> UserRegisterRepository { get; }
+
+
+        IRefreshTokenRepository<TContext> RefreshTokenRepository { get; }
+        IUserProfileRepository<TContext> UserProfileRepository { get; }
+
+
+
+
+        Task<int> CommitAsync();
+
+    }
+    public class UnitOfWork<TContext> : IUnitOfWork<TContext> where TContext : IBaseContext
+    {
+        public TContext Context { get; }
+        public IAccountsRepository<TContext> AccountsRepository { get; }
+       
+        public IAdminLoginRepository<TContext> AdminLoginRepository { get; }
+       public IUserRegisterRepository<TContext> UserRegisterRepository { get; }
+       public IUserProfileRepository<TContext> UserProfileRepository { get; }
+
+
+
+
+
+        public IRefreshTokenRepository<TContext> RefreshTokenRepository { get; }
+
+
+
+
+        public UnitOfWork(TContext context, IAccountsRepository<TContext> accountsRepository,
+            
+            IAdminLoginRepository<TContext> adminLoginRepository,
+              IUserRegisterRepository<TContext> userRegisterRepository ,
+              IUserProfileRepository<TContext> userProfileRepository,
+
+
+
+        IRefreshTokenRepository<TContext> refreshTokenRepository
+
+
+            )
+        {
+            this.Context = context;
+            this.AccountsRepository = accountsRepository;
+           
+            this.AdminLoginRepository= adminLoginRepository;
+            this.UserRegisterRepository= userRegisterRepository;
+            this.RefreshTokenRepository = refreshTokenRepository;
+            this.UserProfileRepository= userProfileRepository;
+
+        }
+            public async Task<int> CommitAsync()
+            {
+                TContext checkType = default(TContext);
+                if (checkType is ReadOnlyApplicationDbContext)
+                {
+                    throw new Exception("This is a read-only context!");
+                }
+                return await this.Context.SaveChangesAsync();
+            }
+
+            public void Dispose()
+            {
+                this.Context.Dispose();
+            }
+        }
+
+    
+    }
+
