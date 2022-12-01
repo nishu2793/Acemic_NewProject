@@ -20,6 +20,7 @@ namespace NewProject.Data.Infrastructure
 
         IRefreshTokenRepository<TContext> RefreshTokenRepository { get; }
         IUserProfileRepository<TContext> UserProfileRepository { get; }
+        IUserRegisterTempRepository<TContext> UserRegisterTempRepository { get; }
 
 
 
@@ -35,6 +36,8 @@ namespace NewProject.Data.Infrastructure
         public IAdminLoginRepository<TContext> AdminLoginRepository { get; }
        public IUserRegisterRepository<TContext> UserRegisterRepository { get; }
        public IUserProfileRepository<TContext> UserProfileRepository { get; }
+        public IUserRegisterTempRepository<TContext> UserRegisterTempRepository { get; }
+
 
 
 
@@ -50,6 +53,7 @@ namespace NewProject.Data.Infrastructure
             IAdminLoginRepository<TContext> adminLoginRepository,
               IUserRegisterRepository<TContext> userRegisterRepository ,
               IUserProfileRepository<TContext> userProfileRepository,
+               IUserRegisterTempRepository<TContext> userRegisterTempRepository,
 
 
 
@@ -65,6 +69,7 @@ namespace NewProject.Data.Infrastructure
             this.UserRegisterRepository= userRegisterRepository;
             this.RefreshTokenRepository = refreshTokenRepository;
             this.UserProfileRepository= userProfileRepository;
+            this.UserRegisterTempRepository= userRegisterTempRepository;
 
         }
             public async Task<int> CommitAsync()

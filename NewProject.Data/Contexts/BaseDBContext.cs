@@ -100,6 +100,8 @@ namespace NewProject.Data.Contexts
         public DbSet<AdminLogin> adminLogin { get; set; }
         public DbSet<UserRegister> userRegister { get; set; }
 
+        public DbSet<UserRegisterTemp> userRegisterTemp { get; set; }
+
 
 
 

@@ -1,0 +1,58 @@
+﻿namespace NewProject.API.Requests.User
+{
+    public class UserRegisterTempRequest
+    {
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+
+        public string? EmailAddress { get; set; }
+        public string? MobileNo { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime? UpdatedOn { get; set; }
+        public int? UpdatedBy { get; set; }
+        public bool? IsDeleted { get; set; }
+
+    }
+
+    public class GetUserRegisterTempRequest
+    {
+        public Guid Did { get; set; }
+
+    }
+    public class SaveUserRegisterTempRequest
+    {
+      
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+
+        public string? EmailAddress { get; set; }
+        public string? MobileNo { get; set; }
+  
+
+    }
+    public class UpdateUserRegisterTempRequest
+    {
+        public Guid Did { get; set; }
+       
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+
+        public string? EmailAddress { get; set; }
+        public string? MobileNo { get; set; }
+       
+
+
+
+       
+
+    }
+    public class DeleteUserRegisterTempRequest
+    {
+        public Guid Did { get; set; }
+
+    }
+
+}
+

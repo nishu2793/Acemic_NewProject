@@ -29,6 +29,11 @@ namespace NewProject.API.Infrastructure.Extensions
           
             services.AddTransient(typeof(IAdminLoginRepository<>), typeof(AdminLoginRepository<>));
             services.AddTransient(typeof(IUserRegisterRepository<>), typeof(UserRegisterRepository<>));
+            services.AddTransient(typeof(IUserRegisterTempRepository<>), typeof(UserRegisterTempRepository<>));
+
+
+
+
 
             services.AddTransient(typeof(IRefreshTokenRepository<>), typeof(RefreshTokenRepository<>));
             services.AddTransient(typeof(IUserProfileRepository<>), typeof(UserProfileRepository<>));

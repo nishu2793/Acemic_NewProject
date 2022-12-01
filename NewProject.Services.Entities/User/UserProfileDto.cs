@@ -17,6 +17,7 @@ namespace NewProject.Services.Entities.User
         public string? EmailAddress { get; set; }
         public string? MobileNo { get; set; }
         public string? Gender { get; set; }
+         public string? Otp { get; set; }
         public DateTime CreatedOn { get; set; }
         public int CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
