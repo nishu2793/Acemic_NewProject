@@ -45,6 +45,14 @@ namespace NewProject.API.Controllers
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
 
         }
+        [HttpPost("Verifyotp")]
+        public async Task<Dictionary<string, object>> Verifyotp([FromBody] Verifyotp request)
+        {
+            var userdto = _mapper.Map<Verifyotp, VerifyotpDto>(request);
+            var result = await _userRegisterTempService.Verifyotp(userdto);
+            return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
+
+        }
         [HttpPost("UpdateUserRegisterTemp")]
         public async Task<Dictionary<string, object>> UpdateUserRegisterTemp([FromBody] UpdateUserRegisterTempRequest request)
         {

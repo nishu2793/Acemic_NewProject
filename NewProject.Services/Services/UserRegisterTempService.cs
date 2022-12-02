@@ -84,7 +84,7 @@ namespace NewProject.Services.Services
             return data;
         }
 
-        public async Task<Guid> SaveUserRegisterTemp(SaveUserRegisterTempDto request)
+        public async Task<List<SaveUserRegisterTempDto>> SaveUserRegisterTemp(SaveUserRegisterTempDto request)
         {
             Random randomObj = new Random();
             string Otp = randomObj.Next(1000, 9999).ToString();
@@ -102,51 +102,49 @@ namespace NewProject.Services.Services
 
             };
             await _readWriteUnitOfWork.UserRegisterTempRepository.AddAsync(saveUserRegisterTemp);
+            await _readWriteUnitOfWork.CommitAsync();
+            var id = saveUserRegisterTemp.Did;
+            var data = (from userRegisterTempTB in _readOnlyUnitOfWork.UserRegisterTempRepository.GetAllAsQuerable()
 
+                        where userRegisterTempTB.Did == id
+                        select new SaveUserRegisterTempDto
+                        {
+                            Did = userRegisterTempTB.Did,
+                            EmailAddress = userRegisterTempTB.EmailAddress,
+                            Otp = userRegisterTempTB.Otp,
+                        }).ToList();
+
+            
             //if(saveUserRegisterTemp.MobileNo != null)
             //{
             //  using(MailMessage mm=new MailMessage())
 
             //}
-             if (saveUserRegisterTemp.EmailAddress != null)
+            if (saveUserRegisterTemp.EmailAddress != null)
             {
-                //var fromMail = new MailAddress("dishas.dcs@gmail.com", "Rakesh"); // set your email    
-                //var fromEmailpassword = "Dcs@12345"; // Set your password     
-                //var toEmail = new MailAddress();
 
-                //var smtp = new SmtpClient();
-                //smtp.Host = "smtp.gmail.com";
-                //smtp.Port = 587;
+                //SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
                 //smtp.EnableSsl = true;
-                //smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 //smtp.UseDefaultCredentials = false;
-                //smtp.Credentials = new NetworkCredential();
+                //smtp.Credentials = new NetworkCredential("dishas.dcs@gmail.com", "Dcs@12345");
 
+                //MailAddress to = new MailAddress("rizvan.dcs@gmail.com");
+                //MailAddress from = new MailAddress("ashishp.dcs@gmail.com");
+                //MailMessage message = new MailMessage(from, to);
+                //message.Subject = "Good morning";
+                //message.Body = "Charles, Harry, There are a few unpaid invoices for the Royal Wedding. Let's talk this over on Monday.;";
 
-
-                ////toEmail.IsBodyHtml = true;
-                //smtp.Send(toEmail);
-                //MimeMessage emailMessage = new MimeMessage(saveUserRegisterTemp);
-                //MailboxAddress emailFrom = new MailboxAddress(saveUserRegisterTemp.EmailAddress, saveUserRegisterTemp.Otp);
-                //emailMessage.From.Add(emailFrom);
-                //MailboxAddress emailTo = new MailboxAddress(emailData.EmailAddress);
-                //emailMessage.To.Add(emailTo);
-                //emailMessage.Subject = emailData.EmailSubject;
-                //BodyBuilder emailBodyBuilder = new BodyBuilder();
-                //emailBodyBuilder.TextBody = emailData.EmailBody;
-                //emailMessage.Body = emailBodyBuilder.ToMessageBody();
-                //SmtpClient emailClient = new SmtpClient();
-                //emailClient.Connect(_emailSettings.Host, _emailSettings.Port, _emailSettings.UseSSL);
-                //emailClient.Authenticate(_emailSettings.EmailId, _emailSettings.Password);
-                //emailClient.Send(emailMessage);
-                //emailClient.Disconnect(true);
-                //emailClient.Dispose();
+                //try
+                //{
+                //    smtp.Send(message);
+                //}
+                //catch (SmtpException ex)
+                //{
+                //    Console.WriteLine(ex.ToString());
+                //}
 
             }
-
-            await _readWriteUnitOfWork.CommitAsync();
-
-            return saveUserRegisterTemp.Did;
+            return data;
         }
 
         public async Task<bool> UpdateUserRegisterTemp(UpdateUserRegisterTempDto request)
@@ -193,6 +191,23 @@ namespace NewProject.Services.Services
             }
             return false;
 
+        }
+
+        public async Task<List<VerifyotpDto>> Verifyotp(VerifyotpDto request)
+        {
+
+            var data = (from userRegisterTempTB in _readOnlyUnitOfWork.UserRegisterTempRepository.GetAllAsQuerable()
+
+                        where userRegisterTempTB.Otp == request.Otp && userRegisterTempTB.EmailAddress == request.EmailAddress || userRegisterTempTB.MobileNo == request.MobileNo
+                        select new VerifyotpDto
+                        {
+                            Did = userRegisterTempTB.Did,
+                            EmailAddress = userRegisterTempTB.EmailAddress,
+                            MobileNo = userRegisterTempTB.MobileNo,
+                            Otp = userRegisterTempTB.Otp,
+                        }).ToList();
+
+            return data;
         }
 
     }

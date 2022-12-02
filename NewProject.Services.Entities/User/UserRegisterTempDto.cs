@@ -63,7 +63,13 @@ namespace NewProject.Services.Entities.User
     public class DeleteUserRegisterTempDto
     {
         public Guid Did { get; set; }
+    }
+    public class VerifyotpDto
+    {
+        public Guid Did { get; set; }
+        public string? EmailAddress { get; set; }
+        public string? MobileNo { get; set; }
 
-
+        public string? Otp { get; set; }
     }
 }

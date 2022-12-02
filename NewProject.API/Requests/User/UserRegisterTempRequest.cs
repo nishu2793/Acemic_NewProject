@@ -21,7 +21,16 @@
         public Guid Did { get; set; }
 
     }
-    public class SaveUserRegisterTempRequest
+    public class Verifyotp
+    {
+        public Guid Did { get; set; }
+        public string? EmailAddress { get; set; }
+        public string? MobileNo { get; set; }
+
+        public string? Otp { get; set; }
+    }
+
+public class SaveUserRegisterTempRequest
     {
       
         public string? FirstName { get; set; }
