@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "O4eR6sE6sZD9yPa/RKnOCVVBCBWvR0P9LKg8nmQRrfI/TEERZ+c9im36nuLrPLkyOv5pe9FgdL+NfJ1g0ll7ag==",
+  "success": true,
+  "projectFilePath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\6.0.0\\microsoft.aspnetcore.authentication.facebook.6.0.0.nupkg.sha512",
+    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\nisha\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\nisha\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

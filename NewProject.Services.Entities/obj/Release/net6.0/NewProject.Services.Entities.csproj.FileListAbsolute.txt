@@ -1,0 +1,17 @@
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\bin\Release\net6.0\NewProject.Services.Entities.exe
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\bin\Release\net6.0\NewProject.Services.Entities.deps.json
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\bin\Release\net6.0\NewProject.Services.Entities.runtimeconfig.json
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\bin\Release\net6.0\NewProject.Services.Entities.dll
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\bin\Release\net6.0\NewProject.Services.Entities.pdb
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\bin\Release\net6.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\obj\Release\net6.0\NewProject.Services.Entities.csproj.AssemblyReference.cache
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\obj\Release\net6.0\NewProject.Services.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\obj\Release\net6.0\NewProject.Services.Entities.AssemblyInfoInputs.cache
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\obj\Release\net6.0\NewProject.Services.Entities.AssemblyInfo.cs
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\obj\Release\net6.0\NewProject.Services.Entities.csproj.CoreCompileInputs.cache
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\obj\Release\net6.0\NewProject.Services.Entities.csproj.CopyComplete
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\obj\Release\net6.0\NewProject.Services.Entities.dll
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\obj\Release\net6.0\refint\NewProject.Services.Entities.dll
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\obj\Release\net6.0\NewProject.Services.Entities.pdb
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\obj\Release\net6.0\NewProject.Services.Entities.genruntimeconfig.cache
+C:\WorkSpace\Disha\Acemic_NewProject\Acemic_NewProject\NewProject.Services.Entities\obj\Release\net6.0\ref\NewProject.Services.Entities.dll
