@@ -49,6 +49,7 @@ namespace NewProject.Services.Services
             var data = (from userRegisterTB in _readOnlyUnitOfWork.UserRegisterRepository.GetAllAsQuerable()
                         
                         where userRegisterTB.Did == request.Did && userRegisterTB.IsDeleted != true
+
                         select new GetUserRegisterDto
                         {
                             Did=userRegisterTB.Did,

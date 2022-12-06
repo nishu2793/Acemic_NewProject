@@ -17,6 +17,8 @@ namespace NewProject.Services.Entities.User
         public string? EmailAddress { get; set; }
         public string? MobileNo { get; set; }
         public string? Otp { get; set; }
+
+        public string? Password { get; set; }
         public DateTime CreatedOn { get; set; }
         public int CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
@@ -30,6 +32,7 @@ namespace NewProject.Services.Entities.User
        
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
+        public string? Password { get; set; }
 
         public string? EmailAddress { get; set; }
         public string? MobileNo { get; set; }
@@ -45,6 +48,7 @@ namespace NewProject.Services.Entities.User
         public string? EmailAddress { get; set; }
         public string? MobileNo { get; set; }
         public string? Otp { get; set; }
+        public string? Password { get; set; }
         public DateTime CreatedOn { get; set; }
         public int CreatedBy { get; set; }
     }
@@ -57,6 +61,7 @@ namespace NewProject.Services.Entities.User
 
         public string? EmailAddress { get; set; }
         public string? MobileNo { get; set; }
+        public string? Password { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public int? UpdatedBy { get; set; }
     }

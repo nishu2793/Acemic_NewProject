@@ -13,7 +13,7 @@ namespace NewProject.Services.Interfaces
 
         Task<List<VerifyotpDto>> Verifyotp(VerifyotpDto request);
         Task<List<GetUserRegisterTempDto>> GetAllUserRegisterTemp();
-        Task<List<SaveUserRegisterTempDto>> SaveUserRegisterTemp(SaveUserRegisterTempDto request);
+        Task<Guid> SaveUserRegisterTemp(SaveUserRegisterTempDto request);
         Task<bool> UpdateUserRegisterTemp(UpdateUserRegisterTempDto request);
         Task<bool> DeleteUserRegisterTemp(DeleteUserRegisterTempDto request);
     }

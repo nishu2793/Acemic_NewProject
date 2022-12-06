@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.API\\NewProject.API.csproj": {}
+    "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.API\\NewProject.API.csproj": {}
   },
   "projects": {
-    "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.API\\NewProject.API.csproj": {
+    "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.API\\NewProject.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.API\\NewProject.API.csproj",
+        "projectUniqueName": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.API\\NewProject.API.csproj",
         "projectName": "NewProject.API",
-        "projectPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.API\\NewProject.API.csproj",
+        "projectPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.API\\NewProject.API.csproj",
         "packagesPath": "C:\\Users\\nisha\\.nuget\\packages\\",
-        "outputPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.API\\obj\\",
+        "outputPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,8 +33,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services\\NewProject.Services.csproj": {
-                "projectPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services\\NewProject.Services.csproj"
+              "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services\\NewProject.Services.csproj": {
+                "projectPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services\\NewProject.Services.csproj"
               }
             }
           }
@@ -101,18 +101,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Data\\NewProject.Data.csproj": {
+    "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Data\\NewProject.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Data\\NewProject.Data.csproj",
+        "projectUniqueName": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Data\\NewProject.Data.csproj",
         "projectName": "NewProject.Data",
-        "projectPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Data\\NewProject.Data.csproj",
+        "projectPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Data\\NewProject.Data.csproj",
         "packagesPath": "C:\\Users\\nisha\\.nuget\\packages\\",
-        "outputPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Data\\obj\\",
+        "outputPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -134,14 +134,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Domain.Entities\\NewProject.Domain.Entities.csproj": {
-                "projectPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Domain.Entities\\NewProject.Domain.Entities.csproj"
+              "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Domain.Entities\\NewProject.Domain.Entities.csproj": {
+                "projectPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Domain.Entities\\NewProject.Domain.Entities.csproj"
               },
-              "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj": {
-                "projectPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj"
+              "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj": {
+                "projectPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj"
               },
-              "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Utility\\NewProject.Utility.csproj": {
-                "projectPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Utility\\NewProject.Utility.csproj"
+              "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Utility\\NewProject.Utility.csproj": {
+                "projectPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Utility\\NewProject.Utility.csproj"
               }
             }
           }
@@ -193,18 +193,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Domain.Entities\\NewProject.Domain.Entities.csproj": {
+    "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Domain.Entities\\NewProject.Domain.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Domain.Entities\\NewProject.Domain.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Domain.Entities\\NewProject.Domain.Entities.csproj",
         "projectName": "NewProject.Domain.Entities",
-        "projectPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Domain.Entities\\NewProject.Domain.Entities.csproj",
+        "projectPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Domain.Entities\\NewProject.Domain.Entities.csproj",
         "packagesPath": "C:\\Users\\nisha\\.nuget\\packages\\",
-        "outputPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Domain.Entities\\obj\\",
+        "outputPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Domain.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -263,18 +263,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj": {
+    "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj",
         "projectName": "NewProject.Services.Entities",
-        "projectPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj",
+        "projectPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj",
         "packagesPath": "C:\\Users\\nisha\\.nuget\\packages\\",
-        "outputPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services.Entities\\obj\\",
+        "outputPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -333,18 +333,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services\\NewProject.Services.csproj": {
+    "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services\\NewProject.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services\\NewProject.Services.csproj",
+        "projectUniqueName": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services\\NewProject.Services.csproj",
         "projectName": "NewProject.Services",
-        "projectPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services\\NewProject.Services.csproj",
+        "projectPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services\\NewProject.Services.csproj",
         "packagesPath": "C:\\Users\\nisha\\.nuget\\packages\\",
-        "outputPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services\\obj\\",
+        "outputPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -366,14 +366,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Data\\NewProject.Data.csproj": {
-                "projectPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Data\\NewProject.Data.csproj"
+              "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Data\\NewProject.Data.csproj": {
+                "projectPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Data\\NewProject.Data.csproj"
               },
-              "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj": {
-                "projectPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj"
+              "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj": {
+                "projectPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj"
               },
-              "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Utility\\NewProject.Utility.csproj": {
-                "projectPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Utility\\NewProject.Utility.csproj"
+              "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Utility\\NewProject.Utility.csproj": {
+                "projectPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Utility\\NewProject.Utility.csproj"
               }
             }
           }
@@ -404,6 +404,10 @@
               "target": "Package",
               "version": "[3.4.3, )"
             },
+            "NETCore.MailKit": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
             "NPOI": {
               "target": "Package",
               "version": "[2.5.6, )"
@@ -433,18 +437,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Utility\\NewProject.Utility.csproj": {
+    "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Utility\\NewProject.Utility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Utility\\NewProject.Utility.csproj",
+        "projectUniqueName": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Utility\\NewProject.Utility.csproj",
         "projectName": "NewProject.Utility",
-        "projectPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Utility\\NewProject.Utility.csproj",
+        "projectPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Utility\\NewProject.Utility.csproj",
         "packagesPath": "C:\\Users\\nisha\\.nuget\\packages\\",
-        "outputPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Utility\\obj\\",
+        "outputPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Utility\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -499,7 +503,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

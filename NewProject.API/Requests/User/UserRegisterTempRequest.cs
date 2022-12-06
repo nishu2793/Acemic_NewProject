@@ -7,7 +7,7 @@
 
         public string? EmailAddress { get; set; }
         public string? MobileNo { get; set; }
-
+        public string? Password { get; set; }
         public DateTime CreatedOn { get; set; }
         public int CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
@@ -18,7 +18,8 @@
 
     public class GetUserRegisterTempRequest
     {
-        public Guid Did { get; set; }
+        public Guid? Did { get; set; }
+        public string? EmailAddress { get; set;}
 
     }
     public class Verifyotp
@@ -37,6 +38,7 @@ public class SaveUserRegisterTempRequest
         public string? LastName { get; set; }
 
         public string? EmailAddress { get; set; }
+        public string? Password { get; set; }
         public string? MobileNo { get; set; }
   
 

@@ -160,11 +160,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj",
+      "projectUniqueName": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj",
       "projectName": "NewProject.Services.Entities",
-      "projectPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj",
+      "projectPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services.Entities\\NewProject.Services.Entities.csproj",
       "packagesPath": "C:\\Users\\nisha\\.nuget\\packages\\",
-      "outputPath": "C:\\WorkSpace\\Disha\\Acemic_NewProject\\Acemic_NewProject\\NewProject.Services.Entities\\obj\\",
+      "outputPath": "C:\\Users\\nisha\\OneDrive\\Desktop\\Newproject\\Acemic_NewProject\\NewProject.Services.Entities\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -223,7 +223,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
