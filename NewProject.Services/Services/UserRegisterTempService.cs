@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Mvc;
 using MimeKit;
 using NewProject.Data.Contexts;
 using NewProject.Data.Infrastructure;
@@ -91,7 +92,7 @@ namespace NewProject.Services.Services
             return data;
         }
         
-        public async Task<Guid> SaveUserRegisterTemp(SaveUserRegisterTempDto request)
+        public async Task<List<SaveUserRegisterTempDto>> SaveUserRegisterTemp(SaveUserRegisterTempDto request)
         {
             Random randomObj = new Random();
             string Otp = randomObj.Next(1000, 9999).ToString();
@@ -109,23 +110,25 @@ namespace NewProject.Services.Services
                 CreatedBy = 1,
 
             };
+
+            
             SendUserWelcomeEmail(saveUserRegisterTemp.FirstName, saveUserRegisterTemp.EmailAddress, saveUserRegisterTemp.Otp);
             await _readWriteUnitOfWork.UserRegisterTempRepository.AddAsync(saveUserRegisterTemp);
             await _readWriteUnitOfWork.CommitAsync();
-            //var id = saveUserRegisterTemp.Did;
-            //var data = (from userRegisterTempTB in _readOnlyUnitOfWork.UserRegisterTempRepository.GetAllAsQuerable()
+            var id = saveUserRegisterTemp.Did;
+            var data = (from userRegisterTempTB in _readOnlyUnitOfWork.UserRegisterTempRepository.GetAllAsQuerable()
 
-            //            where userRegisterTempTB.Did == id
-            //            select new SaveUserRegisterTempDto
-            //            {
-            //                Did = userRegisterTempTB.Did,
-            //                EmailAddress = userRegisterTempTB.EmailAddress,
-            //                Otp = userRegisterTempTB.Otp,
-            //            }).ToList();
+                        where userRegisterTempTB.Did == id
+                        select new SaveUserRegisterTempDto
+                        {
+                            Did = userRegisterTempTB.Did,
+                            EmailAddress = userRegisterTempTB.EmailAddress,
+                            Otp = userRegisterTempTB.Otp,
+                        }).ToList();
 
 
-        
-            return saveUserRegisterTemp.Did;
+
+            return (data);
         }
 
         public async Task<bool> UpdateUserRegisterTemp(UpdateUserRegisterTempDto request)
@@ -140,6 +143,7 @@ namespace NewProject.Services.Services
                 data.LastName = request.LastName;
 
                 data.EmailAddress = request.EmailAddress;
+                data.Password = request.Password;
                 data.MobileNo = request.MobileNo;
 
 
@@ -196,6 +200,9 @@ namespace NewProject.Services.Services
 
         }
 
+
+
+
         public bool SendUserWelcomeEmail(string UserName, string UserEmail, string Otp)
         {
             try
@@ -238,6 +245,27 @@ namespace NewProject.Services.Services
                 return false;
             }
         }
+
+
+        /*public JsonResult SendOtp(string Otp)
+
+        {
+            try
+            {
+                string recipient = "";
+                string 
+            }
+
+        }*/
+
+
+
+
+
+
+
+
+
 
     }
 }
