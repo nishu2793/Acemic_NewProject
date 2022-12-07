@@ -16,6 +16,9 @@ namespace NewProject.Services.Interfaces
         Task<List<GetUserRegisterTempDto>> GetAllUserRegisterTemp();
         Task<List<SaveUserRegisterTempDto>> SaveUserRegisterTemp(SaveUserRegisterTempDto request);
         Task<bool> UpdateUserRegisterTemp(UpdateUserRegisterTempDto request);
+
+
+        Task<Guid> SavePasswordTemp(SavePasswordTempDto request);
         Task<bool> DeleteUserRegisterTemp(DeleteUserRegisterTempDto request);
     }
 }

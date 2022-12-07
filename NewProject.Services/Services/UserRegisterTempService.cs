@@ -103,7 +103,7 @@ namespace NewProject.Services.Services
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                Otp=Otp,
-                Password=request.Password,
+                Password = GenericMethods.GetHash(request.Password),
                 EmailAddress = request.EmailAddress,
                 MobileNo = request.MobileNo,
                 CreatedOn = DateTime.UtcNow,
@@ -124,7 +124,9 @@ namespace NewProject.Services.Services
                             Did = userRegisterTempTB.Did,
                             EmailAddress = userRegisterTempTB.EmailAddress,
                             Otp = userRegisterTempTB.Otp,
+                           // Password=userRegisterTempTB.Password,
                         }).ToList();
+
 
 
 
@@ -247,16 +249,28 @@ namespace NewProject.Services.Services
         }
 
 
-        /*public JsonResult SendOtp(string Otp)
 
+        public async Task<Guid> SavePasswordTemp(SavePasswordTempDto request)
         {
-            try
+
+            var data = await _readWriteUnitOfWork.UserRegisterTempRepository.GetFirstOrDefaultAsync(x => x.Did == request.Did);
+
+            if (data != null)
             {
-                string recipient = "";
-                string 
+                data.Password = GenericMethods.GetHash(request.Password);
+
+                await _readWriteUnitOfWork.CommitAsync();
+
+                return data.Did;
+
+
             }
 
-        }*/
+            return Guid.Empty;
+        }
+
+
+
 
 
 
