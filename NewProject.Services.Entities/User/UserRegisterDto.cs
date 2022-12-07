@@ -61,6 +61,7 @@ namespace NewProject.Services.Entities.User
     public class SaveUserRegisterDto
     {
         public Guid Did { get; set; }
+        public Guid DidTemp { get; set; }
         public int Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }

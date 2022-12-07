@@ -38,11 +38,17 @@ public class SaveUserRegisterTempRequest
         public string? LastName { get; set; }
 
         public string? EmailAddress { get; set; }
-        public string? Password { get; set; }
+      public string? Password { get; set; }
         public string? MobileNo { get; set; }
+
+      
   
 
     }
+
+
+   
+
     public class UpdateUserRegisterTempRequest
     {
         public Guid Did { get; set; }
@@ -51,6 +57,8 @@ public class SaveUserRegisterTempRequest
         public string? LastName { get; set; }
 
         public string? EmailAddress { get; set; }
+
+        public string? Password { get; set; }
         public string? MobileNo { get; set; }
        
 
@@ -59,7 +67,16 @@ public class SaveUserRegisterTempRequest
        
 
     }
-    public class DeleteUserRegisterTempRequest
+
+
+    public class SavePasswordTempRequest
+    {
+        public Guid Did { get; set; }
+        public string? Password { get; set; }
+
+
+    }
+        public class DeleteUserRegisterTempRequest
     {
         public Guid Did { get; set; }
 

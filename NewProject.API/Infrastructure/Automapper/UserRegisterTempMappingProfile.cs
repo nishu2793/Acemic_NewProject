@@ -14,9 +14,14 @@ namespace NewProject.API.Infrastructure.Automapper
 
             CreateMap<Verifyotp, VerifyotpDto>();
             CreateMap<UserRegisterTemp, VerifyotpDto>().ReverseMap();
+          
+
 
             CreateMap<SaveUserRegisterTempRequest, SaveUserRegisterTempDto>();
             CreateMap<UserRegisterTemp, SaveUserRegisterTempDto>().ReverseMap();
+
+            CreateMap<SavePasswordTempRequest, SavePasswordTempDto>();
+            CreateMap<UserRegisterTemp, SavePasswordTempDto>().ReverseMap();
 
             CreateMap<UpdateUserRegisterTempRequest, UpdateUserRegisterTempDto>();
             CreateMap<UserRegisterTemp, UpdateUserRegisterTempDto>().ReverseMap();

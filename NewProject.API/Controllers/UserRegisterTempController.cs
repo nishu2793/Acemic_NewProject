@@ -53,6 +53,16 @@ namespace NewProject.API.Controllers
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
 
         }
+
+
+        [HttpPost("SavePasswordTemp")]
+        public async Task<Dictionary<string, object>> SavePasswordTemp([FromBody] SavePasswordTempRequest request)
+        {
+            var savepasswordDto = _mapper.Map<SavePasswordTempRequest, SavePasswordTempDto>(request);
+            var result = await _userRegisterTempService.SavePasswordTemp(savepasswordDto);
+            return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
+        }
+
         [HttpPost("UpdateUserRegisterTemp")]
         public async Task<Dictionary<string, object>> UpdateUserRegisterTemp([FromBody] UpdateUserRegisterTempRequest request)
         {

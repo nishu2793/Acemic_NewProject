@@ -103,29 +103,30 @@ namespace NewProject.Services.Services
 
         public async Task<bool> SaveUserRegister(SaveUserRegisterDto request)
         {
+            var data = await _readWriteUnitOfWork.UserRegisterTempRepository.GetFirstOrDefaultAsync(x => x.Did == request.DidTemp);
+
             var saveUserRegister = new UserRegister()
             {
                 Did = new Guid(),
                // Id = new int(),
                 FirstName = request.FirstName,
                 LastName = request.LastName,
-                Password = GenericMethods.GetHash(request.Password),
-
+                Password = data.Password,
+                Otp=data.Otp,
+               
 
                 EmailAddress = request.EmailAddress,
                 MobileNo = request.MobileNo,
                 Gender = request.Gender,
              
-                UserToken = request.UserToken,
-                Otp = request.Otp,
-                RegisterType = request.RegisterType,
-
+             
 
                 CreatedOn = DateTime.UtcNow,
                 CreatedBy = 1,
 
             };
             await _readWriteUnitOfWork.UserRegisterRepository.AddAsync(saveUserRegister);
+
 
             await _readWriteUnitOfWork.CommitAsync();
 

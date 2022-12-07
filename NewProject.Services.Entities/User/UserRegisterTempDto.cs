@@ -10,7 +10,7 @@ namespace NewProject.Services.Entities.User
     {
         public Guid Did { get; set; }
 
-   
+
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
 
@@ -29,7 +29,7 @@ namespace NewProject.Services.Entities.User
     public class GetUserRegisterTempDto
     {
         public Guid Did { get; set; }
-       
+
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Password { get; set; }
@@ -41,7 +41,7 @@ namespace NewProject.Services.Entities.User
     public class SaveUserRegisterTempDto
     {
         public Guid Did { get; set; }
-       
+
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
 
@@ -55,7 +55,7 @@ namespace NewProject.Services.Entities.User
     public class UpdateUserRegisterTempDto
     {
         public Guid Did { get; set; }
-       
+
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
 
@@ -77,4 +77,16 @@ namespace NewProject.Services.Entities.User
 
         public string? Otp { get; set; }
     }
+
+
+
+    public  class SavePasswordTempDto
+        {
+         public Guid Did { get; set; }
+    public string? Password { get; set; }
+
+}
+
+
+   
 }
