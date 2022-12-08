@@ -101,36 +101,39 @@ namespace NewProject.Services.Services
             return data;
         }
 
-        public async Task<bool> SaveUserRegister(SaveUserRegisterDto request)
+        public async Task<Guid> SaveUserRegister(SaveUserRegisterDto request)
         {
-            var data = await _readWriteUnitOfWork.UserRegisterTempRepository.GetFirstOrDefaultAsync(x => x.Did == request.DidTemp);
+            var data = await _readWriteUnitOfWork.UserRegisterTempRepository.GetFirstOrDefaultAsync(x => x.Did == request.Did);
 
             var saveUserRegister = new UserRegister()
             {
-                Did = new Guid(),
+                Did = data.Did,
                // Id = new int(),
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Password = data.Password,
                 Otp=data.Otp,
-               
-
                 EmailAddress = request.EmailAddress,
                 MobileNo = request.MobileNo,
                 Gender = request.Gender,
-             
-             
-
+                //Image= request.
                 CreatedOn = DateTime.UtcNow,
                 CreatedBy = 1,
-
             };
             await _readWriteUnitOfWork.UserRegisterRepository.AddAsync(saveUserRegister);
-
-
             await _readWriteUnitOfWork.CommitAsync();
 
-            return true;
+            var datadelte = await _readWriteUnitOfWork.UserRegisterTempRepository.GetFirstOrDefaultAsync(x => x.Did == request.Did);
+
+            if (datadelte != null)
+            {
+
+                datadelte.IsDeleted = true;
+
+                await _readWriteUnitOfWork.CommitAsync();
+
+            }
+            return data.Did;
         }
 
         public async Task<bool> UpdateUserRegister(UpdateUserRegisterDto request)

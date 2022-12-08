@@ -12,7 +12,7 @@ namespace NewProject.Services.Interfaces
         Task<UserRegisterDto> UserRegisterAsync(UserRegisterDto request, string ipAddress);
         Task<List<GetUserRegisterDto>> GetUserRegister(GetUserRegisterDto request);
         Task<List<GetUserRegisterDto>> GetAllUserRegister();
-        Task<bool> SaveUserRegister(SaveUserRegisterDto request);   
+        Task<Guid> SaveUserRegister(SaveUserRegisterDto request);   
         Task<bool> UpdateUserRegister(UpdateUserRegisterDto request);
         Task<bool> DeleteUserRegister(DeleteUserRegisterDto request);
 
