@@ -42,7 +42,6 @@ namespace NewProject.Services.Services
                         select new GetUserRegisterDto
                         {
                             Did = userRegisterTB.Did,
-                            Id = userRegisterTB.Id,
                             FirstName = userRegisterTB.FirstName,
                             LastName = userRegisterTB.LastName,
                             Password = userRegisterTB.Password,
@@ -63,7 +62,6 @@ namespace NewProject.Services.Services
                         select new GetUserRegisterDto
                         {
                             Did = userRegisterTB.Did,
-                            Id = userRegisterTB.Id,
                             FirstName = userRegisterTB.FirstName,
                             LastName = userRegisterTB.LastName,
                             Password = userRegisterTB.Password,

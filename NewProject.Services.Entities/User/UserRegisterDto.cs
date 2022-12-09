@@ -25,7 +25,6 @@ namespace NewProject.Services.Entities.User
     public class GetUserRegisterDto
     {
         public Guid Did { get; set; }
-        public int Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Otp { get; set; }
@@ -40,7 +39,6 @@ namespace NewProject.Services.Entities.User
     public class SaveUserRegisterDto
     {
         public Guid Did { get; set; }
-        public int Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? EmailAddress { get; set; }
@@ -56,7 +54,6 @@ namespace NewProject.Services.Entities.User
     public class UpdateUserRegisterDto
     {
         public Guid Did { get; set; }
-        public int Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? EmailAddress { get; set; }

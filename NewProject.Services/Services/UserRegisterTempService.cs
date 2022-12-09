@@ -7,6 +7,7 @@ using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
 using NewProject.Utility;
 using Org.BouncyCastle.Asn1.Ocsp;
+using System.Linq.Expressions;
 
 namespace NewProject.Services.Services
 {
@@ -87,8 +88,13 @@ namespace NewProject.Services.Services
                         }).ToList();
             if (saveUserRegisterTemp.EmailAddress != null)
             {
-                MailService mailService = new MailService();
-                mailService.SendEmail(saveUserRegisterTemp, Mailsettingdata);
+                try
+                {
+                    MailService mailService = new MailService();
+                    mailService.SendEmail(saveUserRegisterTemp, Mailsettingdata);
+                }
+                catch (Exception ex)
+                { }
             }
             else
             {
