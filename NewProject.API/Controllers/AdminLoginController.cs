@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using NewProject.API.Requests.User;
 using NewProject.Services.Entities.LoginDto;
-using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
 using NewProject.Utility;
 
@@ -15,7 +14,7 @@ namespace NewProject.API.Controllers
         private readonly IMapper _mapper;
         private readonly IAdminLoginService _adminLoginService;
 
-        public AdminLoginController(IAdminLoginService adminLoginService , IMapper mapper)
+        public AdminLoginController(IAdminLoginService adminLoginService, IMapper mapper)
         {
             _mapper = mapper;
             _adminLoginService = adminLoginService;
@@ -29,7 +28,6 @@ namespace NewProject.API.Controllers
         //    return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
 
         //}
-
         [HttpPost("GetAdminLogin")]
         public async Task<Dictionary<string, object>> GetAdminLogin([FromBody] GetAdminLoginRequest request)
         {
@@ -38,22 +36,18 @@ namespace NewProject.API.Controllers
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
 
         }
-
         [HttpPost("GetAllAdminLogin")]
         public async Task<Dictionary<string, object>> GetAllAdminLogin()
         {
             var result = await _adminLoginService.GetAllAdminLogin();
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
-
         }
-
         [HttpPost("SaveAdminLogin")]
         public async Task<Dictionary<string, object>> SaveAdminLogin([FromBody] SaveAdminLoginRequest request)
         {
             var saveadminLoginDto = _mapper.Map<SaveAdminLoginRequest, SaveAdminLoginDto>(request);
             var result = await _adminLoginService.SaveAdminLogin(saveadminLoginDto);
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
-
         }
         //[HttpPost("UpdateUser")]
         //public async Task<Dictionary<string, object>> UpdateUser([FromBody] UpdateUserRequest request)

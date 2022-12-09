@@ -6,7 +6,7 @@ using NewProject.Services.Entities.User;
 namespace NewProject.API.Infrastructure.Automapper
 {
     public class UserProfileMappingProfile : Profile
-    { 
+    {
         public UserProfileMappingProfile()
         {
             CreateMap<GetUserProfileRequest, GetUserProfileDto>();
@@ -14,8 +14,6 @@ namespace NewProject.API.Infrastructure.Automapper
 
             CreateMap<UpdateUserProfileRequest, UpdateUserProfileDto>();
             CreateMap<UserRegister, UpdateUserProfileDto>().ReverseMap();
-
-           
         }
     }
 }

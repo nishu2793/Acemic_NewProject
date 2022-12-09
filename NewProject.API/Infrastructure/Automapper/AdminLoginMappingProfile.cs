@@ -8,16 +8,13 @@ namespace NewProject.API.Infrastructure.Automapper
 {
     public class AdminLoginMappingProfile : Profile
     {
-        public  AdminLoginMappingProfile()
+        public AdminLoginMappingProfile()
         {
             CreateMap<GetAdminLoginRequest, GetAdminLoginDto>();
             CreateMap<AdminLogin, GetAdminLoginDto>().ReverseMap();
 
             CreateMap<SaveAdminLoginRequest, SaveAdminLoginDto>();
             CreateMap<AdminLogin, SaveAdminLoginDto>().ReverseMap();
-          
-           // CreateMap<AdminLoginRequest, AdminLoginDto>();
-
         }
     }
 }

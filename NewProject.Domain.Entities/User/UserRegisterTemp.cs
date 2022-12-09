@@ -13,10 +13,8 @@ namespace NewProject.Domain.Entities.User
     {
         [Key]
         public Guid Did { get; set; }
-     
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-
         public string? EmailAddress { get; set; }
         public string? MobileNo { get; set; }
         public string? Otp { get; set; }
@@ -26,8 +24,5 @@ namespace NewProject.Domain.Entities.User
         public DateTime? UpdatedOn { get; set; }
         public int? UpdatedBy { get; set; }
         public bool? IsDeleted { get; set; }
-
-
-
     }
 }

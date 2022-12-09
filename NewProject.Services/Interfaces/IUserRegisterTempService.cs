@@ -11,14 +11,10 @@ namespace NewProject.Services.Interfaces
     public interface IUserRegisterTempService
     {
         Task<List<GetUserRegisterTempDto>> GetUserRegisterTemp(GetUserRegisterTempDto request);
-
         Task<List<VerifyotpDto>> Verifyotp(VerifyotpDto request);
-     
         Task<List<GetUserRegisterTempDto>> GetAllUserRegisterTemp();
         Task<List<SaveUserRegisterTempDto>> SaveUserRegisterTemp(SaveUserRegisterTempDto request, MailSettings Mailsettingdata);
         Task<bool> UpdateUserRegisterTemp(UpdateUserRegisterTempDto request);
-
-
         Task<Guid> SavePasswordTemp(SavePasswordTempDto request);
         Task<bool> DeleteUserRegisterTemp(DeleteUserRegisterTempDto request);
     }

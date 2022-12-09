@@ -1,11 +1,6 @@
 ﻿using NewProject.Services.Entities;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NewProject.Services.Services
 {
@@ -23,8 +18,6 @@ namespace NewProject.Services.Services
                 .Accept
                 .Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
-
-
         public async Task<FacebookUserResource> GetUserFromFacebookAsync(string facebookToken)
         {
             var result = await GetAsync<dynamic>(facebookToken, "me", "fields=first_name,last_name,email,picture.width(100).height(100)");
@@ -32,7 +25,6 @@ namespace NewProject.Services.Services
             {
                 throw new Exception("User from this token not exist");
             }
-
             var account = new FacebookUserResource()
             {
                 Email = result.email,
@@ -40,18 +32,14 @@ namespace NewProject.Services.Services
                 LastName = result.last_name,
                 Picture = result.picture.data.url
             };
-
             return account;
         }
-
         private async Task<T> GetAsync<T>(string accessToken, string endpoint, string args = null)
         {
             var response = await _httpClient.GetAsync($"{endpoint}?access_token={accessToken}&{args}");
             if (!response.IsSuccessStatusCode)
                 return default(T);
-
             var result = await response.Content.ReadAsStringAsync();
-
             return JsonConvert.DeserializeObject<T>(result);
         }
     }

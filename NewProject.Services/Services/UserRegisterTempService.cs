@@ -1,24 +1,11 @@
 ﻿using AceMic.Domain.Entities.User;
 using AutoMapper;
-using MailKit.Net.Smtp;
-using Microsoft.AspNetCore.Mvc;
-using MimeKit;
 using NewProject.Data.Contexts;
 using NewProject.Data.Infrastructure;
 using NewProject.Domain.Entities.User;
 using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
-
 using NewProject.Utility;
-using Org.BouncyCastle.Asn1.Ocsp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-
-using System.Text;
-using System.Threading.Tasks;
-
 namespace NewProject.Services.Services
 {
     public class UserRegisterTempService : IUserRegisterTempService
@@ -28,9 +15,6 @@ namespace NewProject.Services.Services
         private readonly ReadWriteApplicationDbContext _readWriteUnitOfWorkSP;
         private readonly IUnitOfWork<MasterDbContext> _masterDBContext;
         private readonly IMapper _mapper;
-
-
-
         public UserRegisterTempService(IUnitOfWork<ReadOnlyApplicationDbContext> readOnlyUnitOfWork,
              IUnitOfWork<MasterDbContext> masterDBContext, IMapper mapper,
              IUnitOfWork<ReadWriteApplicationDbContext> readWriteUnitOfWork,
@@ -45,54 +29,33 @@ namespace NewProject.Services.Services
         public async Task<List<GetUserRegisterTempDto>> GetUserRegisterTemp(GetUserRegisterTempDto request)
         {
             var data = (from userRegisterTempTB in _readOnlyUnitOfWork.UserRegisterTempRepository.GetAllAsQuerable()
-
                         where userRegisterTempTB.Did == request.Did || userRegisterTempTB.EmailAddress == request.EmailAddress
-                       
                         select new GetUserRegisterTempDto
                         {
                             Did = userRegisterTempTB.Did,
-
                             FirstName = userRegisterTempTB.FirstName,
                             LastName = userRegisterTempTB.LastName,
-                            Password=userRegisterTempTB.Password,
-
-
+                            Password = userRegisterTempTB.Password,
                             EmailAddress = userRegisterTempTB.EmailAddress,
                             MobileNo = userRegisterTempTB.MobileNo,
-
-
-
-
                         }).ToList();
-
             return data;
         }
         public async Task<List<GetUserRegisterTempDto>> GetAllUserRegisterTemp()
         {
             var data = (from userRegisterTB in _readOnlyUnitOfWork.UserRegisterTempRepository.GetAllAsQuerable()
-
-
                         where userRegisterTB.IsDeleted != true
                         select new GetUserRegisterTempDto
                         {
                             Did = userRegisterTB.Did,
-
                             FirstName = userRegisterTB.FirstName,
                             LastName = userRegisterTB.LastName,
                             Password = userRegisterTB.Password,
-
-
                             EmailAddress = userRegisterTB.EmailAddress,
                             MobileNo = userRegisterTB.MobileNo,
-
-
-
-
                         }).ToList();
-
             return data;
         }
-        
         public async Task<List<SaveUserRegisterTempDto>> SaveUserRegisterTemp(SaveUserRegisterTempDto request, MailSettings Mailsettingdata)
         {
             Random randomObj = new Random();
@@ -108,7 +71,6 @@ namespace NewProject.Services.Services
                 MobileNo = request.MobileNo,
                 CreatedOn = DateTime.UtcNow,
                 CreatedBy = 1,
-
             };
             await _readWriteUnitOfWork.UserRegisterTempRepository.AddAsync(saveUserRegisterTemp);
             await _readWriteUnitOfWork.CommitAsync();
@@ -131,105 +93,58 @@ namespace NewProject.Services.Services
             }
             return data;
         }
-
         public async Task<bool> UpdateUserRegisterTemp(UpdateUserRegisterTempDto request)
         {
-
             var data = await _readWriteUnitOfWork.UserRegisterTempRepository.GetFirstOrDefaultAsync(x => x.Did == request.Did);
-
             if (data != null)
             {
-
                 data.FirstName = request.FirstName;
                 data.LastName = request.LastName;
-
                 data.EmailAddress = request.EmailAddress;
                 data.Password = request.Password;
                 data.MobileNo = request.MobileNo;
-
-
                 data.UpdatedBy = 1;
                 data.UpdatedOn = DateTime.UtcNow;
-
                 await _readWriteUnitOfWork.CommitAsync();
-
                 return true;
-
             }
             return false;
-
         }
-
         public async Task<bool> DeleteUserRegisterTemp(DeleteUserRegisterTempDto request)
         {
-
             var data = await _readWriteUnitOfWork.UserRegisterTempRepository.GetFirstOrDefaultAsync(x => x.Did == request.Did);
-
             if (data != null)
             {
-
                 data.IsDeleted = true;
-
                 await _readWriteUnitOfWork.CommitAsync();
-
                 return true;
-
             }
             return false;
-
         }
 
         public async Task<List<VerifyotpDto>> Verifyotp(VerifyotpDto request)
         {
-
             var data = (from userRegisterTempTB in _readOnlyUnitOfWork.UserRegisterTempRepository.GetAllAsQuerable()
-
                         where userRegisterTempTB.Otp == request.Otp && (userRegisterTempTB.EmailAddress == request.EmailAddress || userRegisterTempTB.MobileNo == request.MobileNo)
                         select new VerifyotpDto
                         {
                             Did = userRegisterTempTB.Did,
-                            
                             EmailAddress = userRegisterTempTB.EmailAddress,
                             MobileNo = userRegisterTempTB.MobileNo,
                             Otp = userRegisterTempTB.Otp,
                         }).ToList();
-
             return data;
-
-
-
-
         }
         public async Task<Guid> SavePasswordTemp(SavePasswordTempDto request)
         {
-
             var data = await _readWriteUnitOfWork.UserRegisterTempRepository.GetFirstOrDefaultAsync(x => x.Did == request.Did);
-
             if (data != null)
             {
                 data.Password = GenericMethods.GetHash(request.Password);
-
                 await _readWriteUnitOfWork.CommitAsync();
-
                 return data.Did;
-
-
             }
-
             return Guid.Empty;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

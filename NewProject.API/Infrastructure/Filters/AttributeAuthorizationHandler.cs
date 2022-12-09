@@ -17,12 +17,9 @@ namespace NewProject.API.Infrastructure.Filters
                 attributes.AddRange(GetAttributes(action.ControllerTypeInfo.UnderlyingSystemType));
                 attributes.AddRange(GetAttributes(action.MethodInfo));
             }
-
             return HandleRequirementAsync(context, requirement, attributes);
         }
-
         protected abstract Task HandleRequirementAsync(AuthorizationHandlerContext context, TRequirement requirement, IEnumerable<TAttribute> attributes);
-
         private static IEnumerable<TAttribute> GetAttributes(MemberInfo memberInfo)
         {
             return memberInfo.GetCustomAttributes(typeof(TAttribute), false).Cast<TAttribute>();

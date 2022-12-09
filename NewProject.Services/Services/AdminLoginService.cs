@@ -3,14 +3,8 @@ using NewProject.Data.Contexts;
 using NewProject.Data.Infrastructure;
 using NewProject.Domain.Entities.User;
 using NewProject.Services.Entities.LoginDto;
-using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
 using NewProject.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NewProject.Services.Services
 {
@@ -21,8 +15,6 @@ namespace NewProject.Services.Services
         private readonly ReadWriteApplicationDbContext _readWriteUnitOfWorkSP;
         private readonly IUnitOfWork<MasterDbContext> _masterDBContext;
         private readonly IMapper _mapper;
-
-
         public AdminLoginService(IUnitOfWork<ReadOnlyApplicationDbContext> readOnlyUnitOfWork,
              IUnitOfWork<MasterDbContext> masterDBContext, IMapper mapper,
              IUnitOfWork<ReadWriteApplicationDbContext> readWriteUnitOfWork,
@@ -45,22 +37,13 @@ namespace NewProject.Services.Services
         public async Task<List<GetAdminLoginDto>> GetAdminLogin(GetAdminLoginDto request)
         {
             var data = (from adminloginTB in _readOnlyUnitOfWork.AdminLoginRepository.GetAllAsQuerable()
-
                         where adminloginTB.Id == request.Id && adminloginTB.IsDeleted != true
                         select new GetAdminLoginDto
                         {
-                           Id = adminloginTB.Id,
-                           UserName = adminloginTB.UserName,
-
+                            Id = adminloginTB.Id,
+                            UserName = adminloginTB.UserName,
                             EmailAddress = adminloginTB.EmailAddress,
-
-
                             Password = adminloginTB.Password,
-
-                          
-                           
-
-
                         }).ToList();
 
             return data;
@@ -75,17 +58,9 @@ namespace NewProject.Services.Services
                         {
                             Id = adminloginTB.Id,
                             UserName = adminloginTB.UserName,
-
                             EmailAddress = adminloginTB.EmailAddress,
-
-
                             Password = adminloginTB.Password,
-
-
-
-
                         }).ToList();
-
             return data;
         }
 
@@ -95,21 +70,12 @@ namespace NewProject.Services.Services
             {
                 Id = new int(),
                 UserName = request.UserName,
-
-
                 EmailAddress = request.EmailAddress,
-              
                 Password = GenericMethods.GetHash(request.Password),
-              
                 CreatedOn = DateTime.UtcNow,
-               
-
-
             };
             await _readWriteUnitOfWork.AdminLoginRepository.AddAsync(saveAdminLogin);
-
             await _readWriteUnitOfWork.CommitAsync();
-
             return true;
         }
     }

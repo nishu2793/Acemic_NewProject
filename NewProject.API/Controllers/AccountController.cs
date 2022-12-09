@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-
 using Microsoft.AspNetCore.Mvc;
 using NewProject.API.Requests.User;
 using NewProject.Services.Entities.User;
@@ -19,7 +18,6 @@ namespace NewProject.API.Controllers
             _authenticationService = authenticationService;
             _mapper = mapper;
         }
-
         [HttpPost("authenticate")]
         public async Task<Dictionary<string, object>> AuthenticateAsync([FromBody] UserAuthRequest request)
         {
@@ -40,7 +38,4 @@ namespace NewProject.API.Controllers
 
         #endregion
     }
-
-
-      
 }

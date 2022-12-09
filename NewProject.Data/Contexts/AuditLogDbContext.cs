@@ -3,15 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NewProject.Data.Infrastructure;
 using NewProject.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NewProject.Data.Contexts
 {
-    public class AuditLogDbContext: BaseDBContext, IBaseContext
+    public class AuditLogDbContext : BaseDBContext, IBaseContext
     {
         private readonly IUnitOfWork<MasterDbContext> _context;
         private readonly IHttpContextAccessor _accessor;

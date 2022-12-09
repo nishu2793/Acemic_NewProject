@@ -6,36 +6,25 @@ using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
 using NewProject.Utility;
 using NewProject.Utility.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NewProject.Services.Services
 {
     public class AuthenticationService : IAuthenticationService
     {
-
         private readonly IUnitOfWork<ReadOnlyApplicationDbContext> _readOnlyUnitOfWork;
         private readonly IUnitOfWork<ReadWriteApplicationDbContext> _readWriteUnitOfWork;
         private readonly IJwtService _jwtService;
         private readonly AppSettings _appSettings;
-       
-       
-
         public AuthenticationService(
              IUnitOfWork<ReadOnlyApplicationDbContext> readOnlyUnitOfWork,
              IUnitOfWork<ReadWriteApplicationDbContext> readWriteUnitOfWork,
              IJwtService jwtService,
-             IOptions<AppSettings> appSettings
-          )
+             IOptions<AppSettings> appSettings)
         {
             this._readOnlyUnitOfWork = readOnlyUnitOfWork;
             this._jwtService = jwtService;
             this._appSettings = appSettings.Value;
             this._readWriteUnitOfWork = readWriteUnitOfWork;
-           
         }
 
         public async Task<UserLoginDto> AuthenticateAsync(UserAuthRequestDto request, string ipAddress)

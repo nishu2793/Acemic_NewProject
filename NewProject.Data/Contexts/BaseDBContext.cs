@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Audit.EntityFramework;
+﻿using Audit.EntityFramework;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -12,7 +6,6 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using NewProject.Data.Infrastructure;
-using NewProject.Domain.Entities.Master;
 using NewProject.Domain.Entities.User;
 using NewProject.Utility;
 //using User = NewProject.Domain.Entities.User.User;
@@ -25,7 +18,7 @@ namespace NewProject.Data.Contexts
         private readonly IHttpContextAccessor _accessor;
         private readonly IConfiguration _configuration;
         private readonly AppSettings _appSettings;
-       
+
 
         protected BaseDBContext()
             : base()
@@ -93,9 +86,9 @@ namespace NewProject.Data.Contexts
             }
         }
 
-       
-     
-    
+
+
+
         public DbSet<RefreshToken> RefreshToken { get; set; }
         public DbSet<AdminLogin> adminLogin { get; set; }
         public DbSet<UserRegister> userRegister { get; set; }
@@ -116,7 +109,7 @@ namespace NewProject.Data.Contexts
         EntityEntry<T> Entry<T>(T entity) where T : class;
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
-      
+
 
         void Dispose();
 

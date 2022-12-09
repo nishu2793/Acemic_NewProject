@@ -4,14 +4,6 @@ using NewProject.Data.Infrastructure;
 using NewProject.Domain.Entities.User;
 using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
-using NewProject.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
 
 namespace NewProject.Services.Services
 {
@@ -22,9 +14,6 @@ namespace NewProject.Services.Services
         private readonly ReadWriteApplicationDbContext _readWriteUnitOfWorkSP;
         private readonly IUnitOfWork<MasterDbContext> _masterDBContext;
         private readonly IMapper _mapper;
-
-
-
         public UserRegisterService(IUnitOfWork<ReadOnlyApplicationDbContext> readOnlyUnitOfWork,
              IUnitOfWork<MasterDbContext> masterDBContext, IMapper mapper,
              IUnitOfWork<ReadWriteApplicationDbContext> readWriteUnitOfWork,
@@ -47,30 +36,23 @@ namespace NewProject.Services.Services
         public async Task<List<GetUserRegisterDto>> GetUserRegister(GetUserRegisterDto request)
         {
             var data = (from userRegisterTB in _readOnlyUnitOfWork.UserRegisterRepository.GetAllAsQuerable()
-                        
+
                         where userRegisterTB.Did == request.Did && userRegisterTB.IsDeleted != true
 
                         select new GetUserRegisterDto
                         {
-                            Did=userRegisterTB.Did,
+                            Did = userRegisterTB.Did,
                             Id = userRegisterTB.Id,
                             FirstName = userRegisterTB.FirstName,
                             LastName = userRegisterTB.LastName,
                             Password = userRegisterTB.Password,
-                           
                             EmailAddress = userRegisterTB.EmailAddress,
                             MobileNo = userRegisterTB.MobileNo,
-                           
                             Gender = userRegisterTB.Gender,
-                          
                             UserToken = userRegisterTB.UserToken,
-                            Otp=userRegisterTB.Otp,
-                            RegisterType=userRegisterTB.RegisterType,
-                           
-
-
+                            Otp = userRegisterTB.Otp,
+                            RegisterType = userRegisterTB.RegisterType,
                         }).ToList();
-
             return data;
         }
         public async Task<List<GetUserRegisterDto>> GetAllUserRegister()
@@ -84,23 +66,16 @@ namespace NewProject.Services.Services
                             Id = userRegisterTB.Id,
                             FirstName = userRegisterTB.FirstName,
                             LastName = userRegisterTB.LastName,
-                            Password=userRegisterTB.Password,
-
+                            Password = userRegisterTB.Password,
                             EmailAddress = userRegisterTB.EmailAddress,
                             MobileNo = userRegisterTB.MobileNo,
-
                             Gender = userRegisterTB.Gender,
-                          
                             UserToken = userRegisterTB.UserToken,
                             Otp = userRegisterTB.Otp,
                             RegisterType = userRegisterTB.RegisterType,
-
-
                         }).ToList();
-
             return data;
         }
-
         public async Task<Guid> SaveUserRegister(SaveUserRegisterDto request)
         {
             var data = await _readWriteUnitOfWork.UserRegisterTempRepository.GetFirstOrDefaultAsync(x => x.Did == request.Did);
@@ -108,11 +83,10 @@ namespace NewProject.Services.Services
             var saveUserRegister = new UserRegister()
             {
                 Did = data.Did,
-               // Id = new int(),
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Password = data.Password,
-                Otp=data.Otp,
+                Otp = data.Otp,
                 EmailAddress = request.EmailAddress,
                 MobileNo = request.MobileNo,
                 Gender = request.Gender,
@@ -127,65 +101,43 @@ namespace NewProject.Services.Services
 
             if (datadelte != null)
             {
-
                 datadelte.IsDeleted = true;
-
                 await _readWriteUnitOfWork.CommitAsync();
-
             }
             return data.Did;
         }
 
         public async Task<bool> UpdateUserRegister(UpdateUserRegisterDto request)
         {
-
             var data = await _readWriteUnitOfWork.UserRegisterRepository.GetFirstOrDefaultAsync(x => x.Did == request.Did);
-
             if (data != null)
             {
-
                 data.FirstName = request.FirstName;
                 data.LastName = request.LastName;
-               
                 data.EmailAddress = request.EmailAddress;
                 data.MobileNo = request.MobileNo;
                 data.Gender = request.Gender;
-                
                 data.UserToken = request.UserToken;
                 data.Otp = request.Otp;
                 data.RegisterType = request.RegisterType;
-               
                 data.UpdatedBy = 1;
                 data.UpdatedOn = DateTime.UtcNow;
-
                 await _readWriteUnitOfWork.CommitAsync();
-
                 return true;
-
             }
             return false;
-
         }
 
         public async Task<bool> DeleteUserRegister(DeleteUserRegisterDto request)
         {
-
             var data = await _readWriteUnitOfWork.UserRegisterRepository.GetFirstOrDefaultAsync(x => x.Did == request.Did);
-
             if (data != null)
             {
-
                 data.IsDeleted = true;
-
                 await _readWriteUnitOfWork.CommitAsync();
-
                 return true;
-
             }
             return false;
-
         }
-
-
     }
 }

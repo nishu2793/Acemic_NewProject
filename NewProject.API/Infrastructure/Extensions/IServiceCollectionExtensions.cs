@@ -22,7 +22,6 @@ namespace NewProject.API.Infrastructure.Extensions
                  .Where(c => c.Name.EndsWith("Service"))
                  .AsPublicImplementedInterfaces();
         }
-
         public static void RegisterRepositories(this IServiceCollection services)
         {
             services.AddTransient(typeof(IAccountsRepository<>), typeof(AccountsRepository<>));
@@ -30,16 +29,8 @@ namespace NewProject.API.Infrastructure.Extensions
             services.AddTransient(typeof(IAdminLoginRepository<>), typeof(AdminLoginRepository<>));
             services.AddTransient(typeof(IUserRegisterRepository<>), typeof(UserRegisterRepository<>));
             services.AddTransient(typeof(IUserRegisterTempRepository<>), typeof(UserRegisterTempRepository<>));
-
-
-
-
-
             services.AddTransient(typeof(IRefreshTokenRepository<>), typeof(RefreshTokenRepository<>));
             services.AddTransient(typeof(IUserProfileRepository<>), typeof(UserProfileRepository<>));
-
-
-
         }
 
         public static void ConfigureDatabases(this IServiceCollection services, IConfiguration configuration)
@@ -61,7 +52,6 @@ namespace NewProject.API.Infrastructure.Extensions
             services.AddScoped<Func<ReadOnlyApplicationDbContext>>((provider) => () => provider.GetService<ReadOnlyApplicationDbContext>());
             services.AddScoped<Func<ReadWriteApplicationDbContext>>((provider) => () => provider.GetService<ReadWriteApplicationDbContext>());
             services.AddScoped<Func<AuditLogDbContext>>((provider) => () => provider.GetService<AuditLogDbContext>());
-
         }
 
         public static void ConfigureCors(this IServiceCollection services)

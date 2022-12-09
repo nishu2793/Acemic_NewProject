@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace NewProject.Data.Contexts
 {
     [AuditDbContext(AuditEventType = "{database}")]
-    public class MasterDbContext: AuditDbContext, IBaseContext
+    public class MasterDbContext : AuditDbContext, IBaseContext
     {
         internal MasterDbContext(DbContextOptions options)
          : base(options)
@@ -28,7 +28,7 @@ namespace NewProject.Data.Contexts
         public DbSet<UserRegister> UserRegister { get; set; }
 
 
-        
+
 
     }
 }

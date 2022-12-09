@@ -4,8 +4,8 @@ using NewProject.Domain.Entities.User;
 using NewProject.Services.Entities.User;
 
 namespace NewProject.API.Infrastructure.Automapper
-{ 
-    public class UserRegisterTempMappingProfile: Profile
+{
+    public class UserRegisterTempMappingProfile : Profile
     {
         public UserRegisterTempMappingProfile()
         {
@@ -14,8 +14,6 @@ namespace NewProject.API.Infrastructure.Automapper
 
             CreateMap<Verifyotp, VerifyotpDto>();
             CreateMap<UserRegisterTemp, VerifyotpDto>().ReverseMap();
-          
-
 
             CreateMap<SaveUserRegisterTempRequest, SaveUserRegisterTempDto>();
             CreateMap<UserRegisterTemp, SaveUserRegisterTempDto>().ReverseMap();
@@ -29,7 +27,7 @@ namespace NewProject.API.Infrastructure.Automapper
             CreateMap<DeleteUserRegisterTempRequest, DeleteUserRegisterTempDto>();
             CreateMap<UserRegisterTemp, DeleteUserRegisterTempDto>().ReverseMap();
 
-            
+
         }
     }
 }

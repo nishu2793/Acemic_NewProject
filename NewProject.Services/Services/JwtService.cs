@@ -34,13 +34,9 @@ namespace NewProject.Services.Services
                 Expires = expiresOn,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
-
             var token = tokenHandler.CreateToken(tokenDescriptor);
-
             return tokenHandler.WriteToken(token);
-
         }
-
         public SessionDetailsDto ValidateJwtToken(string token)
         {
             if (token == null)
@@ -93,4 +89,4 @@ namespace NewProject.Services.Services
         }
     }
 }
-    
+

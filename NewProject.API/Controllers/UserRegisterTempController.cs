@@ -20,9 +20,7 @@ namespace NewProject.API.Controllers
             _mapper = mapper;
             _userRegisterTempService = userRegisterTempService;
             _configuration = configuration;
-
         }
-
         [HttpPost("GetUserRegisterTemp")]
         public async Task<Dictionary<string, object>> GetUserRegisterTemp([FromBody] GetUserRegisterTempRequest request)
         {
@@ -36,9 +34,7 @@ namespace NewProject.API.Controllers
         {
             var result = await _userRegisterTempService.GetAllUserRegisterTemp();
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
-
         }
-
         [HttpPost("SaveUserRegisterTemp")]
         public async Task<Dictionary<string, object>> SaveUserRegisterTemp([FromBody] SaveUserRegisterTempRequest request)
         {
@@ -46,7 +42,6 @@ namespace NewProject.API.Controllers
             var saveUserRegisterDto = _mapper.Map<SaveUserRegisterTempRequest, SaveUserRegisterTempDto>(request);
             var result = await _userRegisterTempService.SaveUserRegisterTemp(saveUserRegisterDto, Mailsettingdata);
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
-
         }
         [HttpPost("Verifyotp")]
         public async Task<Dictionary<string, object>> Verifyotp([FromBody] Verifyotp request)
@@ -54,10 +49,7 @@ namespace NewProject.API.Controllers
             var userdto = _mapper.Map<Verifyotp, VerifyotpDto>(request);
             var result = await _userRegisterTempService.Verifyotp(userdto);
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
-
         }
-
-
         [HttpPost("SavePasswordTemp")]
         public async Task<Dictionary<string, object>> SavePasswordTemp([FromBody] SavePasswordTempRequest request)
         {

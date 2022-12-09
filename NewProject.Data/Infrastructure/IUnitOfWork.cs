@@ -1,30 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NewProject.Data.Contexts;
+﻿using NewProject.Data.Contexts;
 using NewProject.Data.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NewProject.Data.Infrastructure
 {
     public interface IUnitOfWork<TContext> where TContext : IBaseContext
     {
-
         IAccountsRepository<TContext> AccountsRepository { get; }
-        
         IAdminLoginRepository<TContext> AdminLoginRepository { get; }
         IUserRegisterRepository<TContext> UserRegisterRepository { get; }
-
-
         IRefreshTokenRepository<TContext> RefreshTokenRepository { get; }
         IUserProfileRepository<TContext> UserProfileRepository { get; }
         IUserRegisterTempRepository<TContext> UserRegisterTempRepository { get; }
-
-
-
-
         Task<int> CommitAsync();
 
     }
@@ -32,62 +18,39 @@ namespace NewProject.Data.Infrastructure
     {
         public TContext Context { get; }
         public IAccountsRepository<TContext> AccountsRepository { get; }
-       
         public IAdminLoginRepository<TContext> AdminLoginRepository { get; }
-       public IUserRegisterRepository<TContext> UserRegisterRepository { get; }
-       public IUserProfileRepository<TContext> UserProfileRepository { get; }
+        public IUserRegisterRepository<TContext> UserRegisterRepository { get; }
+        public IUserProfileRepository<TContext> UserProfileRepository { get; }
         public IUserRegisterTempRepository<TContext> UserRegisterTempRepository { get; }
-
-
-
-
-
-
         public IRefreshTokenRepository<TContext> RefreshTokenRepository { get; }
-
-
-
-
         public UnitOfWork(TContext context, IAccountsRepository<TContext> accountsRepository,
-            
-            IAdminLoginRepository<TContext> adminLoginRepository,
-              IUserRegisterRepository<TContext> userRegisterRepository ,
-              IUserProfileRepository<TContext> userProfileRepository,
-               IUserRegisterTempRepository<TContext> userRegisterTempRepository,
-
-
-
-        IRefreshTokenRepository<TContext> refreshTokenRepository
-
-
-            )
+                IAdminLoginRepository<TContext> adminLoginRepository,
+                IUserRegisterRepository<TContext> userRegisterRepository,
+                IUserProfileRepository<TContext> userProfileRepository,
+                IUserRegisterTempRepository<TContext> userRegisterTempRepository,
+        IRefreshTokenRepository<TContext> refreshTokenRepository)
         {
             this.Context = context;
             this.AccountsRepository = accountsRepository;
-           
-            this.AdminLoginRepository= adminLoginRepository;
-            this.UserRegisterRepository= userRegisterRepository;
+            this.AdminLoginRepository = adminLoginRepository;
+            this.UserRegisterRepository = userRegisterRepository;
             this.RefreshTokenRepository = refreshTokenRepository;
-            this.UserProfileRepository= userProfileRepository;
-            this.UserRegisterTempRepository= userRegisterTempRepository;
-
+            this.UserProfileRepository = userProfileRepository;
+            this.UserRegisterTempRepository = userRegisterTempRepository;
         }
-            public async Task<int> CommitAsync()
+        public async Task<int> CommitAsync()
+        {
+            TContext checkType = default(TContext);
+            if (checkType is ReadOnlyApplicationDbContext)
             {
-                TContext checkType = default(TContext);
-                if (checkType is ReadOnlyApplicationDbContext)
-                {
-                    throw new Exception("This is a read-only context!");
-                }
-                return await this.Context.SaveChangesAsync();
+                throw new Exception("This is a read-only context!");
             }
-
-            public void Dispose()
-            {
-                this.Context.Dispose();
-            }
+            return await this.Context.SaveChangesAsync();
         }
-
-    
+        public void Dispose()
+        {
+            this.Context.Dispose();
+        }
     }
+}
 

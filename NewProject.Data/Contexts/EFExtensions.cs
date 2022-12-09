@@ -10,7 +10,7 @@ using NewProject.Data.Extensions;
 
 namespace NewProject.Data.Contexts
 {
-    public  static class EFExtensions
+    public static class EFExtensions
     {
         //public static log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         /// <summary>
