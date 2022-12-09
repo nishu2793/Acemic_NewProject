@@ -6,6 +6,8 @@ using NewProject.Domain.Entities.User;
 using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
 using NewProject.Utility;
+using Org.BouncyCastle.Asn1.Ocsp;
+
 namespace NewProject.Services.Services
 {
     public class UserRegisterTempService : IUserRegisterTempService
@@ -60,9 +62,10 @@ namespace NewProject.Services.Services
         {
             Random randomObj = new Random();
             string Otp = randomObj.Next(1000, 9999).ToString();
+            Guid Id = new Guid();
             var saveUserRegisterTemp = new UserRegisterTemp()
             {
-                Did = new Guid(),
+                Did = Id,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Otp = Otp,
@@ -70,7 +73,7 @@ namespace NewProject.Services.Services
                 EmailAddress = request.EmailAddress,
                 MobileNo = request.MobileNo,
                 CreatedOn = DateTime.UtcNow,
-                CreatedBy = 1,
+                CreatedBy = Id,
             };
             await _readWriteUnitOfWork.UserRegisterTempRepository.AddAsync(saveUserRegisterTemp);
             await _readWriteUnitOfWork.CommitAsync();
@@ -103,7 +106,7 @@ namespace NewProject.Services.Services
                 data.EmailAddress = request.EmailAddress;
                 data.Password = request.Password;
                 data.MobileNo = request.MobileNo;
-                data.UpdatedBy = 1;
+                data.UpdatedBy = request.Did;
                 data.UpdatedOn = DateTime.UtcNow;
                 await _readWriteUnitOfWork.CommitAsync();
                 return true;

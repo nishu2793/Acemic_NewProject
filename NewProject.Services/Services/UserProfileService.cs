@@ -51,7 +51,7 @@ namespace NewProject.Services.Services
                 data.MobileNo = request.MobileNo;
                 data.Gender = request.Gender;
                 data.Image = request.Image;
-                data.UpdatedBy = 1;
+                data.UpdatedBy = request.Did;
                 data.UpdatedOn = DateTime.UtcNow;
                 await _readWriteUnitOfWork.CommitAsync();
                 return true;

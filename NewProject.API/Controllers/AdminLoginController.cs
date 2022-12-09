@@ -20,14 +20,6 @@ namespace NewProject.API.Controllers
             _adminLoginService = adminLoginService;
 
         }
-        //[HttpPost("getuser")]
-        //public async Task<Dictionary<string, object>> UserAsync([FromBody] UserRequest request)
-        //{
-        //    var userDto = _mapper.Map<UserRequest, UserDto>(request);
-        //    var result = await _userService.UserAsync(userDto, null);
-        //    return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
-
-        //}
         [HttpPost("GetAdminLogin")]
         public async Task<Dictionary<string, object>> GetAdminLogin([FromBody] GetAdminLoginRequest request)
         {
@@ -49,21 +41,5 @@ namespace NewProject.API.Controllers
             var result = await _adminLoginService.SaveAdminLogin(saveadminLoginDto);
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }
-        //[HttpPost("UpdateUser")]
-        //public async Task<Dictionary<string, object>> UpdateUser([FromBody] UpdateUserRequest request)
-        //{
-        //    var updateUser = _mapper.Map<UpdateUserRequest, updateUserDto>(request);
-        //    var result = await _userService.UpdateUser(updateUser);
-        //    return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
-        //}
-
-        //[HttpPost("DeleteUser")]
-        //public async Task<Dictionary<string, object>> DeleteUser([FromBody] DeleteUserRequest request)
-        //{
-        //    var deleteUser = _mapper.Map<DeleteUserRequest, DeleteUserDto>(request);
-        //    var result = await _userService.DeleteUser(deleteUser);
-        //    return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
-        //}
-
     }
 }

@@ -12,9 +12,9 @@ namespace NewProject.Services.Entities.User
         public string? Gender { get; set; }
         public string? Otp { get; set; }
         public DateTime CreatedOn { get; set; }
-        public int CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
-        public int? UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
         public bool? IsDeleted { get; set; }
     }
 
@@ -28,9 +28,9 @@ namespace NewProject.Services.Entities.User
         public string? MobileNo { get; set; }
         public string? Gender { get; set; }
         public DateTime CreatedOn { get; set; }
-        public int CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
-        public int? UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
         public bool? IsDeleted { get; set; }
     }
     public class UpdateUserProfileDto
@@ -43,6 +43,6 @@ namespace NewProject.Services.Entities.User
         public string? MobileNo { get; set; }
         public string? Gender { get; set; }
         public DateTime? UpdatedOn { get; set; }
-        public int? UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
     }
 }

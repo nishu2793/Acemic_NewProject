@@ -68,7 +68,6 @@ namespace NewProject.Services.Services
         {
             var saveAdminLogin = new AdminLogin()
             {
-                Id = new int(),
                 UserName = request.UserName,
                 EmailAddress = request.EmailAddress,
                 Password = GenericMethods.GetHash(request.Password),

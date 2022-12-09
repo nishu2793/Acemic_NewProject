@@ -10,8 +10,8 @@
         public string Password { get; set; }
         public int SubscriptionId { get; set; }
         public DateTime CreatedOn { get; set; }
-        public int CreatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public DateTime UpdatedOn { get; set; }
-        public int UpdatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
     }
 }

@@ -92,7 +92,7 @@ namespace NewProject.Services.Services
                 Gender = request.Gender,
                 //Image= request.
                 CreatedOn = DateTime.UtcNow,
-                CreatedBy = 1,
+                CreatedBy = request.Did,
             };
             await _readWriteUnitOfWork.UserRegisterRepository.AddAsync(saveUserRegister);
             await _readWriteUnitOfWork.CommitAsync();
@@ -120,7 +120,7 @@ namespace NewProject.Services.Services
                 data.UserToken = request.UserToken;
                 data.Otp = request.Otp;
                 data.RegisterType = request.RegisterType;
-                data.UpdatedBy = 1;
+                data.UpdatedBy = request.Did;
                 data.UpdatedOn = DateTime.UtcNow;
                 await _readWriteUnitOfWork.CommitAsync();
                 return true;
