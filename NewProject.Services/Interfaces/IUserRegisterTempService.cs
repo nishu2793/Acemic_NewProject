@@ -1,4 +1,5 @@
-﻿using NewProject.Services.Entities.User;
+﻿using AceMic.Domain.Entities.User;
+using NewProject.Services.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace NewProject.Services.Interfaces
         Task<List<VerifyotpDto>> Verifyotp(VerifyotpDto request);
      
         Task<List<GetUserRegisterTempDto>> GetAllUserRegisterTemp();
-        Task<List<SaveUserRegisterTempDto>> SaveUserRegisterTemp(SaveUserRegisterTempDto request);
+        Task<List<SaveUserRegisterTempDto>> SaveUserRegisterTemp(SaveUserRegisterTempDto request, MailSettings Mailsettingdata);
         Task<bool> UpdateUserRegisterTemp(UpdateUserRegisterTempDto request);
 
 

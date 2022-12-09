@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using AceMic.Domain.Entities.User;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using NewProject.API.Requests.User;
 using NewProject.Services.Entities.User;
@@ -13,11 +14,12 @@ namespace NewProject.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IUserRegisterTempService _userRegisterTempService;
-
-        public UserRegisterTempController(IUserRegisterTempService userRegisterTempService, IMapper mapper)
+        private readonly IConfiguration _configuration;
+        public UserRegisterTempController(IUserRegisterTempService userRegisterTempService, IMapper mapper, IConfiguration configuration)
         {
             _mapper = mapper;
             _userRegisterTempService = userRegisterTempService;
+            _configuration = configuration;
 
         }
 
@@ -40,8 +42,9 @@ namespace NewProject.API.Controllers
         [HttpPost("SaveUserRegisterTemp")]
         public async Task<Dictionary<string, object>> SaveUserRegisterTemp([FromBody] SaveUserRegisterTempRequest request)
         {
+            var Mailsettingdata = _configuration.GetSection("MailSettings").Get<MailSettings>();
             var saveUserRegisterDto = _mapper.Map<SaveUserRegisterTempRequest, SaveUserRegisterTempDto>(request);
-            var result = await _userRegisterTempService.SaveUserRegisterTemp(saveUserRegisterDto);
+            var result = await _userRegisterTempService.SaveUserRegisterTemp(saveUserRegisterDto, Mailsettingdata);
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
 
         }

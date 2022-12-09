@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using AceMic.Domain.Entities.User;
+using AutoMapper;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
@@ -92,45 +93,43 @@ namespace NewProject.Services.Services
             return data;
         }
         
-        public async Task<List<SaveUserRegisterTempDto>> SaveUserRegisterTemp(SaveUserRegisterTempDto request)
+        public async Task<List<SaveUserRegisterTempDto>> SaveUserRegisterTemp(SaveUserRegisterTempDto request, MailSettings Mailsettingdata)
         {
             Random randomObj = new Random();
             string Otp = randomObj.Next(1000, 9999).ToString();
             var saveUserRegisterTemp = new UserRegisterTemp()
             {
                 Did = new Guid(),
-
                 FirstName = request.FirstName,
                 LastName = request.LastName,
-               Otp=Otp,
-                Password = GenericMethods.GetHash(request.Password),
+                Otp = Otp,
+                Password = request.Password,
                 EmailAddress = request.EmailAddress,
                 MobileNo = request.MobileNo,
                 CreatedOn = DateTime.UtcNow,
                 CreatedBy = 1,
 
             };
-
-            
-            SendUserWelcomeEmail(saveUserRegisterTemp.FirstName, saveUserRegisterTemp.EmailAddress, saveUserRegisterTemp.Otp);
             await _readWriteUnitOfWork.UserRegisterTempRepository.AddAsync(saveUserRegisterTemp);
             await _readWriteUnitOfWork.CommitAsync();
-            var id = saveUserRegisterTemp.Did;
             var data = (from userRegisterTempTB in _readOnlyUnitOfWork.UserRegisterTempRepository.GetAllAsQuerable()
-
-                        where userRegisterTempTB.Did == id
+                        where userRegisterTempTB.Did == saveUserRegisterTemp.Did
                         select new SaveUserRegisterTempDto
                         {
                             Did = userRegisterTempTB.Did,
                             EmailAddress = userRegisterTempTB.EmailAddress,
                             Otp = userRegisterTempTB.Otp,
-                           // Password=userRegisterTempTB.Password,
                         }).ToList();
+            if (saveUserRegisterTemp.EmailAddress != null)
+            {
+                MailService mailService = new MailService();
+                mailService.SendEmail(saveUserRegisterTemp, Mailsettingdata);
+            }
+            else
+            {
 
-
-
-
-            return (data);
+            }
+            return data;
         }
 
         public async Task<bool> UpdateUserRegisterTemp(UpdateUserRegisterTempDto request)
@@ -185,7 +184,7 @@ namespace NewProject.Services.Services
 
             var data = (from userRegisterTempTB in _readOnlyUnitOfWork.UserRegisterTempRepository.GetAllAsQuerable()
 
-                        where userRegisterTempTB.Otp == request.Otp && userRegisterTempTB.EmailAddress == request.EmailAddress || userRegisterTempTB.MobileNo == request.MobileNo
+                        where userRegisterTempTB.Otp == request.Otp && (userRegisterTempTB.EmailAddress == request.EmailAddress || userRegisterTempTB.MobileNo == request.MobileNo)
                         select new VerifyotpDto
                         {
                             Did = userRegisterTempTB.Did,
@@ -201,55 +200,6 @@ namespace NewProject.Services.Services
 
 
         }
-
-
-
-
-        public bool SendUserWelcomeEmail(string UserName, string UserEmail, string Otp)
-        {
-            try
-            {
-                MimeMessage emailMessage = new MimeMessage();
-
-                MailboxAddress emailFrom = new MailboxAddress("Acemic", "rizvan.dcs@gmail.com");
-                emailMessage.From.Add(emailFrom);
-
-                MailboxAddress emailTo = new MailboxAddress(UserName, UserEmail);
-                emailMessage.To.Add(emailTo);
-
-                emailMessage.Subject = "Welcome To Acemic";
-
-                string FilePath = Directory.GetCurrentDirectory() + "\\MailHtml\\WelcomeEmail.html";
-                string EmailTemplateText = File.ReadAllText(FilePath);
-
-                EmailTemplateText = string.Format(EmailTemplateText, UserName, Otp, DateTime.Now.Date.ToShortDateString());
-                EmailTemplateText = EmailTemplateText.Replace("{0}", UserName);
-                EmailTemplateText = EmailTemplateText.Replace("{1}", Otp.ToString());
-
-                BodyBuilder emailBodyBuilder = new BodyBuilder();
-                emailBodyBuilder.HtmlBody = EmailTemplateText;
-                emailMessage.Body = emailBodyBuilder.ToMessageBody();
-
-                SmtpClient emailClient = new SmtpClient();
-                //emailClient.Connect(_emailSettings.Host, _emailSettings.Port, _emailSettings.UseSSL);
-                //emailClient.Authenticate(_emailSettings.EmailId, _emailSettings.Password);
-                emailClient.Connect("smtp.gmail.com", 465, true);
-                emailClient.Authenticate("rizvan.dcs@gmail.com", "mbmnouohsqikztst");
-                emailClient.Send(emailMessage);
-                emailClient.Disconnect(true);
-                emailClient.Dispose();
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                //Log Exception Details
-                return false;
-            }
-        }
-
-
-
         public async Task<Guid> SavePasswordTemp(SavePasswordTempDto request)
         {
 
