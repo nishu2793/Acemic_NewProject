@@ -11,6 +11,7 @@ namespace NewProject.Data.Infrastructure
         IRefreshTokenRepository<TContext> RefreshTokenRepository { get; }
         IUserProfileRepository<TContext> UserProfileRepository { get; }
         IUserRegisterTempRepository<TContext> UserRegisterTempRepository { get; }
+        IMachineRepository<TContext> MachineRepository { get; }
         Task<int> CommitAsync();
 
     }
@@ -23,12 +24,17 @@ namespace NewProject.Data.Infrastructure
         public IUserProfileRepository<TContext> UserProfileRepository { get; }
         public IUserRegisterTempRepository<TContext> UserRegisterTempRepository { get; }
         public IRefreshTokenRepository<TContext> RefreshTokenRepository { get; }
+
+        public IMachineRepository<TContext> MachineRepository { get; }
+
         public UnitOfWork(TContext context, IAccountsRepository<TContext> accountsRepository,
                 IAdminLoginRepository<TContext> adminLoginRepository,
                 IUserRegisterRepository<TContext> userRegisterRepository,
                 IUserProfileRepository<TContext> userProfileRepository,
                 IUserRegisterTempRepository<TContext> userRegisterTempRepository,
-        IRefreshTokenRepository<TContext> refreshTokenRepository)
+                IRefreshTokenRepository<TContext> refreshTokenRepository,
+                 IMachineRepository<TContext> machineRepository
+                )
         {
             this.Context = context;
             this.AccountsRepository = accountsRepository;
@@ -37,6 +43,7 @@ namespace NewProject.Data.Infrastructure
             this.RefreshTokenRepository = refreshTokenRepository;
             this.UserProfileRepository = userProfileRepository;
             this.UserRegisterTempRepository = userRegisterTempRepository;
+            this.MachineRepository= machineRepository;
         }
         public async Task<int> CommitAsync()
         {

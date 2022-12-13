@@ -4,7 +4,7 @@ namespace NewProject.Services.Entities.User
     public class UserRegisterDto
     {
         public Guid Did { get; set; }
-        public int Id { get; set; }
+       // public int Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? EmailAddress { get; set; }

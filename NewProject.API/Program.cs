@@ -106,20 +106,20 @@ builder.Services.AddAuthentication(options =>
 });
 builder.Services.AddAuthorization();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-})
- .AddCookie(options =>
- {
-     options.LoginPath = "/facebook/facebook-login";
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//})
+// .AddCookie(options =>
+// {
+//     options.LoginPath = "/facebook/facebook-login";
 
- })
-  .AddFacebook(options =>
-   {
-       options.AppId = "492327696205227";
-       options.AppSecret = "a4bd3a577462531abb0f1df5a059e8f3";
-   });
+// })
+//  .AddFacebook(options =>
+//   {
+//       options.AppId = "492327696205227";
+//       options.AppSecret = "a4bd3a577462531abb0f1df5a059e8f3";
+//   });
 
 //builder.Services.AddAuthentication(options =>
 //{

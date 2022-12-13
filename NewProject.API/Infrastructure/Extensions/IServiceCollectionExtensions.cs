@@ -31,6 +31,8 @@ namespace NewProject.API.Infrastructure.Extensions
             services.AddTransient(typeof(IUserRegisterTempRepository<>), typeof(UserRegisterTempRepository<>));
             services.AddTransient(typeof(IRefreshTokenRepository<>), typeof(RefreshTokenRepository<>));
             services.AddTransient(typeof(IUserProfileRepository<>), typeof(UserProfileRepository<>));
+            services.AddTransient(typeof(IMachineRepository<>), typeof(MachineRepository<>));
+
         }
 
         public static void ConfigureDatabases(this IServiceCollection services, IConfiguration configuration)
