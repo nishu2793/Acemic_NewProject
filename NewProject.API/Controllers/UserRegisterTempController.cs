@@ -1,4 +1,4 @@
-﻿using AceMic.Domain.Entities.User;
+﻿using NewProject.Domain.Entities.User;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using NewProject.API.Requests.User;

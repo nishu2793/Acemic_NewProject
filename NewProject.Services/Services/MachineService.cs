@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using NewProject.Data.Contexts;
 using NewProject.Data.Infrastructure;
+using NewProject.Domain.Entities.User;
 using NewProject.Services.Entities.Machine;
 using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
@@ -39,7 +40,7 @@ namespace NewProject.Services.Services
             var data = (from MachineTB in _readOnlyUnitOfWork.MachineRepository.GetAllAsQuerable()
 
                         where MachineTB.Did == request.Did && MachineTB.Active == true
-
+                        
                         select new MachineDto
                         {
                             Did = MachineTB.Did,
@@ -62,9 +63,11 @@ namespace NewProject.Services.Services
         public async Task<List<MachineDto>> GetAllMachine()
         {
             var data = (from MachineTB in _readOnlyUnitOfWork.MachineRepository.GetAllAsQuerable()
-
+                        where MachineTB.Did != null
                         select new MachineDto
                         {
+
+                            Did = MachineTB.Did,
                             Address1 = MachineTB.Address1,
                             Address2 = MachineTB.Address2,
                             City = MachineTB.City,

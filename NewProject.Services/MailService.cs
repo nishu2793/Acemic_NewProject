@@ -1,7 +1,6 @@
-﻿using AceMic.Domain.Entities.User;
+﻿using NewProject.Domain.Entities.User;
 using MimeKit;
 using MailKit.Net.Smtp;
-using NewProject.Domain.Entities.User;
 
 namespace NewProject.Services
 {

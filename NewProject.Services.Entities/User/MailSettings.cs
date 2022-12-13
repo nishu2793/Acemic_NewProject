@@ -1,5 +1,5 @@
 ﻿
-namespace AceMic.Domain.Entities.User
+namespace NewProject.Domain.Entities.User
 {
     public class MailSettings
     {

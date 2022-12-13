@@ -1,4 +1,4 @@
-﻿using AceMic.Domain.Entities.User;
+﻿using NewProject.Domain.Entities.User;
 using NewProject.Services.Entities.User;
 using System;
 using System.Collections.Generic;
