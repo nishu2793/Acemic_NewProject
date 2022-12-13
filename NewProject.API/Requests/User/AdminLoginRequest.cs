@@ -24,4 +24,15 @@
         public string? Password { get; set; }
         public DateTime CreatedOn { get; set; }
     }
+
+    public class StateMasterRequest
+    {
+        public string? CountryCode { get; set; }
+
+    }
+    public class CityMasterRequest
+    {
+        public int? StateId { get; set; }
+
+    }
 }

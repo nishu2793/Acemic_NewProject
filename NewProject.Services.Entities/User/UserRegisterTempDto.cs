@@ -66,4 +66,6 @@ namespace NewProject.Services.Entities.User
         public string? Password { get; set; }
 
     }
+
+
 }

@@ -12,6 +12,9 @@ namespace NewProject.Data.Infrastructure
         IUserProfileRepository<TContext> UserProfileRepository { get; }
         IUserRegisterTempRepository<TContext> UserRegisterTempRepository { get; }
         IMachineRepository<TContext> MachineRepository { get; }
+        ICityMasterRepository<TContext> CityMasterRepository { get; }
+        ICountryMasterRepository<TContext> CountryMasterRepository { get; }
+        IStateMasterRepository<TContext> StateMasterRepository { get; }
         Task<int> CommitAsync();
 
     }
@@ -26,6 +29,9 @@ namespace NewProject.Data.Infrastructure
         public IRefreshTokenRepository<TContext> RefreshTokenRepository { get; }
 
         public IMachineRepository<TContext> MachineRepository { get; }
+       public ICityMasterRepository<TContext> CityMasterRepository { get; }
+       public ICountryMasterRepository<TContext> CountryMasterRepository { get; }
+       public  IStateMasterRepository<TContext> StateMasterRepository { get; }
 
         public UnitOfWork(TContext context, IAccountsRepository<TContext> accountsRepository,
                 IAdminLoginRepository<TContext> adminLoginRepository,
@@ -33,7 +39,10 @@ namespace NewProject.Data.Infrastructure
                 IUserProfileRepository<TContext> userProfileRepository,
                 IUserRegisterTempRepository<TContext> userRegisterTempRepository,
                 IRefreshTokenRepository<TContext> refreshTokenRepository,
-                 IMachineRepository<TContext> machineRepository
+                 IMachineRepository<TContext> machineRepository,
+                  ICityMasterRepository<TContext> cityMasterRepository,
+                  IStateMasterRepository<TContext> stateMasterRepository,
+                  ICountryMasterRepository<TContext>countryMasterRepository
                 )
         {
             this.Context = context;
@@ -44,6 +53,11 @@ namespace NewProject.Data.Infrastructure
             this.UserProfileRepository = userProfileRepository;
             this.UserRegisterTempRepository = userRegisterTempRepository;
             this.MachineRepository= machineRepository;
+            this.CountryMasterRepository = countryMasterRepository;
+            this.StateMasterRepository = stateMasterRepository;
+            this.CityMasterRepository = cityMasterRepository;
+
+
         }
         public async Task<int> CommitAsync()
         {

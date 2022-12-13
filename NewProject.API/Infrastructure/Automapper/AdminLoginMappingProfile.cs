@@ -15,6 +15,14 @@ namespace NewProject.API.Infrastructure.Automapper
 
             CreateMap<SaveAdminLoginRequest, SaveAdminLoginDto>();
             CreateMap<AdminLogin, SaveAdminLoginDto>().ReverseMap();
+
+            CreateMap<CityMasterRequest, CityMasterDto>();
+            CreateMap<CityMaster, CityMasterDto>().ReverseMap();
+
+            CreateMap<StateMasterRequest, StateMasterDto>();
+            CreateMap<StateMaster, StateMasterDto>().ReverseMap();
+
+
         }
     }
 }

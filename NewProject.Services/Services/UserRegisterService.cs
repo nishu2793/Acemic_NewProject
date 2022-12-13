@@ -2,6 +2,7 @@
 using NewProject.Data.Contexts;
 using NewProject.Data.Infrastructure;
 using NewProject.Domain.Entities.User;
+
 using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
 
@@ -137,5 +138,9 @@ namespace NewProject.Services.Services
             }
             return false;
         }
+
+
+        
+        }
     }
-}
+

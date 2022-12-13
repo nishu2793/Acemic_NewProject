@@ -96,6 +96,9 @@ namespace NewProject.Data.Contexts
 
         public DbSet<UserRegisterTemp> userRegisterTemp { get; set; }
         public DbSet<MachineTable> machineTables { get; set; }
+        public DbSet<CountryMaster> countryMasters { get; set; }
+        public DbSet<StateMaster> stateMasters { get; set; }
+        public DbSet<CityMaster> cityMasters { get; set; }
 
     }
 

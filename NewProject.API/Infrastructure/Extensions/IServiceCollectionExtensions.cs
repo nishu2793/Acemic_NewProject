@@ -32,7 +32,9 @@ namespace NewProject.API.Infrastructure.Extensions
             services.AddTransient(typeof(IRefreshTokenRepository<>), typeof(RefreshTokenRepository<>));
             services.AddTransient(typeof(IUserProfileRepository<>), typeof(UserProfileRepository<>));
             services.AddTransient(typeof(IMachineRepository<>), typeof(MachineRepository<>));
-
+            services.AddTransient(typeof(ICountryMasterRepository<>), typeof(CountryMasterRepository<>));
+            services.AddTransient(typeof(IStateMasterRepository<>), typeof(StateMasterRepository<>));
+            services.AddTransient(typeof(ICityMasterRepository<>), typeof(CityMasterRepository<>));
         }
 
         public static void ConfigureDatabases(this IServiceCollection services, IConfiguration configuration)

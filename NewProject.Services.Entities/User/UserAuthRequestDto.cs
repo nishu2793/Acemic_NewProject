@@ -6,4 +6,8 @@ namespace NewProject.Services.Entities.User
         public string? EmailId { get; set; }
         public string? Password { get; set; }
     }
+
+
+
+   
 }
