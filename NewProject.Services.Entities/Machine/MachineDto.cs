@@ -20,5 +20,7 @@ namespace NewProject.Services.Entities.Machine
         public bool? Active { get; set; }
         public int? Admin_Id { get; set; }
         public string? Status { get; set; }
+        public string? Serial_Number { get; set; }
+      
     }
 }

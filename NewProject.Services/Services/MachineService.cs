@@ -53,6 +53,7 @@ namespace NewProject.Services.Services
                             Longitude = MachineTB.Longitude,
                             Barcode_Number = MachineTB.Barcode_Number,
                             Active = MachineTB.Active,
+                            Serial_Number= MachineTB.Serial_Number,
                             //Admin_Id = MachineTB.Admin_Id,
                             Status = MachineTB.Status
                         }).ToList();
@@ -77,6 +78,7 @@ namespace NewProject.Services.Services
                             Longitude = MachineTB.Longitude,
                             Barcode_Number = MachineTB.Barcode_Number,
                             Active = MachineTB.Active,
+                            Serial_Number= MachineTB.Serial_Number,
                             //Admin_Id = MachineTB.Admin_Id,
                             Status = MachineTB.Status
 
