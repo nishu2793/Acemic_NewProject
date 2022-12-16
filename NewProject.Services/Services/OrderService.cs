@@ -77,7 +77,7 @@ namespace NewProject.Services.Services
             return data;
 
         }
-        public async Task<bool> SaveOrder(SaveOrderDto request)
+        public async Task<Guid> SaveOrder(SaveOrderDto request)
         {
             var saveOrder = new Order()
             {
@@ -85,10 +85,10 @@ namespace NewProject.Services.Services
                 MachineId = request.MachineId,
                 UserId = request.UserId,
                 Amount = request.Amount,
-                Active = request.Active,
+                Active = true,
                 OrderType = request.OrderType,
-                Status = request.Status,
-                StatusMessage = request.StatusMessage,
+                Status = "Inprogress",
+                StatusMessage = "Inprogress",
                 CreatedOn = DateTime.UtcNow,
 
 
@@ -98,7 +98,7 @@ namespace NewProject.Services.Services
 
             await _readWriteUnitOfWork.CommitAsync();
 
-            return true;
+            return saveOrder.OrderId;
         }
         public async Task<bool> UpdateOrder(UpdateOrderDto request)
         {

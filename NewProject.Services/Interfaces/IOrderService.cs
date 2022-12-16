@@ -11,7 +11,7 @@ namespace NewProject.Services.Interfaces
     {
         Task<List<GetOrderDto>> GetOrder(GetOrderDto request);
         Task<List<GetOrderDto>> GetAllOrder();
-        Task<bool> SaveOrder(SaveOrderDto request);
+        Task<Guid> SaveOrder(SaveOrderDto request);
         Task<bool> UpdateOrder(UpdateOrderDto request);
         Task<bool> DeleteOrder(DeleteOrderDto request);
     }

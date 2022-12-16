@@ -26,11 +26,11 @@
         public Guid? MachineId { get; set; }
         public Guid? UserId { get; set; }
         public decimal? Amount { get; set; }
-        public bool? Active { get; set; }
+      //  public bool? Active { get; set; }
         public string OrderType { get; set; }
-        public string Status { get; set; }
+       // public string Status { get; set; }
 
-        public string StatusMessage { get; set; }
+      //  public string StatusMessage { get; set; }
     }
 
     public class UpdateOrderRequest
