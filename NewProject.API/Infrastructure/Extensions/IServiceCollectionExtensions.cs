@@ -7,6 +7,8 @@ using NewProject.Services.Interfaces;
 using NewProject.Utility;
 using System.Reflection;
 using NetCore.AutoRegisterDi;
+using NewProject.Services.Services;
+
 namespace NewProject.API.Infrastructure.Extensions
 {
     public  static class IServiceCollectionExtensions
@@ -35,6 +37,10 @@ namespace NewProject.API.Infrastructure.Extensions
             services.AddTransient(typeof(ICountryMasterRepository<>), typeof(CountryMasterRepository<>));
             services.AddTransient(typeof(IStateMasterRepository<>), typeof(StateMasterRepository<>));
             services.AddTransient(typeof(ICityMasterRepository<>), typeof(CityMasterRepository<>));
+            services.AddTransient(typeof(IOrderRepository<>), typeof(OrderRepository<>));
+
+
+
         }
 
         public static void ConfigureDatabases(this IServiceCollection services, IConfiguration configuration)

@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using NewProject.Data.Infrastructure;
 using NewProject.Domain.Entities.Machine;
+using NewProject.Domain.Entities.Order;
 using NewProject.Domain.Entities.User;
 using NewProject.Utility;
 //using User = NewProject.Domain.Entities.User.User;
@@ -99,7 +100,7 @@ namespace NewProject.Data.Contexts
         public DbSet<CountryMaster> countryMasters { get; set; }
         public DbSet<StateMaster> stateMasters { get; set; }
         public DbSet<CityMaster> cityMasters { get; set; }
-
+        public DbSet<Order> orders { get; set; }
     }
 
     public interface IBaseContext
