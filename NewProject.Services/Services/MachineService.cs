@@ -39,7 +39,7 @@ namespace NewProject.Services.Services
         {
             var data = (from MachineTB in _readOnlyUnitOfWork.MachineRepository.GetAllAsQuerable()
 
-                        where MachineTB.Did == request.Did && MachineTB.Active == true
+                        where MachineTB.BarcodeNumber == request.BarcodeNumber && MachineTB.Active == true
                         
                         select new MachineDto
                         {
@@ -51,10 +51,9 @@ namespace NewProject.Services.Services
                             ZipCode = MachineTB.ZipCode,
                             Latitude = MachineTB.Latitude,
                             Longitude = MachineTB.Longitude,
-                            Barcode_Number = MachineTB.Barcode_Number,
+                            BarcodeNumber = MachineTB.BarcodeNumber,
                             Active = MachineTB.Active,
-                            Serial_Number= MachineTB.Serial_Number,
-                            //Admin_Id = MachineTB.Admin_Id,
+                            SerialNumber= MachineTB.SerialNumber,
                             Status = MachineTB.Status
                         }).ToList();
             return data;
@@ -76,10 +75,9 @@ namespace NewProject.Services.Services
                             ZipCode = MachineTB.ZipCode,
                             Latitude = MachineTB.Latitude,
                             Longitude = MachineTB.Longitude,
-                            Barcode_Number = MachineTB.Barcode_Number,
+                            BarcodeNumber = MachineTB.BarcodeNumber,
                             Active = MachineTB.Active,
-                            Serial_Number= MachineTB.Serial_Number,
-                            //Admin_Id = MachineTB.Admin_Id,
+                            SerialNumber= MachineTB.SerialNumber,
                             Status = MachineTB.Status
 
                         }).ToList();

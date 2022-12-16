@@ -20,13 +20,12 @@ namespace NewProject.Domain.Entities.Machine
         public string? ZipCode { get; set; }
         public decimal  Latitude { get; set; }
         public decimal Longitude { get; set; }
-        public string? Barcode_Number { get; set; }
+        public string? BarcodeNumber { get; set; }
         public bool Active { get; set; }
-        public int Admin_Id { get; set; }
         public string? Status { get; set; }
 
-        public string? Serial_Number { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }
+        public string? SerialNumber { get; set; }
+        public DateTime? CreatedOn { get; set; }
+        public DateTime? UpdatedOn { get; set; }
     }
 }
