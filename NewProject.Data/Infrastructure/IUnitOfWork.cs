@@ -15,6 +15,7 @@ namespace NewProject.Data.Infrastructure
         ICityMasterRepository<TContext> CityMasterRepository { get; }
         ICountryMasterRepository<TContext> CountryMasterRepository { get; }
         IStateMasterRepository<TContext> StateMasterRepository { get; }
+        IOrderRepository<TContext> OrderRepository { get; }
         Task<int> CommitAsync();
 
     }
@@ -32,6 +33,7 @@ namespace NewProject.Data.Infrastructure
        public ICityMasterRepository<TContext> CityMasterRepository { get; }
        public ICountryMasterRepository<TContext> CountryMasterRepository { get; }
        public  IStateMasterRepository<TContext> StateMasterRepository { get; }
+        public IOrderRepository<TContext> OrderRepository { get; }
 
         public UnitOfWork(TContext context, IAccountsRepository<TContext> accountsRepository,
                 IAdminLoginRepository<TContext> adminLoginRepository,
@@ -42,7 +44,8 @@ namespace NewProject.Data.Infrastructure
                  IMachineRepository<TContext> machineRepository,
                   ICityMasterRepository<TContext> cityMasterRepository,
                   IStateMasterRepository<TContext> stateMasterRepository,
-                  ICountryMasterRepository<TContext>countryMasterRepository
+                  ICountryMasterRepository<TContext>countryMasterRepository,
+                  IOrderRepository<TContext> orderRepository
                 )
         {
             this.Context = context;
@@ -56,6 +59,7 @@ namespace NewProject.Data.Infrastructure
             this.CountryMasterRepository = countryMasterRepository;
             this.StateMasterRepository = stateMasterRepository;
             this.CityMasterRepository = cityMasterRepository;
+            this.OrderRepository= orderRepository;
 
 
         }
