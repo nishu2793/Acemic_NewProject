@@ -37,14 +37,14 @@ namespace NewProject.Services.Services
             var data = (from orderTB in _readOnlyUnitOfWork.OrderRepository.GetAllAsQuerable()
                         where orderTB.OrderId == request.OrderId
                         join machineTB in _readOnlyUnitOfWork.MachineRepository.GetAllAsQuerable()
-                       on orderTB.Machine_Id equals machineTB.Did
+                       on orderTB.MachineId equals machineTB.Did
                         join userTB in _readOnlyUnitOfWork.UserRegisterRepository.GetAllAsQuerable()
-                       on orderTB.User_Id equals userTB.Did
+                       on orderTB.UserId equals userTB.Did
                         select new GetOrderDto
                         {
                             OrderId = orderTB.OrderId,
-                            Machine_Id = machineTB.Did,
-                            User_Id = userTB.Did,
+                            MachineId = machineTB.Did,
+                            UserId = userTB.Did,
                             Amount = orderTB.Amount,
                             Active = orderTB.Active,
                             OrderType= orderTB.OrderType,   
@@ -59,14 +59,14 @@ namespace NewProject.Services.Services
         {
             var data = (from orderTB in _readOnlyUnitOfWork.OrderRepository.GetAllAsQuerable()
                         join machineTB in _readOnlyUnitOfWork.MachineRepository.GetAllAsQuerable()
-                       on orderTB.Machine_Id equals machineTB.Did
+                       on orderTB.MachineId equals machineTB.Did
                         join userTB in _readOnlyUnitOfWork.UserRegisterRepository.GetAllAsQuerable()
-                       on orderTB.User_Id equals userTB.Did
+                       on orderTB.UserId equals userTB.Did
                         select new GetOrderDto
                         {
                             OrderId = orderTB.OrderId,
-                            Machine_Id = machineTB.Did,
-                            User_Id = userTB.Did,
+                            MachineId = machineTB.Did,
+                            UserId = userTB.Did,
                             Amount = orderTB.Amount,
                             Active = orderTB.Active,
                             OrderType = orderTB.OrderType,
@@ -82,8 +82,8 @@ namespace NewProject.Services.Services
             var saveOrder = new Order()
             {
                 OrderId= new Guid(),
-                Machine_Id = request.Machine_Id,
-                User_Id = request.User_Id,
+                MachineId = request.MachineId,
+                UserId = request.UserId,
                 Amount = request.Amount,
                 Active = request.Active,
                 OrderType = request.OrderType,
@@ -107,8 +107,8 @@ namespace NewProject.Services.Services
 
             if (data != null)
             {
-                data.Machine_Id = request.Machine_Id;
-                data.User_Id = request.User_Id;
+                data.MachineId = request.MachineId;
+                data.UserId = request.UserId;
                 data.Amount = request.Amount;
                 data.Active = request.Active;
                 data.OrderType = request.OrderType;

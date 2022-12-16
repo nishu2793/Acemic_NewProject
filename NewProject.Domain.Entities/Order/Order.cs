@@ -13,8 +13,8 @@ namespace NewProject.Domain.Entities.Order
     {
         [Key]
         public Guid OrderId { get; set; }
-        public Guid? Machine_Id { get; set; }
-        public Guid? User_Id { get; set;}
+        public Guid? MachineId { get; set; }
+        public Guid? UserId { get; set;}
         public DateTime? CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public decimal? Amount { get; set; }

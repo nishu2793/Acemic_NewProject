@@ -3,8 +3,8 @@
     public class OrderRequest
     {
         public Guid OrderId { get; set; }
-        public Guid? Machine_Id { get; set; }
-        public Guid? User_Id { get; set; }
+        public Guid? MachineId { get; set; }
+        public Guid? UserId { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public decimal? Amount { get; set; }
@@ -23,8 +23,8 @@
 
     public class SaveOrderRequest
     {
-        public Guid? Machine_Id { get; set; }
-        public Guid? User_Id { get; set; }
+        public Guid? MachineId { get; set; }
+        public Guid? UserId { get; set; }
         public decimal? Amount { get; set; }
         public bool? Active { get; set; }
         public string OrderType { get; set; }
@@ -36,8 +36,8 @@
     public class UpdateOrderRequest
     {
         public Guid OrderId { get; set; }
-        public Guid? Machine_Id { get; set; }
-        public Guid? User_Id { get; set; }
+        public Guid? MachineId { get; set; }
+        public Guid? UserId { get; set; }
         public decimal? Amount { get; set; }
         public bool? Active { get; set; }
         public string OrderType { get; set; }
