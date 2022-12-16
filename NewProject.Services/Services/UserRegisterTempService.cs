@@ -41,6 +41,7 @@ namespace NewProject.Services.Services
                             Password = userRegisterTempTB.Password,
                             EmailAddress = userRegisterTempTB.EmailAddress,
                             MobileNo = userRegisterTempTB.MobileNo,
+                            UserType=userRegisterTempTB.UserType,
                         }).ToList();
             return data;
         }
@@ -56,6 +57,7 @@ namespace NewProject.Services.Services
                             Password = userRegisterTB.Password,
                             EmailAddress = userRegisterTB.EmailAddress,
                             MobileNo = userRegisterTB.MobileNo,
+                            UserType=userRegisterTB.UserType,
                         }).ToList();
             return data;
         }
@@ -72,6 +74,7 @@ namespace NewProject.Services.Services
                 Otp = Otp,
                 Password = request.Password,
                 EmailAddress = request.EmailAddress,
+                UserType= request.UserType,
                 MobileNo = request.MobileNo,
                 CreatedOn = DateTime.UtcNow,
                 CreatedBy = Id,
@@ -114,6 +117,7 @@ namespace NewProject.Services.Services
                 data.MobileNo = request.MobileNo;
                 data.UpdatedBy = request.Did;
                 data.UpdatedOn = DateTime.UtcNow;
+                data.UserType= request.UserType;
                 await _readWriteUnitOfWork.CommitAsync();
                 return true;
             }

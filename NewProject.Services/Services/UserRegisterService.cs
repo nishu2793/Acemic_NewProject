@@ -51,7 +51,7 @@ namespace NewProject.Services.Services
                             Gender = userRegisterTB.Gender,
                             UserToken = userRegisterTB.UserToken,
                             Otp = userRegisterTB.Otp,
-                            RegisterType = userRegisterTB.RegisterType,
+                            UserType = userRegisterTB.UserType,
                         }).ToList();
             return data;
         }
@@ -71,7 +71,7 @@ namespace NewProject.Services.Services
                             Gender = userRegisterTB.Gender,
                             UserToken = userRegisterTB.UserToken,
                             Otp = userRegisterTB.Otp,
-                            RegisterType = userRegisterTB.RegisterType,
+                            UserType = userRegisterTB.UserType,
                         }).ToList();
             return data;
         }
@@ -92,6 +92,7 @@ namespace NewProject.Services.Services
                 //Image= request.
                 CreatedOn = DateTime.UtcNow,
                 CreatedBy = request.Did,
+                UserType=request.UserType
             };
             await _readWriteUnitOfWork.UserRegisterRepository.AddAsync(saveUserRegister);
             await _readWriteUnitOfWork.CommitAsync();
@@ -118,7 +119,7 @@ namespace NewProject.Services.Services
                 data.Gender = request.Gender;
                 data.UserToken = request.UserToken;
                 data.Otp = request.Otp;
-                data.RegisterType = request.RegisterType;
+                data.UserType = request.UserType;
                 data.UpdatedBy = request.Did;
                 data.UpdatedOn = DateTime.UtcNow;
                 await _readWriteUnitOfWork.CommitAsync();

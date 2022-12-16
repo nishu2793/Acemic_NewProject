@@ -19,6 +19,7 @@ namespace NewProject.Domain.Entities.User
         public string? MobileNo { get; set; }
         public string? Otp { get; set; }
         public string? Password { get; set; }
+        public string? UserType { get; set; }
         public DateTime CreatedOn { get; set; }
         public Guid CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
