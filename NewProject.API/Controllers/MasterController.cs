@@ -9,39 +9,18 @@ namespace NewProject.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminLoginController : ControllerBase
+    public class MasterController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IAdminLoginService _adminLoginService;
+        private readonly IMasterService _adminLoginService;
 
-        public AdminLoginController(IAdminLoginService adminLoginService, IMapper mapper)
+        public MasterController(IMasterService adminLoginService, IMapper mapper)
         {
             _mapper = mapper;
             _adminLoginService = adminLoginService;
 
         }
-        [HttpPost("GetAdminLogin")]
-        public async Task<Dictionary<string, object>> GetAdminLogin([FromBody] GetAdminLoginRequest request)
-        {
-            var adminLogindto = _mapper.Map<GetAdminLoginRequest, GetAdminLoginDto>(request);
-            var result = await _adminLoginService.GetAdminLogin(adminLogindto);
-            return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
-
-        }
-        [HttpPost("GetAllAdminLogin")]
-        public async Task<Dictionary<string, object>> GetAllAdminLogin()
-        {
-            var result = await _adminLoginService.GetAllAdminLogin();
-            return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
-        }
-        [HttpPost("SaveAdminLogin")]
-        public async Task<Dictionary<string, object>> SaveAdminLogin([FromBody] SaveAdminLoginRequest request)
-        {
-            var saveadminLoginDto = _mapper.Map<SaveAdminLoginRequest, SaveAdminLoginDto>(request);
-            var result = await _adminLoginService.SaveAdminLogin(saveadminLoginDto);
-            return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
-        }
-
+      
         [HttpPost("GetCountry")]
         public async Task<Dictionary<string, object>> GetCountry()
         {

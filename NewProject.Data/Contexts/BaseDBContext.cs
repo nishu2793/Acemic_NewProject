@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using NewProject.Data.Infrastructure;
 using NewProject.Domain.Entities.Machine;
 using NewProject.Domain.Entities.Order;
+using NewProject.Domain.Entities.Payment;
 using NewProject.Domain.Entities.User;
 using NewProject.Utility;
 //using User = NewProject.Domain.Entities.User.User;
@@ -92,7 +93,7 @@ namespace NewProject.Data.Contexts
 
 
         public DbSet<RefreshToken> RefreshToken { get; set; }
-        public DbSet<AdminLogin> adminLogin { get; set; }
+      
         public DbSet<UserRegister> userRegister { get; set; }
 
         public DbSet<UserRegisterTemp> userRegisterTemp { get; set; }
@@ -101,6 +102,8 @@ namespace NewProject.Data.Contexts
         public DbSet<StateMaster> stateMasters { get; set; }
         public DbSet<CityMaster> cityMasters { get; set; }
         public DbSet<Order> orders { get; set; }
+        public DbSet<Payment> payments { get; set; }
+
     }
 
     public interface IBaseContext

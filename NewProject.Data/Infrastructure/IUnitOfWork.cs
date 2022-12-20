@@ -6,7 +6,6 @@ namespace NewProject.Data.Infrastructure
     public interface IUnitOfWork<TContext> where TContext : IBaseContext
     {
         IAccountsRepository<TContext> AccountsRepository { get; }
-        IAdminLoginRepository<TContext> AdminLoginRepository { get; }
         IUserRegisterRepository<TContext> UserRegisterRepository { get; }
         IRefreshTokenRepository<TContext> RefreshTokenRepository { get; }
         IUserProfileRepository<TContext> UserProfileRepository { get; }
@@ -16,6 +15,7 @@ namespace NewProject.Data.Infrastructure
         ICountryMasterRepository<TContext> CountryMasterRepository { get; }
         IStateMasterRepository<TContext> StateMasterRepository { get; }
         IOrderRepository<TContext> OrderRepository { get; }
+        IPaymentRepository<TContext> PaymentRepository { get; }
         Task<int> CommitAsync();
 
     }
@@ -23,7 +23,6 @@ namespace NewProject.Data.Infrastructure
     {
         public TContext Context { get; }
         public IAccountsRepository<TContext> AccountsRepository { get; }
-        public IAdminLoginRepository<TContext> AdminLoginRepository { get; }
         public IUserRegisterRepository<TContext> UserRegisterRepository { get; }
         public IUserProfileRepository<TContext> UserProfileRepository { get; }
         public IUserRegisterTempRepository<TContext> UserRegisterTempRepository { get; }
@@ -34,9 +33,9 @@ namespace NewProject.Data.Infrastructure
        public ICountryMasterRepository<TContext> CountryMasterRepository { get; }
        public  IStateMasterRepository<TContext> StateMasterRepository { get; }
         public IOrderRepository<TContext> OrderRepository { get; }
+       public IPaymentRepository<TContext> PaymentRepository { get; }
 
         public UnitOfWork(TContext context, IAccountsRepository<TContext> accountsRepository,
-                IAdminLoginRepository<TContext> adminLoginRepository,
                 IUserRegisterRepository<TContext> userRegisterRepository,
                 IUserProfileRepository<TContext> userProfileRepository,
                 IUserRegisterTempRepository<TContext> userRegisterTempRepository,
@@ -45,12 +44,12 @@ namespace NewProject.Data.Infrastructure
                   ICityMasterRepository<TContext> cityMasterRepository,
                   IStateMasterRepository<TContext> stateMasterRepository,
                   ICountryMasterRepository<TContext>countryMasterRepository,
-                  IOrderRepository<TContext> orderRepository
+                  IOrderRepository<TContext> orderRepository,
+                       IPaymentRepository<TContext> paymentRepository
                 )
         {
             this.Context = context;
             this.AccountsRepository = accountsRepository;
-            this.AdminLoginRepository = adminLoginRepository;
             this.UserRegisterRepository = userRegisterRepository;
             this.RefreshTokenRepository = refreshTokenRepository;
             this.UserProfileRepository = userProfileRepository;
@@ -60,6 +59,7 @@ namespace NewProject.Data.Infrastructure
             this.StateMasterRepository = stateMasterRepository;
             this.CityMasterRepository = cityMasterRepository;
             this.OrderRepository= orderRepository;
+            this.PaymentRepository= paymentRepository;
 
 
         }

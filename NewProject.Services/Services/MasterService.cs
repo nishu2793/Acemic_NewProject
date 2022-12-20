@@ -10,14 +10,14 @@ using NewProject.Utility;
 
 namespace NewProject.Services.Services
 {
-    public class AdminLoginService : IAdminLoginService
+    public class MasterService : IMasterService
     {
         private readonly IUnitOfWork<ReadOnlyApplicationDbContext> _readOnlyUnitOfWork;
         private readonly IUnitOfWork<ReadWriteApplicationDbContext> _readWriteUnitOfWork;
         private readonly ReadWriteApplicationDbContext _readWriteUnitOfWorkSP;
         private readonly IUnitOfWork<MasterDbContext> _masterDBContext;
         private readonly IMapper _mapper;
-        public AdminLoginService(IUnitOfWork<ReadOnlyApplicationDbContext> readOnlyUnitOfWork,
+        public MasterService(IUnitOfWork<ReadOnlyApplicationDbContext> readOnlyUnitOfWork,
              IUnitOfWork<MasterDbContext> masterDBContext, IMapper mapper,
              IUnitOfWork<ReadWriteApplicationDbContext> readWriteUnitOfWork,
              ReadWriteApplicationDbContext readWriteUnitOfWorkSP)
@@ -29,56 +29,7 @@ namespace NewProject.Services.Services
             _readWriteUnitOfWorkSP = readWriteUnitOfWorkSP;
         }
 
-        public async Task<AdminLoginDto> AdminLoginAsync(AdminLoginDto request, string ipAddress)
-        {
-            var adminlogin = await _readOnlyUnitOfWork.AdminLoginRepository.GetFirstOrDefaultAsync(x => x.UserName == request.UserName);
-            var adminLoginDto = _mapper.Map<AdminLogin, AdminLoginDto>(adminlogin);
-            return adminLoginDto;
-        }
-
-        public async Task<List<GetAdminLoginDto>> GetAdminLogin(GetAdminLoginDto request)
-        {
-            var data = (from adminloginTB in _readOnlyUnitOfWork.AdminLoginRepository.GetAllAsQuerable()
-                        where adminloginTB.Id == request.Id && adminloginTB.IsDeleted != true
-                        select new GetAdminLoginDto
-                        {
-                            Id = adminloginTB.Id,
-                            UserName = adminloginTB.UserName,
-                            EmailAddress = adminloginTB.EmailAddress,
-                            Password = adminloginTB.Password,
-                        }).ToList();
-
-            return data;
-        }
-
-        public async Task<List<GetAdminLoginDto>> GetAllAdminLogin()
-        {
-            var data = (from adminloginTB in _readOnlyUnitOfWork.AdminLoginRepository.GetAllAsQuerable()
-
-                        where adminloginTB.IsDeleted != true
-                        select new GetAdminLoginDto
-                        {
-                            Id = adminloginTB.Id,
-                            UserName = adminloginTB.UserName,
-                            EmailAddress = adminloginTB.EmailAddress,
-                            Password = adminloginTB.Password,
-                        }).ToList();
-            return data;
-        }
-
-        public async Task<bool> SaveAdminLogin(SaveAdminLoginDto request)
-        {
-            var saveAdminLogin = new AdminLogin()
-            {
-                UserName = request.UserName,
-                EmailAddress = request.EmailAddress,
-                Password = GenericMethods.GetHash(request.Password),
-                CreatedOn = DateTime.UtcNow,
-            };
-            await _readWriteUnitOfWork.AdminLoginRepository.AddAsync(saveAdminLogin);
-            await _readWriteUnitOfWork.CommitAsync();
-            return true;
-        }
+       
         public async Task<List<CountryMasterDto>> GetCountry()
         {
             var data = (from countryMasterTB in _readOnlyUnitOfWork.CountryMasterRepository.GetAllAsQuerable()

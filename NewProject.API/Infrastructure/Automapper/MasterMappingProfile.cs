@@ -6,15 +6,11 @@ using NewProject.Services.Entities.User;
 
 namespace NewProject.API.Infrastructure.Automapper
 {
-    public class AdminLoginMappingProfile : Profile
+    public class MasterMappingProfile : Profile
     {
-        public AdminLoginMappingProfile()
+        public MasterMappingProfile()
         {
-            CreateMap<GetAdminLoginRequest, GetAdminLoginDto>();
-            CreateMap<AdminLogin, GetAdminLoginDto>().ReverseMap();
-
-            CreateMap<SaveAdminLoginRequest, SaveAdminLoginDto>();
-            CreateMap<AdminLogin, SaveAdminLoginDto>().ReverseMap();
+           
 
             CreateMap<CityMasterRequest, CityMasterDto>();
             CreateMap<CityMaster, CityMasterDto>().ReverseMap();

@@ -26,9 +26,7 @@ namespace NewProject.API.Infrastructure.Extensions
         }
         public static void RegisterRepositories(this IServiceCollection services)
         {
-            services.AddTransient(typeof(IAccountsRepository<>), typeof(AccountsRepository<>));
-          
-            services.AddTransient(typeof(IAdminLoginRepository<>), typeof(AdminLoginRepository<>));
+            services.AddTransient(typeof(IAccountsRepository<>), typeof(AccountsRepository<>));      
             services.AddTransient(typeof(IUserRegisterRepository<>), typeof(UserRegisterRepository<>));
             services.AddTransient(typeof(IUserRegisterTempRepository<>), typeof(UserRegisterTempRepository<>));
             services.AddTransient(typeof(IRefreshTokenRepository<>), typeof(RefreshTokenRepository<>));
@@ -38,9 +36,7 @@ namespace NewProject.API.Infrastructure.Extensions
             services.AddTransient(typeof(IStateMasterRepository<>), typeof(StateMasterRepository<>));
             services.AddTransient(typeof(ICityMasterRepository<>), typeof(CityMasterRepository<>));
             services.AddTransient(typeof(IOrderRepository<>), typeof(OrderRepository<>));
-
-
-
+            services.AddTransient(typeof(IPaymentRepository<>), typeof(PaymentRepository<>));
         }
 
         public static void ConfigureDatabases(this IServiceCollection services, IConfiguration configuration)
