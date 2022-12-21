@@ -56,10 +56,13 @@ namespace NewProject.Services.Entities.Order
         public string Status { get; set; }
         public string StatusMessage { get; set; }
     }
+    public class UpdateStatusDto
+    {
+        public string OrderId { get; set; }
+    }
 
-  
 
-        public class DeleteOrderDto
+    public class DeleteOrderDto
     {
         public Guid OrderId { get; set; }
     }

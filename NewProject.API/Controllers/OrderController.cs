@@ -55,9 +55,9 @@ namespace NewProject.API.Controllers
         }
 
         [HttpPost("UpdateStatus")]
-        public async Task<Dictionary<string, object>> UpdateStatus([FromBody] UpdateOrderRequest request)
+        public async Task<Dictionary<string, object>> UpdateStatus([FromBody] UpdateStatusrequest request)
         {
-           var updateorderDto = _mapper.Map<UpdateOrderRequest, UpdateOrderDto>(request);
+           var updateorderDto = _mapper.Map<UpdateStatusrequest, UpdateStatusDto>(request);
             var result = await _orderService.UpdateStatus(updateorderDto);
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }

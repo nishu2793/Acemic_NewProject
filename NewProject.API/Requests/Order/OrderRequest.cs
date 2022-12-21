@@ -52,5 +52,10 @@
         public Guid OrderId { get; set; }
 
     }
+    public class UpdateStatusrequest
+    {
+        public string OrderId { get; set; }
+
+    }
 }
 

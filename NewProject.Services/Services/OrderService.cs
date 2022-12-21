@@ -125,10 +125,11 @@ namespace NewProject.Services.Services
 
         }
 
-        public async Task<bool> UpdateStatus(UpdateOrderDto request)
+        public async Task<bool> UpdateStatus(UpdateStatusDto request)
         {
-
-            var data = await _readWriteUnitOfWork.OrderRepository.GetFirstOrDefaultAsync(x => x.OrderId == request.OrderId);
+            Guid dataorder = new Guid(request.OrderId);
+         
+            var data = await _readWriteUnitOfWork.OrderRepository.GetFirstOrDefaultAsync(x => x.OrderId == dataorder);
 
             if (data != null)
             {
