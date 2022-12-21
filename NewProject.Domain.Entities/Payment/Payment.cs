@@ -15,7 +15,7 @@ namespace NewProject.Domain.Entities.Payment
         public Guid Did { get; set; }
         public string? EmailAddress { get; set; }
         public string? PhoneNumber { get; set; }
-        public Guid? Paymentid { get; set; }
+        public string? Paymentid { get; set; }
         public decimal? Amount { get; set; }
         public Guid Orderid { get; set; }
         public string? Description { get; set; }
@@ -25,5 +25,7 @@ namespace NewProject.Domain.Entities.Payment
         public bool Active { get; set; }
         public string? ResponseJSON { get; set; }
         public string? RequestJSON { get; set; }
+        public string? Paymentorderid { get; set; }
+
     }
 }

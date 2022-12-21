@@ -39,20 +39,20 @@ namespace NewProject.Services.Services
                         where paymentTB.Did == request.Did
                         join orderTB in _readOnlyUnitOfWork.OrderRepository.GetAllAsQuerable()
                        on paymentTB.Orderid equals orderTB.OrderId
-        
+
                         select new GetPaymentDto
                         {
-                           Did=paymentTB.Did,
-                           Orderid=orderTB.OrderId,
-                           EmailAddress=paymentTB.EmailAddress,
-                           Paymentid=paymentTB.Paymentid,
-                           Amount=orderTB.Amount,
-                           Description=paymentTB.Description,
-                           PhoneNumber=paymentTB.PhoneNumber,
-                           Active=paymentTB.Active,
-                           RequestJSON=paymentTB.RequestJSON,
-                           ResponseJSON=paymentTB.ResponseJSON, 
-
+                            Did = paymentTB.Did,
+                            Orderid = orderTB.OrderId,
+                            EmailAddress = paymentTB.EmailAddress,
+                            Paymentid = paymentTB.Paymentid,
+                            Amount = orderTB.Amount,
+                            Description = paymentTB.Description,
+                            PhoneNumber = paymentTB.PhoneNumber,
+                            Active = paymentTB.Active,
+                            RequestJSON = paymentTB.RequestJSON,
+                            ResponseJSON = paymentTB.ResponseJSON,
+                            Paymentorderid = request.Paymentorderid,
                         }).ToList();
             return data;
 
@@ -60,7 +60,7 @@ namespace NewProject.Services.Services
         public async Task<List<GetPaymentDto>> GetAllPayment()
         {
             var data = (from paymentTB in _readOnlyUnitOfWork.PaymentRepository.GetAllAsQuerable()
-                     
+
                         join orderTB in _readOnlyUnitOfWork.OrderRepository.GetAllAsQuerable()
                        on paymentTB.Orderid equals orderTB.OrderId
 
@@ -76,7 +76,7 @@ namespace NewProject.Services.Services
                             Active = paymentTB.Active,
                             RequestJSON = paymentTB.RequestJSON,
                             ResponseJSON = paymentTB.ResponseJSON,
-
+                            Paymentorderid = paymentTB.Paymentorderid,
                         }).ToList();
             return data;
 
@@ -85,20 +85,18 @@ namespace NewProject.Services.Services
         {
             var saveOrder = new Payment()
             {
-                Did= new Guid(),
-                EmailAddress= request.EmailAddress,
-                Paymentid= request.Paymentid,
+                Did = new Guid(),
+                EmailAddress = request.EmailAddress,
+                Paymentid = request.Paymentid,
                 Amount = request.Amount,
-                Orderid= request.Orderid,
+                Orderid = request.Orderid,
                 Description = request.Description,
                 PhoneNumber = request.PhoneNumber,
-                ResponseJSON= request.ResponseJSON,
-                RequestJSON= request.RequestJSON,
-                Active = true,            
+                ResponseJSON = request.ResponseJSON,
+                RequestJSON = request.RequestJSON,
+                Active = true,
                 CreatedOn = DateTime.UtcNow,
-
-
-
+                Paymentorderid = request.Paymentorderid,
             };
             await _readWriteUnitOfWork.PaymentRepository.AddAsync(saveOrder);
 
@@ -113,7 +111,7 @@ namespace NewProject.Services.Services
 
             if (data != null)
             {
-              data.Did = request.Did;
+                data.Did = request.Did;
                 data.EmailAddress = request.EmailAddress;
                 data.Paymentid = request.Paymentid;
                 data.Amount = request.Amount;
@@ -124,7 +122,7 @@ namespace NewProject.Services.Services
                 data.RequestJSON = request.RequestJSON;
                 data.Active = true;
                 data.UpdatedOn = DateTime.UtcNow;
-
+                data.Paymentorderid = request.Paymentorderid;
                 await _readWriteUnitOfWork.CommitAsync();
 
                 return true;
