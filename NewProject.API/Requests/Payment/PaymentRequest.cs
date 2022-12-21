@@ -3,6 +3,7 @@
     public class PaymentRequest
     {
         public Guid Did { get; set; }
+        public string? Name { get; set; }
         public string? EmailAddress { get; set; }
         public string? PhoneNumber { get; set; }
         public string? Paymentid { get; set; }
@@ -25,6 +26,7 @@
     public class SavePaymentRequest
     {
 
+        public string? Name { get; set; }
         public string? EmailAddress { get; set; }
         public string? PhoneNumber { get; set; }
         public string? Paymentid { get; set; }
@@ -41,6 +43,7 @@
     public class UpdatePaymentRequest
     {
         public Guid Did { get; set; }
+        public string? Name { get; set; }
         public string? EmailAddress { get; set; }
         public string? PhoneNumber { get; set; }
         public string? Paymentid { get; set; }
