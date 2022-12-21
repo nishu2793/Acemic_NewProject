@@ -44,6 +44,7 @@ namespace NewProject.Services.Services
                         {
                             Did = paymentTB.Did,
                             Orderid = orderTB.OrderId,
+                            Name = paymentTB.Name,
                             EmailAddress = paymentTB.EmailAddress,
                             Paymentid = paymentTB.Paymentid,
                             Amount = orderTB.Amount,
@@ -68,6 +69,7 @@ namespace NewProject.Services.Services
                         {
                             Did = paymentTB.Did,
                             Orderid = orderTB.OrderId,
+                            Name = paymentTB.Name,
                             EmailAddress = paymentTB.EmailAddress,
                             Paymentid = paymentTB.Paymentid,
                             Amount = orderTB.Amount,
@@ -86,6 +88,7 @@ namespace NewProject.Services.Services
             var saveOrder = new Payment()
             {
                 Did = new Guid(),
+                Name = request.Name,
                 EmailAddress = request.EmailAddress,
                 Paymentid = request.Paymentid,
                 Amount = request.Amount,
@@ -112,6 +115,7 @@ namespace NewProject.Services.Services
             if (data != null)
             {
                 data.Did = request.Did;
+                data.Name = request.Name;
                 data.EmailAddress = request.EmailAddress;
                 data.Paymentid = request.Paymentid;
                 data.Amount = request.Amount;

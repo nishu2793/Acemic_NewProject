@@ -9,7 +9,9 @@ namespace NewProject.Services.Entities.Payment
     public class PaymentDto
     {
         public Guid Did { get; set; }
+        public string? Name { get; set; }
         public string? EmailAddress { get; set; }
+
         public string? PhoneNumber { get; set; }
         public string? Paymentid { get; set; }
         public decimal? Amount { get; set; }
@@ -28,6 +30,7 @@ namespace NewProject.Services.Entities.Payment
     public class GetPaymentDto
     {
         public Guid Did { get; set; }
+        public string? Name { get; set; }
         public string? EmailAddress { get; set; }
         public string? PhoneNumber { get; set; }
         public string? Paymentid { get; set; }
@@ -44,6 +47,7 @@ namespace NewProject.Services.Entities.Payment
     public class SavePaymentDto
     {
         public Guid Did { get; set; }
+        public string? Name { get; set; }
         public string? EmailAddress { get; set; }
         public string? PhoneNumber { get; set; }
         public string? Paymentid { get; set; }
@@ -60,6 +64,7 @@ namespace NewProject.Services.Entities.Payment
     public class UpdatePaymentDto
     {
         public Guid Did { get; set; }
+        public string? Name { get; set; }
         public string? EmailAddress { get; set; }
         public string? PhoneNumber { get; set; }
         public string? Paymentid { get; set; }
