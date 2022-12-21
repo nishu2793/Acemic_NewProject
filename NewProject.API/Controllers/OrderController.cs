@@ -53,6 +53,14 @@ namespace NewProject.API.Controllers
             var result = await _orderService.UpdateOrder(updateorderDto);
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }
+
+        [HttpPost("UpdateStatus")]
+        public async Task<Dictionary<string, object>> UpdateStatus([FromBody] UpdateOrderRequest request)
+        {
+           var updateorderDto = _mapper.Map<UpdateOrderRequest, UpdateOrderDto>(request);
+            var result = await _orderService.UpdateStatus(updateorderDto);
+            return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
+        }
         [HttpPost("DeleteOrder")]
         public async Task<Dictionary<string, object>> Deleteorder([FromBody] DeleteOrderRequest request)
         {

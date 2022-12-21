@@ -87,8 +87,8 @@ namespace NewProject.Services.Services
                 Amount = request.Amount,
                 Active = true,
                 OrderType = request.OrderType,
-                Status = "Inprogress",
-                StatusMessage = "Inprogress",
+                Status = "Draft",
+                StatusMessage = "Null",
                 CreatedOn = DateTime.UtcNow,
 
 
@@ -115,6 +115,26 @@ namespace NewProject.Services.Services
                 data.Status = request.Status;
                 data.StatusMessage = request.StatusMessage;
                 data.UpdatedOn = DateTime.UtcNow;
+
+                await _readWriteUnitOfWork.CommitAsync();
+
+                return true;
+
+            }
+            return false;
+
+        }
+
+        public async Task<bool> UpdateStatus(UpdateOrderDto request)
+        {
+
+            var data = await _readWriteUnitOfWork.OrderRepository.GetFirstOrDefaultAsync(x => x.OrderId == request.OrderId);
+
+            if (data != null)
+            {
+           
+                data.Status = "InProgress";
+           
 
                 await _readWriteUnitOfWork.CommitAsync();
 

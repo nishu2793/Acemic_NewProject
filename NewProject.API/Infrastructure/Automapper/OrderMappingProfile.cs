@@ -21,6 +21,7 @@ namespace NewProject.API.Infrastructure.Automapper
             CreateMap<UpdateOrderRequest, UpdateOrderDto  >();
             CreateMap<Order, UpdateOrderDto>().ReverseMap();
 
+
             CreateMap<DeleteOrderRequest, DeleteOrderDto>();
             CreateMap<Order, DeleteOrderDto>().ReverseMap();
 

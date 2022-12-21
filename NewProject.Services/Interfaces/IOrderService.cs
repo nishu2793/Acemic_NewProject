@@ -14,5 +14,6 @@ namespace NewProject.Services.Interfaces
         Task<Guid> SaveOrder(SaveOrderDto request);
         Task<bool> UpdateOrder(UpdateOrderDto request);
         Task<bool> DeleteOrder(DeleteOrderDto request);
+        Task<bool> UpdateStatus(UpdateOrderDto request);
     }
 }
