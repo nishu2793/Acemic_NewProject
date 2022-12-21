@@ -85,6 +85,19 @@ namespace NewProject.Services.Services
         }
         public async Task<Guid> SavePayment(SavePaymentDto request)
         {
+
+            var data = await _readWriteUnitOfWork.OrderRepository.GetFirstOrDefaultAsync(x => x.OrderId == request.Orderid);
+            if (data != null)
+            {
+                data.Status = "Complete";
+                await _readWriteUnitOfWork.CommitAsync();
+            }
+            else
+            {
+                data.Status = "Fail";
+                await _readWriteUnitOfWork.CommitAsync();
+            }
+
             var saveOrder = new Payment()
             {
                 Did = new Guid(),
