@@ -18,11 +18,6 @@ namespace NewProject.API.Infrastructure.Automapper
             CreateMap<SavePaymentRequest, SavePaymentDto>();
             CreateMap<Payment, SavePaymentDto>().ReverseMap();
 
-            CreateMap<UpdatePaymentRequest, UpdatePaymentDto>();
-            CreateMap<Payment, UpdatePaymentDto>().ReverseMap();
-
-            CreateMap<DeletePaymentRequest, DeletePaymentDto>();
-            CreateMap<Payment, DeletePaymentDto>().ReverseMap();
         }
     }
 }

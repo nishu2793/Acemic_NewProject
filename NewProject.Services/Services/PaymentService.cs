@@ -107,51 +107,6 @@ namespace NewProject.Services.Services
 
             return saveOrder.Did;
         }
-        public async Task<bool> UpdatePayment(UpdatePaymentDto request)
-        {
-
-            var data = await _readWriteUnitOfWork.PaymentRepository.GetFirstOrDefaultAsync(x => x.Did == request.Did);
-
-            if (data != null)
-            {
-                data.Did = request.Did;
-                data.Name = request.Name;
-                data.EmailAddress = request.EmailAddress;
-                data.Paymentid = request.Paymentid;
-                data.Amount = request.Amount;
-                data.Orderid = request.Orderid;
-                data.Description = request.Description;
-                data.PhoneNumber = request.PhoneNumber;
-                data.ResponseJSON = request.ResponseJSON;
-                data.RequestJSON = request.RequestJSON;
-                data.Active = true;
-                data.UpdatedOn = DateTime.UtcNow;
-                data.Paymentorderid = request.Paymentorderid;
-                await _readWriteUnitOfWork.CommitAsync();
-
-                return true;
-
-            }
-            return false;
-
-        }
-        public async Task<bool> DeletePaymnet(DeletePaymentDto request)
-        {
-
-            var data = await _readWriteUnitOfWork.PaymentRepository.GetFirstOrDefaultAsync(x => x.Did == request.Did);
-
-            if (data != null)
-            {
-
-                data.Active = true;
-
-                await _readWriteUnitOfWork.CommitAsync();
-
-                return true;
-
-            }
-            return false;
-
-        }
+      
     }
 }

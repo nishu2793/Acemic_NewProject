@@ -12,7 +12,6 @@ namespace NewProject.Services.Interfaces
         Task<List<GetPaymentDto>> GetPayment(GetPaymentDto request);
         Task<List<GetPaymentDto>> GetAllPayment();
         Task<Guid> SavePayment(SavePaymentDto request);
-        Task<bool> UpdatePayment(UpdatePaymentDto request);
-        Task<bool> DeletePaymnet(DeletePaymentDto request);
+   
     }
 }
