@@ -5,6 +5,8 @@ using NewProject.Domain.Entities.User;
 
 using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
+using NewProject.Utility.Exceptions;
+using NewProject.Utility;
 
 namespace NewProject.Services.Services
 {
@@ -14,17 +16,20 @@ namespace NewProject.Services.Services
         private readonly IUnitOfWork<ReadWriteApplicationDbContext> _readWriteUnitOfWork;
         private readonly ReadWriteApplicationDbContext _readWriteUnitOfWorkSP;
         private readonly IUnitOfWork<MasterDbContext> _masterDBContext;
-        private readonly IMapper _mapper;
+        private readonly IMapper _mapper; 
+        private readonly IFacebookService _facebookService;
+
         public UserRegisterService(IUnitOfWork<ReadOnlyApplicationDbContext> readOnlyUnitOfWork,
              IUnitOfWork<MasterDbContext> masterDBContext, IMapper mapper,
              IUnitOfWork<ReadWriteApplicationDbContext> readWriteUnitOfWork,
-             ReadWriteApplicationDbContext readWriteUnitOfWorkSP)
+             ReadWriteApplicationDbContext readWriteUnitOfWorkSP,IFacebookService facebookService)
         {
             _readOnlyUnitOfWork = readOnlyUnitOfWork;
             _masterDBContext = masterDBContext;
             _readWriteUnitOfWork = readWriteUnitOfWork;
             _mapper = mapper;
             _readWriteUnitOfWorkSP = readWriteUnitOfWorkSP;
+            _facebookService= facebookService;
         }
 
         public async Task<UserRegisterDto> UserRegisterAsync(UserRegisterDto request, string ipAddress)
@@ -139,9 +144,9 @@ namespace NewProject.Services.Services
             }
             return false;
         }
+      
 
 
-        
-        }
+    }
     }
 

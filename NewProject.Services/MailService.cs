@@ -25,8 +25,8 @@ namespace NewProject.Services
             EmailTemplateText = string.Format(EmailTemplateText, request.FirstName, request.Otp, DateTime.Now.Date.ToShortDateString());
             EmailTemplateText = EmailTemplateText.Replace("{0}", request.FirstName);
             EmailTemplateText = EmailTemplateText.Replace("{1}", request.Otp.ToString());
-
             BodyBuilder emailBodyBuilder = new BodyBuilder();
+
             emailBodyBuilder.HtmlBody = EmailTemplateText;
             emailMessage.Body = emailBodyBuilder.ToMessageBody();
 

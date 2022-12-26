@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using NewProject.API.Requests.User;
+using NewProject.Services.Entities.LoginDto;
 using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
 using NewProject.Utility;
@@ -13,10 +14,12 @@ namespace NewProject.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IAuthenticationService _authenticationService;
+
         public AccountController(IAuthenticationService authenticationService, IMapper mapper)
         {
             _authenticationService = authenticationService;
             _mapper = mapper;
+         
         }
         [HttpPost("authenticate")]
         public async Task<Dictionary<string, object>> AuthenticateAsync([FromBody] UserAuthRequest request)
@@ -26,6 +29,11 @@ namespace NewProject.API.Controllers
 
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }
+
+       
+
+
+
         #region Helper
         private string GetIdAddress()
         {
@@ -37,5 +45,7 @@ namespace NewProject.API.Controllers
         }
 
         #endregion
+
     }
 }
+

@@ -6,6 +6,7 @@ using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
 using NewProject.Utility;
 using NewProject.Utility.Exceptions;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace NewProject.Services.Services
 {
@@ -15,16 +16,22 @@ namespace NewProject.Services.Services
         private readonly IUnitOfWork<ReadWriteApplicationDbContext> _readWriteUnitOfWork;
         private readonly IJwtService _jwtService;
         private readonly AppSettings _appSettings;
+     
         public AuthenticationService(
              IUnitOfWork<ReadOnlyApplicationDbContext> readOnlyUnitOfWork,
              IUnitOfWork<ReadWriteApplicationDbContext> readWriteUnitOfWork,
              IJwtService jwtService,
-             IOptions<AppSettings> appSettings)
+             IOptions<AppSettings> appSettings
+             
+
+
+          )
         {
             this._readOnlyUnitOfWork = readOnlyUnitOfWork;
             this._jwtService = jwtService;
             this._appSettings = appSettings.Value;
             this._readWriteUnitOfWork = readWriteUnitOfWork;
+           
         }
 
         public async Task<UserLoginDto> AuthenticateAsync(UserAuthRequestDto request, string ipAddress)
@@ -76,5 +83,16 @@ namespace NewProject.Services.Services
                 x.Created.AddDays(_appSettings.RefreshTokenTTL) <= DateTime.UtcNow);
         }
 
+
+
+      
+
+
+
+
+
+
+
     }
 }
+

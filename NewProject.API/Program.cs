@@ -13,6 +13,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Configuration;
 using Microsoft.AspNetCore.Authentication.Facebook;
+using NewProject.Services.Interfaces;
+using NewProject.Services.Services;
+using NewProject.Services.Entities.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -83,6 +86,11 @@ builder.Services.AddAuthorization(options =>
 
 });
 builder.Services.AddScoped<IAuthorizationHandler, CommercialAuthorizationHandler>();
+var facebookAuthSettings = new FacebookAuthSettings();
+builder.Configuration.Bind(key: nameof(FacebookAuthSettings), facebookAuthSettings);
+builder.Services.AddSingleton(facebookAuthSettings);
+builder.Services.AddHttpClient();
+builder.Services.AddSingleton<IFacebookService, FacebookService>();
 
 var appSettings = appSettingsSection.Get<AppSettings>();
 var key = Encoding.ASCII.GetBytes(appSettings.Secret);
@@ -154,6 +162,8 @@ builder.Services.AddHttpContextAccessor();
 //    facebookOptions.AppId = configuration["492327696205227"];
 //    facebookOptions.AppSecret = configuration["a4bd3a577462531abb0f1df5a059e8f3"];
 //});
+
+//builder.Services.AddSingleton<IFacebookAuthService, FacebookAuthService>();
 
 
 
