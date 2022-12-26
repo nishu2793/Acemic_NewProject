@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using NewProject.API.Requests.Payment;
 using NewProject.API.Requests.User;
 using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
 using NewProject.Utility;
+using System.Net;
+using System.Text;
 
 namespace NewProject.API.Controllers
 {
@@ -35,7 +38,13 @@ namespace NewProject.API.Controllers
             else
                 return HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
         }
-
         #endregion
+        [HttpGet("signalRTest")]
+        public async Task<string> aa(string user, string message)
+        {
+            var connection = new NewProject.API.Hubs.ChatHub();
+            await connection.SendMessageToAll(user, message);
+            return message;
+        }
     }
 }

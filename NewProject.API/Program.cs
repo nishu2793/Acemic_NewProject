@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Configuration;
 using Microsoft.AspNetCore.Authentication.Facebook;
+using NewProject.API.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -160,6 +161,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
+builder.Services.AddSignalR();
 var app = builder.Build();
 
 //.SetIsOriginAllowed(origin => true) // allow any origin
@@ -187,7 +189,7 @@ app.UseAuthorization();
 
 app.UseMiddleware<JwtMiddleware>();
 
-
+app.MapHub<ChatHub>("/chatHub");
 app.MapControllers();
 
 app.Run();
