@@ -73,8 +73,6 @@ namespace NewProject.API.Controllers
             public string message { get; set; }
         }
 
-        #endregion
-
     }
 }
 
