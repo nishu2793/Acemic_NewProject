@@ -38,7 +38,7 @@ namespace NewProject.API.Controllers
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }
 
-       
+
 
 
 
@@ -61,10 +61,26 @@ namespace NewProject.API.Controllers
                 message = message
             };
             var json = JsonConvert.SerializeObject(signalRclass);
+            // _hubContext.Clients.All.SendOffersToUser(offers);
 
-           // SendAsync("broadcastAppointment", JsonConvert.SerializeObject(json, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
+            // SendAsync("broadcastAppointment", JsonConvert.SerializeObject(json, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
             var connection = new NewProject.API.Hubs.ChatHub();
-            await _hubContext.Clients.All.SendAsync(json);
+
+            var lst = _hubContext.Clients.All;
+            try
+            {
+                await _hubContext.Clients.All.SendCoreAsync("SendMessageToAll", args: new[]
+            {
+               user,
+                message
+            });
+
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
             return message;
         }
         public class SignalRclass

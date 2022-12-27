@@ -9,6 +9,7 @@ using NewProject.Data.Infrastructure;
 using NewProject.Domain.Entities.Machine;
 using NewProject.Domain.Entities.Order;
 using NewProject.Domain.Entities.Payment;
+using NewProject.Domain.Entities.SignalR;
 using NewProject.Domain.Entities.User;
 using NewProject.Utility;
 //using User = NewProject.Domain.Entities.User.User;
@@ -104,6 +105,7 @@ namespace NewProject.Data.Contexts
         public DbSet<Order> orders { get; set; }
         public DbSet<Payment> payments { get; set; }
 
+        public DbSet<SignalR> signalRs { get; set; }
     }
 
     public interface IBaseContext

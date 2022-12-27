@@ -16,6 +16,8 @@ namespace NewProject.Data.Infrastructure
         IStateMasterRepository<TContext> StateMasterRepository { get; }
         IOrderRepository<TContext> OrderRepository { get; }
         IPaymentRepository<TContext> PaymentRepository { get; }
+
+        ISignalRRepository<TContext> SignalRRepository { get; }
         Task<int> CommitAsync();
 
     }
@@ -34,6 +36,8 @@ namespace NewProject.Data.Infrastructure
        public  IStateMasterRepository<TContext> StateMasterRepository { get; }
         public IOrderRepository<TContext> OrderRepository { get; }
        public IPaymentRepository<TContext> PaymentRepository { get; }
+       public ISignalRRepository<TContext> SignalRRepository { get; }
+
 
         public UnitOfWork(TContext context, IAccountsRepository<TContext> accountsRepository,
                 IUserRegisterRepository<TContext> userRegisterRepository,
@@ -45,7 +49,8 @@ namespace NewProject.Data.Infrastructure
                   IStateMasterRepository<TContext> stateMasterRepository,
                   ICountryMasterRepository<TContext>countryMasterRepository,
                   IOrderRepository<TContext> orderRepository,
-                       IPaymentRepository<TContext> paymentRepository
+                       IPaymentRepository<TContext> paymentRepository,
+                       ISignalRRepository<TContext> signalRRepository
                 )
         {
             this.Context = context;
@@ -60,7 +65,7 @@ namespace NewProject.Data.Infrastructure
             this.CityMasterRepository = cityMasterRepository;
             this.OrderRepository= orderRepository;
             this.PaymentRepository= paymentRepository;
-
+            this.SignalRRepository= signalRRepository;
 
         }
         public async Task<int> CommitAsync()
