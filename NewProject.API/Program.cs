@@ -10,14 +10,10 @@ using System.Text.Json.Serialization;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Configuration;
-using Microsoft.AspNetCore.Authentication.Facebook;
 using NewProject.Services.Interfaces;
 using NewProject.Services.Services;
 using NewProject.Services.Entities.User;
 using NewProject.API.Hubs;
-using Microsoft.Azure.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -167,13 +163,10 @@ builder.Services.AddHttpContextAccessor();
 
 //builder.Services.AddSingleton<IFacebookAuthService, FacebookAuthService>();
 
-
-
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddSignalR();
-
 var app = builder.Build();
 
 //.SetIsOriginAllowed(origin => true) // allow any origin
@@ -192,6 +185,7 @@ app.UseCors("NewProjectCors");
 //{
 //    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
 //});
+
 app.UseRouting();
 
 app.UseAuthorization();
@@ -205,6 +199,8 @@ app.UseEndpoints(endpoints =>
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.UseMiddleware<JwtMiddleware>();
 

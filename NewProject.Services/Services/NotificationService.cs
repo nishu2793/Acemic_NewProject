@@ -2,13 +2,7 @@
 using NewProject.Data.Contexts;
 using NewProject.Data.Infrastructure;
 using NewProject.Services.Entities.Notification;
-using NewProject.Services.Entities.Order;
 using NewProject.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NewProject.Services.Services
 {
@@ -50,11 +44,8 @@ namespace NewProject.Services.Services
                 var objNotify = _readWriteUnitOfWork.NotificationRepository.Find(x => x.Did == item.Did).FirstOrDefault();
                 objNotify.ReadOn = DateTime.UtcNow;
             }
-
             await _readWriteUnitOfWork.CommitAsync();
-
             return data;
-
         }
     }
 }

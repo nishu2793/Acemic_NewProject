@@ -4,16 +4,9 @@ using NewProject.Data.Infrastructure;
 using NewProject.Domain.Entities.Notification;
 using NewProject.Domain.Entities.Payment;
 using NewProject.Services.Entities.Notification;
-using NewProject.Services.Entities.Order;
 using NewProject.Services.Entities.Payment;
 using NewProject.Services.Interfaces;
 using Newtonsoft.Json;
-using Org.BouncyCastle.Asn1.Ocsp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NewProject.Services.Services
 {
@@ -87,7 +80,7 @@ namespace NewProject.Services.Services
         }
         public async Task<Guid> SavePayment(SavePaymentDto request)
         {
-
+            // Update paymet status in Order 
             var data = await _readWriteUnitOfWork.OrderRepository.GetFirstOrDefaultAsync(x => x.OrderId == request.Orderid);
             if (data != null)
             {
@@ -100,7 +93,8 @@ namespace NewProject.Services.Services
                 await _readWriteUnitOfWork.CommitAsync();
             }
 
-            var saveOrder = new Payment()
+            // Save payment 
+            var savePayment = new Payment()
             {
                 Did = new Guid(),
                 Name = request.Name,
@@ -116,17 +110,18 @@ namespace NewProject.Services.Services
                 CreatedOn = DateTime.UtcNow,
                 Paymentorderid = request.Paymentorderid,
             };
-            await _readWriteUnitOfWork.PaymentRepository.AddAsync(saveOrder);
+            await _readWriteUnitOfWork.PaymentRepository.AddAsync(savePayment);
 
             await _readWriteUnitOfWork.CommitAsync();
 
+            // Save Notification 
             var payNotify = new PaymentNotificationDto();
             payNotify.Status = data.Status;
-            payNotify.Paymentorderid = saveOrder.Paymentorderid;
-            payNotify.PaymentId = saveOrder.Paymentid;
-            payNotify.OrderId = saveOrder.Orderid.ToString();
-            payNotify.Amount = saveOrder.Amount.ToString();
-            payNotify.Email = saveOrder.EmailAddress;
+            payNotify.Paymentorderid = savePayment.Paymentorderid;
+            payNotify.PaymentId = savePayment.Paymentid;
+            payNotify.OrderId = savePayment.Orderid.ToString();
+            payNotify.Amount = savePayment.Amount.ToString();
+            payNotify.Email = savePayment.EmailAddress;
 
             var notification = new Notification()
             {
@@ -138,14 +133,9 @@ namespace NewProject.Services.Services
                 Type = "Payment"
             };
             await _readWriteUnitOfWork.NotificationRepository.AddAsync(notification);
-
             await _readWriteUnitOfWork.CommitAsync();
 
-            
-
-
-
-            return saveOrder.Did;
+            return savePayment.Did;
         }
 
     }

@@ -1,16 +1,9 @@
 ﻿using AutoMapper;
-using MailKit.Search;
 using NewProject.Data.Contexts;
 using NewProject.Data.Infrastructure;
 using NewProject.Domain.Entities.Order;
-using NewProject.Services.Entities.LoginDto;
 using NewProject.Services.Entities.Order;
 using NewProject.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NewProject.Services.Services
 {
@@ -90,19 +83,13 @@ namespace NewProject.Services.Services
                 Status = "Draft",
                 StatusMessage = "Null",
                 CreatedOn = DateTime.UtcNow,
-
-
-
             };
             await _readWriteUnitOfWork.OrderRepository.AddAsync(saveOrder);
-
             await _readWriteUnitOfWork.CommitAsync();
-
             return saveOrder.OrderId;
         }
         public async Task<bool> UpdateOrder(UpdateOrderDto request)
         {
-
             var data = await _readWriteUnitOfWork.OrderRepository.GetFirstOrDefaultAsync(x => x.OrderId == request.OrderId);
 
             if (data != null)
@@ -117,51 +104,34 @@ namespace NewProject.Services.Services
                 data.UpdatedOn = DateTime.UtcNow;
 
                 await _readWriteUnitOfWork.CommitAsync();
-
                 return true;
-
             }
             return false;
-
         }
 
         public async Task<bool> UpdateStatus(UpdateStatusDto request)
         {
             Guid dataorder = new Guid(request.OrderId);
-         
             var data = await _readWriteUnitOfWork.OrderRepository.GetFirstOrDefaultAsync(x => x.OrderId == dataorder);
 
             if (data != null)
             {
-           
                 data.Status = "InProgress";
-           
-
                 await _readWriteUnitOfWork.CommitAsync();
-
                 return true;
-
             }
             return false;
-
         }
         public async Task<bool> DeleteOrder(DeleteOrderDto request)
         {
-
             var data = await _readWriteUnitOfWork.OrderRepository.GetFirstOrDefaultAsync(x => x.OrderId == request.OrderId);
-
             if (data != null)
             {
-
                 data.Active = true;
-
                 await _readWriteUnitOfWork.CommitAsync();
-
                 return true;
-
             }
             return false;
-
         }
     }
 }
