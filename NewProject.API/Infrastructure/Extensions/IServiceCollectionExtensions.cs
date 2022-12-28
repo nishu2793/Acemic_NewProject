@@ -38,6 +38,7 @@ namespace NewProject.API.Infrastructure.Extensions
             services.AddTransient(typeof(IOrderRepository<>), typeof(OrderRepository<>));
             services.AddTransient(typeof(IPaymentRepository<>), typeof(PaymentRepository<>));
             services.AddTransient(typeof(ISignalRRepository<>), typeof(SignalRRepository<>));
+            services.AddTransient(typeof(INotificationRepository<>), typeof(NotificationRepository<>));
         }
 
         public static void ConfigureDatabases(this IServiceCollection services, IConfiguration configuration)

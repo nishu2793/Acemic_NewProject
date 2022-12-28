@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using NewProject.Data.Contexts;
 using NewProject.Data.Infrastructure;
-using NewProject.Domain.Entities.Order;
+using NewProject.Domain.Entities.Notification;
 using NewProject.Domain.Entities.Payment;
+using NewProject.Services.Entities.Notification;
 using NewProject.Services.Entities.Order;
 using NewProject.Services.Entities.Payment;
 using NewProject.Services.Interfaces;
+using Newtonsoft.Json;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
@@ -118,8 +120,33 @@ namespace NewProject.Services.Services
 
             await _readWriteUnitOfWork.CommitAsync();
 
+            var payNotify = new PaymentNotificationDto();
+            payNotify.Status = data.Status;
+            payNotify.Paymentorderid = saveOrder.Paymentorderid;
+            payNotify.PaymentId = saveOrder.Paymentid;
+            payNotify.OrderId = saveOrder.Orderid.ToString();
+            payNotify.Amount = saveOrder.Amount.ToString();
+            payNotify.Email = saveOrder.EmailAddress;
+
+            var notification = new Notification()
+            {
+                Did = new Guid(),
+                Data = JsonConvert.SerializeObject(payNotify),
+                CreatedOn = DateTime.UtcNow,
+                UserId=data.UserId,
+                IsRead=1,
+                Type = "Payment"
+            };
+            await _readWriteUnitOfWork.NotificationRepository.AddAsync(notification);
+
+            await _readWriteUnitOfWork.CommitAsync();
+
+            
+
+
+
             return saveOrder.Did;
         }
-      
+
     }
 }

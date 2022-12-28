@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using NewProject.Data.Infrastructure;
 using NewProject.Domain.Entities.Machine;
+using NewProject.Domain.Entities.Notification;
 using NewProject.Domain.Entities.Order;
 using NewProject.Domain.Entities.Payment;
 using NewProject.Domain.Entities.SignalR;
@@ -106,6 +107,7 @@ namespace NewProject.Data.Contexts
         public DbSet<Payment> payments { get; set; }
 
         public DbSet<SignalR> signalRs { get; set; }
+        public DbSet<Notification> notifications { get; set; }
     }
 
     public interface IBaseContext
