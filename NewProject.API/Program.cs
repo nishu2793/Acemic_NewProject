@@ -70,6 +70,10 @@ builder.Services.ConfigureDatabases(builder.Configuration);
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+
+builder.Services.AddSignalR();
+
+
 builder.Services.ConfigureCors();
 
 var appSettingsSection = builder.Configuration.GetSection("AppSettings");
@@ -166,7 +170,6 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-builder.Services.AddSignalR();
 var app = builder.Build();
 
 //.SetIsOriginAllowed(origin => true) // allow any origin
@@ -190,21 +193,21 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+//app.MapHub<ChatHub>("/chatHub");
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
-    //endpoints.MapHub<ChatHub>("/chatHub");
+    endpoints.MapHub<ChatHub>("/chatHub");
 });
 
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
-app.UseAuthorization();
-
 app.UseMiddleware<JwtMiddleware>();
 
-app.MapHub<ChatHub>("/chatHub");
+
 
 
 //app.MapControllers();

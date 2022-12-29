@@ -55,38 +55,8 @@ namespace NewProject.API.Controllers
         [HttpGet("signalRTest")]
         public async Task<string> aa(string user, string message)
         {
-            SignalRclass signalRclass = new SignalRclass()
-            {
-                user = user,
-                message = message
-            };
-            var json = JsonConvert.SerializeObject(signalRclass);
-            // _hubContext.Clients.All.SendOffersToUser(offers);
-
-            // SendAsync("broadcastAppointment", JsonConvert.SerializeObject(json, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
-            var connection = new NewProject.API.Hubs.ChatHub();
-
-            var lst = _hubContext.Clients.All;
-            try
-            {
-                await _hubContext.Clients.All.SendCoreAsync("SendMessageToAll", args: new[]
-            {
-               user,
-                message
-            });
-
-
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            await _hubContext.Clients.All.SendAsync("ReceiveMessage", user, message).ConfigureAwait(false);
             return message;
-        }
-        public class SignalRclass
-        {
-            public string user { get; set; }
-            public string message { get; set; }
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.SignalR;
 using NewProject.Data.Contexts;
 using NewProject.Data.Infrastructure;
 using NewProject.Domain.Entities.User;
@@ -63,5 +64,6 @@ namespace NewProject.Services.Services
             return data;
         }
 
+     
     }
 }
