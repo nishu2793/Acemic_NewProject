@@ -11,4 +11,10 @@
         public string? ConnectionId { get; set; }
     }
 
+    public class SignalRInternalTest
+    {
+        public string User { get; set; }
+        public string Message { get; set; }
+    }
+
 }
