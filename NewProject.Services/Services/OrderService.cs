@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using MailKit.Search;
 using NewProject.Data.Contexts;
 using NewProject.Data.Infrastructure;
 using NewProject.Domain.Entities.Order;
+using NewProject.Domain.Entities.User;
 using NewProject.Services.Entities.Order;
+using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
 
 namespace NewProject.Services.Services
@@ -70,7 +73,7 @@ namespace NewProject.Services.Services
             return data;
 
         }
-        public async Task<Guid> SaveOrder(SaveOrderDto request)
+        public async Task<List<SaveOrderDto>> SaveOrder(SaveOrderDto request)
         {
             var saveOrder = new Order()
             {
@@ -86,7 +89,21 @@ namespace NewProject.Services.Services
             };
             await _readWriteUnitOfWork.OrderRepository.AddAsync(saveOrder);
             await _readWriteUnitOfWork.CommitAsync();
-            return saveOrder.OrderId;
+            var data = (
+                from orderTB in _readOnlyUnitOfWork.OrderRepository.GetAllAsQuerable()
+                where orderTB.OrderId == saveOrder.OrderId
+                join userTB in _readOnlyUnitOfWork.UserRegisterRepository.GetAllAsQuerable()
+                        on orderTB.UserId equals userTB.Did
+                        select new SaveOrderDto
+                        {
+                            OrderId = orderTB.OrderId,
+                            Amount= orderTB.Amount,
+                            EmailAddress = userTB.EmailAddress,
+                            Firstname=userTB.FirstName,
+                            Lastname=userTB.LastName
+                           
+                        }).ToList();
+            return data;
         }
         public async Task<bool> UpdateOrder(UpdateOrderDto request)
         {

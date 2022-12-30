@@ -36,6 +36,10 @@ namespace NewProject.Services.Entities.Order
         public Guid OrderId { get; set; }
         public Guid MachineId { get; set; }
         public Guid UserId { get; set; }
+        public string? Firstname { get; set; }
+        public string? Lastname { get; set; }    
+        public string? EmailAddress { get; set; }
+
         public DateTime? CreatedOn { get; set; }
         public decimal? Amount { get; set; }
         public bool? Active { get; set; }
