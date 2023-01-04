@@ -14,6 +14,9 @@ using NewProject.Services.Interfaces;
 using NewProject.Services.Services;
 using NewProject.Services.Entities.User;
 using NewProject.API.Hubs;
+using CorePush.Google;
+using CorePush.Apple;
+using PushNotification.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -79,6 +82,10 @@ builder.Services.ConfigureCors();
 var appSettingsSection = builder.Configuration.GetSection("AppSettings");
 builder.Services.Configure<AppSettings>(appSettingsSection);
 
+// Configure strongly typed settings objects
+var SectionNotification = builder.Configuration.GetSection("FcmNotification");
+builder.Services.Configure<FcmNotificationSetting>(SectionNotification);
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Permission", policyBuilder =>
@@ -93,6 +100,7 @@ builder.Configuration.Bind(key: nameof(FacebookAuthSettings), facebookAuthSettin
 builder.Services.AddSingleton(facebookAuthSettings);
 builder.Services.AddHttpClient();
 builder.Services.AddSingleton<IFacebookService, FacebookService>();
+
 
 var appSettings = appSettingsSection.Get<AppSettings>();
 var key = Encoding.ASCII.GetBytes(appSettings.Secret);

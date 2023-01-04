@@ -1,4 +1,6 @@
-﻿using NewProject.Services.Entities.Notification;
+﻿using NewProject.API.Infrastructure.Models;
+using NewProject.Services.Entities.Notification;
+using PushNotification.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +12,6 @@ namespace NewProject.Services.Interfaces
     public interface INotificationService
     {
         Task<List<GetNotificationDto>> GetNotification(GetNotificationRequestDto request);
+        Task<ResponseModel> SendNotification(NotificationModel notificationModel);
     }
 }

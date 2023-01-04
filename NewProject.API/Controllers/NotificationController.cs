@@ -6,6 +6,7 @@ using NewProject.Services.Entities.Notification;
 using NewProject.Services.Entities.Order;
 using NewProject.Services.Interfaces;
 using NewProject.Utility;
+using PushNotification.Models;
 
 namespace NewProject.API.Controllers
 {
@@ -29,6 +30,12 @@ namespace NewProject.API.Controllers
             var result = await _notificationService.GetNotification(noticationdto);
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }
-
+        [Route("send")]
+        [HttpPost]
+        public async Task<IActionResult> SendNotification(NotificationModel notificationModel)
+        {
+            var result = await _notificationService.SendNotification(notificationModel);
+            return Ok(result);
+        }
     }
 }

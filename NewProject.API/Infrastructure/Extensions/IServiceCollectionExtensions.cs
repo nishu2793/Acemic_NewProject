@@ -7,7 +7,8 @@ using NewProject.Services.Interfaces;
 using NewProject.Utility;
 using System.Reflection;
 using NetCore.AutoRegisterDi;
-using NewProject.Services.Services;
+using CorePush.Apple;
+using CorePush.Google;
 
 namespace NewProject.API.Infrastructure.Extensions
 {
@@ -39,6 +40,8 @@ namespace NewProject.API.Infrastructure.Extensions
             services.AddTransient(typeof(IPaymentRepository<>), typeof(PaymentRepository<>));
             services.AddTransient(typeof(ISignalRRepository<>), typeof(SignalRRepository<>));
             services.AddTransient(typeof(INotificationRepository<>), typeof(NotificationRepository<>));
+            services.AddHttpClient<FcmSender>();
+            services.AddHttpClient<ApnSender>();
         }
 
         public static void ConfigureDatabases(this IServiceCollection services, IConfiguration configuration)
