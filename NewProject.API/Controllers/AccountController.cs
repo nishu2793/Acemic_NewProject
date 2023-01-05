@@ -13,6 +13,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Net;
 using System.Text;
+using System.Security.Cryptography.X509Certificates;
+using uPLibrary.Networking.M2Mqtt;
+using uPLibrary.Networking.M2Mqtt.Messages;
+using NewProject.Services.Services;
+using PushNotification.Models;
 
 namespace NewProject.API.Controllers
 {
@@ -37,11 +42,6 @@ namespace NewProject.API.Controllers
 
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }
-
-
-
-
-
         #region Helper
         private string GetIdAddress()
         {
@@ -58,7 +58,13 @@ namespace NewProject.API.Controllers
             await _hubContext.Clients.All.SendAsync("ReceiveMessage", user, message).ConfigureAwait(false);
             return message;
         }
-
+        [HttpGet("MQTT")]
+        public async Task<string> MQTT(string message)
+        {
+            var result = await _authenticationService.MQTT(message);
+            return result;
+        }
+        
     }
 }
 

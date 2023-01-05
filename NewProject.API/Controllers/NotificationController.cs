@@ -30,7 +30,7 @@ namespace NewProject.API.Controllers
             var result = await _notificationService.GetNotification(noticationdto);
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }
-        [Route("send")]
+        [Route("SendPushNotification")]
         [HttpPost]
         public async Task<IActionResult> SendNotification(NotificationModel notificationModel)
         {

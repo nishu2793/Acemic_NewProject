@@ -7,6 +7,11 @@ using NewProject.Services.Interfaces;
 using NewProject.Utility;
 using NewProject.Utility.Exceptions;
 using Org.BouncyCastle.Asn1.Ocsp;
+using System.Drawing;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using uPLibrary.Networking.M2Mqtt;
+using uPLibrary.Networking.M2Mqtt.Messages;
 
 namespace NewProject.Services.Services
 {
@@ -82,17 +87,45 @@ namespace NewProject.Services.Services
                 !x.IsActive &&
                 x.Created.AddDays(_appSettings.RefreshTokenTTL) <= DateTime.UtcNow);
         }
+        public async Task<string> MQTT(string message)
+        {
+            string brocker = "a8gw615bfoveo-ats.iot.ap-northeast-1.amazonaws.com"; // <AWS IOT Endpoint>
+            int Port = 8883;
+            var clientid = Guid.NewGuid().ToString();
+            var certpass = "123456789";
+            string topic = "TestMQTT";
 
+            //var currentDirectoryPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory));
+            var currentDirectoryPath = Directory.GetCurrentDirectory();
+            var certificatepath = Path.Combine(currentDirectoryPath, "Cert");
 
+            var caCert = X509Certificate.CreateFromCertFile(Path.Combine(certificatepath, "AmazonRootCA1.pem"));
 
-      
+            var devicepath = Path.Combine(certificatepath, "certificate.cert.pfx");
+            var devicecert = new X509Certificate(devicepath, certpass);
+            //var clientCert = new X509Certificate(Path.Combine(certificatepath, "cert-GV2EAJBV7GUY4IKUZOEXSWTCHCJT2UVQ.pem"));
 
+            var client = new MqttClient(brocker, Port, true, caCert, devicecert, MqttSslProtocols.TLSv1_2);
 
+           client.MqttMsgPublishReceived += IotClient_MqttMsgPublishReceived;
+           client.MqttMsgSubscribed += IotClient_MqttMsgSubscribed;
 
+            //Connection
+            client.Connect(clientid);
 
-
-
-
+            client.Publish("TestMQTT", Encoding.UTF8.GetBytes($"{message}"));
+            client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+            return message;
+        }
+        static void IotClient_MqttMsgSubscribed(object sender, MqttMsgSubscribedEventArgs e)
+        {
+            Console.WriteLine($"Successfully subscribed to the AWS IoT topic.");
+        }
+        static void IotClient_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
+        {
+            //Console.WriteLine("Message received: " + Encoding.UTF8.GetString(e.Message));
+            string s = "Message received: " + Encoding.UTF8.GetString(e.Message);
+        }
     }
 }
 
