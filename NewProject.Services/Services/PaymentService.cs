@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.SignalR;
+using NewProject.API.Hubs;
 using NewProject.Data.Contexts;
 using NewProject.Data.Infrastructure;
 using NewProject.Domain.Entities.Notification;
@@ -7,6 +9,7 @@ using NewProject.Services.Entities.Notification;
 using NewProject.Services.Entities.Payment;
 using NewProject.Services.Interfaces;
 using Newtonsoft.Json;
+//using NewProject.API.Hubs;
 
 namespace NewProject.Services.Services
 {
@@ -17,16 +20,18 @@ namespace NewProject.Services.Services
         private readonly ReadWriteApplicationDbContext _readWriteUnitOfWorkSP;
         private readonly IUnitOfWork<MasterDbContext> _masterDBContext;
         private readonly IMapper _mapper;
+        private readonly IHubContext<ChatHub> _hubContext;
         public PaymentService(IUnitOfWork<ReadOnlyApplicationDbContext> readOnlyUnitOfWork,
              IUnitOfWork<MasterDbContext> masterDBContext, IMapper mapper,
              IUnitOfWork<ReadWriteApplicationDbContext> readWriteUnitOfWork,
-             ReadWriteApplicationDbContext readWriteUnitOfWorkSP)
+             ReadWriteApplicationDbContext readWriteUnitOfWorkSP, IHubContext<ChatHub> hubContext)
         {
             _readOnlyUnitOfWork = readOnlyUnitOfWork;
             _masterDBContext = masterDBContext;
             _readWriteUnitOfWork = readWriteUnitOfWork;
             _mapper = mapper;
             _readWriteUnitOfWorkSP = readWriteUnitOfWorkSP;
+            _hubContext = hubContext;
         }
         public async Task<List<GetPaymentDto>> GetPayment(GetPaymentDto request)
         {
@@ -133,6 +138,8 @@ namespace NewProject.Services.Services
                 Type = "Payment"
             };
             await _readWriteUnitOfWork.NotificationRepository.AddAsync(notification);
+            await _hubContext.Clients.All.SendAsync("ReceiveMessage", "hdhdjdj","kudiri").ConfigureAwait(false);
+            //return message;
             await _readWriteUnitOfWork.CommitAsync();
 
             return savePayment.Did;
