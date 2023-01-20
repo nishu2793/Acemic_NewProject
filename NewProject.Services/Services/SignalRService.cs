@@ -1,17 +1,10 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.SignalR;
 using NewProject.Data.Contexts;
 using NewProject.Data.Infrastructure;
-using NewProject.Domain.Entities.User;
-using NewProject.Services.Entities.LoginDto;
+using NewProject.Domain.Entities.SignalR;
 using NewProject.Services.Entities.SignalR;
-using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace NewProject.Services.Services
 {
@@ -64,6 +57,33 @@ namespace NewProject.Services.Services
             return data;
         }
 
-     
+        public async Task<List<SaveSignalDto>> SaveSignalR(SaveSignalDto saveSignalDto)
+        {
+            var findRecord = await  _readWriteUnitOfWork.SignalRRepository.GetFirstOrDefaultAsync(x => x.UserId == saveSignalDto.UserId);
+            if(findRecord != null)
+            {
+                findRecord.ConnectionId = saveSignalDto.ConnectionId;
+                await _readWriteUnitOfWork.CommitAsync();
+            }
+            else
+            {
+                var SaveSignalRdata = new SignalR()
+                {
+                    ConnectionId = saveSignalDto.ConnectionId,
+                    UserId = saveSignalDto.UserId,
+                };
+                await _readWriteUnitOfWork.SignalRRepository.AddAsync(SaveSignalRdata);
+                await _readWriteUnitOfWork.CommitAsync();
+            }
+            var data = (from SignalRTB in _readOnlyUnitOfWork.SignalRRepository.GetAllAsQuerable()
+                        where SignalRTB.ConnectionId == saveSignalDto.ConnectionId
+                        select new SaveSignalDto
+                        {
+                            Id = SignalRTB.Id,
+                            ConnectionId = SignalRTB.ConnectionId,
+                            UserId = SignalRTB.UserId
+                        }).ToList();
+            return data;
+        }
     }
 }

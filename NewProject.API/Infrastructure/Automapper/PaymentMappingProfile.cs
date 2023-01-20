@@ -18,6 +18,8 @@ namespace NewProject.API.Infrastructure.Automapper
             CreateMap<SavePaymentRequest, SavePaymentDto>();
             CreateMap<Payment, SavePaymentDto>().ReverseMap();
 
+            CreateMap<Payment_PercentageRequest, Payment_PercentageDto>();
+            CreateMap<Payment_Percentage,Payment_PercentageDto>().ReverseMap();
         }
     }
 }

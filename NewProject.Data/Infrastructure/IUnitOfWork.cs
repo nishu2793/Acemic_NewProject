@@ -19,6 +19,8 @@ namespace NewProject.Data.Infrastructure
 
         ISignalRRepository<TContext> SignalRRepository { get; }
         INotificationRepository<TContext> NotificationRepository { get; }
+
+        IPayment_PercentageRepository<TContext> Payment_PercentageRepository { get; }
         Task<int> CommitAsync();
 
     }
@@ -32,15 +34,15 @@ namespace NewProject.Data.Infrastructure
         public IRefreshTokenRepository<TContext> RefreshTokenRepository { get; }
 
         public IMachineRepository<TContext> MachineRepository { get; }
-       public ICityMasterRepository<TContext> CityMasterRepository { get; }
-       public ICountryMasterRepository<TContext> CountryMasterRepository { get; }
-       public  IStateMasterRepository<TContext> StateMasterRepository { get; }
+        public ICityMasterRepository<TContext> CityMasterRepository { get; }
+        public ICountryMasterRepository<TContext> CountryMasterRepository { get; }
+        public IStateMasterRepository<TContext> StateMasterRepository { get; }
         public IOrderRepository<TContext> OrderRepository { get; }
-       public IPaymentRepository<TContext> PaymentRepository { get; }
-       public ISignalRRepository<TContext> SignalRRepository { get; }
-        public INotificationRepository<TContext> NotificationRepository { get; }    
+        public IPaymentRepository<TContext> PaymentRepository { get; }
+        public ISignalRRepository<TContext> SignalRRepository { get; }
+        public INotificationRepository<TContext> NotificationRepository { get; }
 
-
+        public IPayment_PercentageRepository<TContext> Payment_PercentageRepository { get; }
         public UnitOfWork(TContext context, IAccountsRepository<TContext> accountsRepository,
                 IUserRegisterRepository<TContext> userRegisterRepository,
                 IUserProfileRepository<TContext> userProfileRepository,
@@ -49,12 +51,11 @@ namespace NewProject.Data.Infrastructure
                  IMachineRepository<TContext> machineRepository,
                   ICityMasterRepository<TContext> cityMasterRepository,
                   IStateMasterRepository<TContext> stateMasterRepository,
-                  ICountryMasterRepository<TContext>countryMasterRepository,
+                  ICountryMasterRepository<TContext> countryMasterRepository,
                   IOrderRepository<TContext> orderRepository,
                        IPaymentRepository<TContext> paymentRepository,
                        ISignalRRepository<TContext> signalRRepository,
-                       INotificationRepository<TContext> notificationRepository
-                )
+                       INotificationRepository<TContext> notificationRepository, IPayment_PercentageRepository<TContext> payment_PercentageRepository)
         {
             this.Context = context;
             this.AccountsRepository = accountsRepository;
@@ -62,14 +63,15 @@ namespace NewProject.Data.Infrastructure
             this.RefreshTokenRepository = refreshTokenRepository;
             this.UserProfileRepository = userProfileRepository;
             this.UserRegisterTempRepository = userRegisterTempRepository;
-            this.MachineRepository= machineRepository;
+            this.MachineRepository = machineRepository;
             this.CountryMasterRepository = countryMasterRepository;
             this.StateMasterRepository = stateMasterRepository;
             this.CityMasterRepository = cityMasterRepository;
-            this.OrderRepository= orderRepository;
-            this.PaymentRepository= paymentRepository;
-            this.SignalRRepository= signalRRepository;
-            this.NotificationRepository= notificationRepository;
+            this.OrderRepository = orderRepository;
+            this.PaymentRepository = paymentRepository;
+            this.SignalRRepository = signalRRepository;
+            this.NotificationRepository = notificationRepository;
+            this.Payment_PercentageRepository = payment_PercentageRepository;
 
         }
         public async Task<int> CommitAsync()

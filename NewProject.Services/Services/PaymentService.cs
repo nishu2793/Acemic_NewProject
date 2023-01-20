@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.SignalR;
 using NewProject.API.Hubs;
 using NewProject.Data.Contexts;
 using NewProject.Data.Infrastructure;
+using NewProject.Data.Repositories;
 using NewProject.Domain.Entities.Notification;
 using NewProject.Domain.Entities.Payment;
 using NewProject.Services.Entities.Notification;
 using NewProject.Services.Entities.Payment;
 using NewProject.Services.Interfaces;
 using Newtonsoft.Json;
-//using NewProject.API.Hubs;
+using Newtonsoft.Json.Linq;
 
 namespace NewProject.Services.Services
 {
@@ -20,7 +21,7 @@ namespace NewProject.Services.Services
         private readonly ReadWriteApplicationDbContext _readWriteUnitOfWorkSP;
         private readonly IUnitOfWork<MasterDbContext> _masterDBContext;
         private readonly IMapper _mapper;
-        private readonly IHubContext<ChatHub> _hubContext;
+        private IHubContext<ChatHub> _hubContext;
         public PaymentService(IUnitOfWork<ReadOnlyApplicationDbContext> readOnlyUnitOfWork,
              IUnitOfWork<MasterDbContext> masterDBContext, IMapper mapper,
              IUnitOfWork<ReadWriteApplicationDbContext> readWriteUnitOfWork,
@@ -80,23 +81,28 @@ namespace NewProject.Services.Services
                             ResponseJSON = paymentTB.ResponseJSON,
                             Paymentorderid = paymentTB.Paymentorderid,
                         }).ToList();
+
+            // string connectionId = "";
+            // await _hubContext.Clients.Client(connectionId).SendAsync("ReceiveMessageconectionid", connectionId, "SignalR message: Payment succesfully ");
+
             return data;
 
         }
-        public async Task<Guid> SavePayment(SavePaymentDto request)
+        public async Task<List<Payment_PercentageDto>> SavePayment(SavePaymentDto request)
         {
             // Update paymet status in Order 
             var data = await _readWriteUnitOfWork.OrderRepository.GetFirstOrDefaultAsync(x => x.OrderId == request.Orderid);
             if (data != null)
-            {
-                data.Status = "Complete";
-                await _readWriteUnitOfWork.CommitAsync();
-            }
-            else
-            {
-                data.Status = "Fail";
-                await _readWriteUnitOfWork.CommitAsync();
-            }
+                if (request.PaymentStatus == "captured")
+                {
+                    data.Status = "Complete";
+                    await _readWriteUnitOfWork.CommitAsync();
+                }
+                else
+                {
+                    data.Status = "Fail";
+                    await _readWriteUnitOfWork.CommitAsync();
+                }
 
             // Save payment 
             var savePayment = new Payment()
@@ -133,17 +139,24 @@ namespace NewProject.Services.Services
                 Did = new Guid(),
                 Data = JsonConvert.SerializeObject(payNotify),
                 CreatedOn = DateTime.UtcNow,
-                UserId=data.UserId,
-                IsRead=1,
+                UserId = data.UserId,
+                IsRead = 1,
                 Type = "Payment"
             };
             await _readWriteUnitOfWork.NotificationRepository.AddAsync(notification);
-            await _hubContext.Clients.All.SendAsync("ReceiveMessage", "hdhdjdj","kudiri").ConfigureAwait(false);
-            //return message;
             await _readWriteUnitOfWork.CommitAsync();
 
-            return savePayment.Did;
-        }
+            // Get all data from payment Percentage table
+            var GetpaymentPercentage = (from paymentTB in _readOnlyUnitOfWork.Payment_PercentageRepository.GetAllAsQuerable().OrderBy(P => P.Id)
+                                        select new Payment_PercentageDto
+                                        {
+                                            Id = paymentTB.Id,
+                                            Percentage = paymentTB.Percentage,
+                                            Name = paymentTB.Name,
+                                            AccountId = paymentTB.AccountId,
+                                        }).ToList();
+            return GetpaymentPercentage;
 
+        }
     }
 }

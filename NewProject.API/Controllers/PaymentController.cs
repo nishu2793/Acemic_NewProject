@@ -1,12 +1,16 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using NewProject.API.Hubs;
 using NewProject.API.Requests.Order;
 using NewProject.API.Requests.Payment;
 using NewProject.Services.Entities.Order;
 using NewProject.Services.Entities.Payment;
+using NewProject.Services.Entities.SignalR;
 using NewProject.Services.Interfaces;
 using NewProject.Services.Services;
 using NewProject.Utility;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace NewProject.API.Controllers
 {
@@ -16,11 +20,13 @@ namespace NewProject.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IPaymentService _paymentService;
+        private readonly IHubContext<ChatHub> _hubContext;
 
-        public PaymentController(IMapper mapper, IPaymentService paymentService)
+        public PaymentController(IMapper mapper, IPaymentService paymentService, IHubContext<ChatHub> hubContext)
         {
             _mapper = mapper;
             _paymentService = paymentService;
+            _hubContext = hubContext;   
         }
         [HttpPost("GetPayment")]
         public async Task<Dictionary<string, object>> GetPayment([FromBody] GetPaymentRequest request)
@@ -34,6 +40,8 @@ namespace NewProject.API.Controllers
         public async Task<Dictionary<string, object>> GetAllPayment()
         {
             var result = await _paymentService.GetAllPayment();
+            //await _hubContext.Clients.All.SendAsync("ReceiveMessage", "abc", "TestSignalR").ConfigureAwait(false);
+            await _hubContext.Clients.All.SendAsync("ReceiveMessage","AAA", "TestSignalR").ConfigureAwait(false);
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }
         [HttpPost("SavePayment")]
@@ -43,6 +51,11 @@ namespace NewProject.API.Controllers
             var result = await _paymentService.SavePayment(savepaymentDto);
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }
-     
+
+/*        public string? GetUserId(SignalRDto request)
+        {
+            var userId = MyCustomUserClass.FindUserId(request.User.Identity.Name);
+            return userId.ToString();
+        }*/
     }
 }

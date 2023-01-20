@@ -37,7 +37,7 @@
         public string? ResponseJSON { get; set; }
         public string? RequestJSON { get; set; }
         public string? Paymentorderid { get; set; }
-
+        public string? PaymentStatus { get; set; }
 
     }
    

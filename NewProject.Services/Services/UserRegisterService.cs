@@ -7,6 +7,8 @@ using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
 using NewProject.Utility.Exceptions;
 using NewProject.Utility;
+using NewProject.Services.Entities.SignalR;
+using NewProject.Domain.Entities.SignalR;
 
 namespace NewProject.Services.Services
 {
@@ -82,8 +84,10 @@ namespace NewProject.Services.Services
         }
         public async Task<Guid> SaveUserRegister(SaveUserRegisterDto request)
         {
+            //Filter data from UserRegisterTemp table.
             var data = await _readWriteUnitOfWork.UserRegisterTempRepository.GetFirstOrDefaultAsync(x => x.Did == request.Did);
 
+            //Save Data in UserRegister Table.
             var saveUserRegister = new UserRegister()
             {
                 Did = data.Did,
@@ -102,6 +106,7 @@ namespace NewProject.Services.Services
             await _readWriteUnitOfWork.UserRegisterRepository.AddAsync(saveUserRegister);
             await _readWriteUnitOfWork.CommitAsync();
 
+            // Delete Data from UserRegisterTemp Table.
             var datadelte = await _readWriteUnitOfWork.UserRegisterTempRepository.GetFirstOrDefaultAsync(x => x.Did == request.Did);
 
             if (datadelte != null)
@@ -109,6 +114,17 @@ namespace NewProject.Services.Services
                 datadelte.IsDeleted = true;
                 await _readWriteUnitOfWork.CommitAsync();
             }
+
+            // Save Data In Signal Table.
+            var SaveSignalR = new SignalR()
+            {
+                ConnectionId = Guid.NewGuid().ToString(), // created new GUID 
+                UserId = data.Did
+            };
+            await _readWriteUnitOfWork.SignalRRepository.AddAsync(SaveSignalR);
+            await _readWriteUnitOfWork.CommitAsync();
+
+            // Retuern Register user table GUID.
             return data.Did;
         }
 

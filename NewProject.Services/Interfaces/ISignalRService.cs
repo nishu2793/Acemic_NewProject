@@ -9,7 +9,9 @@ namespace NewProject.Services.Interfaces
 {
     public interface ISignalRService
     {
-        Task<List<GetSignalRDto>> GetSignalR(GetSignalRDto request);
+        Task<List<GetSignalRDto>> GetSignalR(GetSignalRDto getSignalRDto);
         Task<List<GetSignalRDto>> GetAllSignalR();
+
+        Task<List<SaveSignalDto>> SaveSignalR(SaveSignalDto saveSignalDto);
     }
 }

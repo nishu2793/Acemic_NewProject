@@ -6,14 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NewProject.Domain.Entities.SignalR
+namespace NewProject.Domain.Entities.Payment
 {
-    [Table("SignalR")]
-    public class SignalR
+    [Table("Payment_Percentage")]
+    public class Payment_Percentage
     {
         [Key]
         public int Id { get; set; }
-        public string? ConnectionId { get; set; }
-        public Guid? UserId { get; set; }
+        public double? Percentage { get; set; }
+        public string? Name { get; set; }
+        public string? AccountId { get; set; }
     }
 }

@@ -2,22 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using NewProject.API.Hubs;
-using NewProject.API.Requests.Payment;
 using NewProject.API.Requests.User;
-using NewProject.Services.Entities.LoginDto;
-using NewProject.Domain.Entities.Payment;
 using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
 using NewProject.Utility;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using System.Net;
-using System.Text;
-using System.Security.Cryptography.X509Certificates;
-using uPLibrary.Networking.M2Mqtt;
-using uPLibrary.Networking.M2Mqtt.Messages;
-using NewProject.Services.Services;
-using PushNotification.Models;
+using NewProject.API.Requests.SignalR;
 
 namespace NewProject.API.Controllers
 {
@@ -52,19 +42,12 @@ namespace NewProject.API.Controllers
                 return HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
         }
         #endregion
-        [HttpGet("signalRTest")]
-        public async Task<string> aa(string user, string message)
-        {
-            await _hubContext.Clients.All.SendAsync("ReceiveMessage", user, message).ConfigureAwait(false);
-            return message;
-        }
         [HttpGet("MQTT")]
         public async Task<string> MQTT(string message)
         {
             var result = await _authenticationService.MQTT(message);
             return result;
         }
-        
     }
 }
 

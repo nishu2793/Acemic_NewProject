@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using NewProject.API.Requests.SignalR;
-using NewProject.API.Requests.User;
 using NewProject.Domain.Entities.SignalR;
-using NewProject.Domain.Entities.User;
 using NewProject.Services.Entities.SignalR;
-using NewProject.Services.Entities.User;
 
 namespace NewProject.API.Infrastructure.Automapper
 {
@@ -14,8 +11,8 @@ namespace NewProject.API.Infrastructure.Automapper
         {
             CreateMap<GetSignalRRequest, GetSignalRDto>();
             CreateMap<SignalR, GetSignalRDto>().ReverseMap();
-
+            CreateMap<SaveSignalRRequest, SaveSignalDto>();
+            CreateMap<SignalR, SaveSignalDto>().ReverseMap();
         }
     }
-
-    }
+}

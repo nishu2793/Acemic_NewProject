@@ -9,9 +9,9 @@ namespace NewProject.API.Hubs
     {
         public async Task SendNotification(IHubContext<ChatHub> hubContext)
         {
-            SignalRInternalTest request = new SignalRInternalTest();
-            request.User = "aa";
-            request.Message = "assad";
+            SignalRRequest request = new SignalRRequest();
+            request.ConnectionId = "aa";
+            //request.UserId = 7845612345623;
             await hubContext.Clients.All.SendAsync("sendMessageToAll", JsonConvert.SerializeObject(request, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
         }
 

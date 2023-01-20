@@ -59,9 +59,10 @@ namespace NewProject.Services.Entities.Payment
         public string? RequestJSON { get; set; }
         public DateTime? CreatedOn { get; set; }
         public string? Paymentorderid { get; set; }
+        public string? PaymentStatus { get; set; }
 
     }
-   
+
 
 
 }

@@ -105,7 +105,7 @@ namespace NewProject.Data.Contexts
         public DbSet<CityMaster> cityMasters { get; set; }
         public DbSet<Order> orders { get; set; }
         public DbSet<Payment> payments { get; set; }
-
+        public DbSet<Payment_Percentage> payment_Percentages { get; set; }
         public DbSet<SignalR> signalRs { get; set; }
         public DbSet<Notification> notifications { get; set; }
     }
