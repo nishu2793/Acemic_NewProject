@@ -1,5 +1,4 @@
-﻿using NewProject.Services.Entities.Order;
-using NewProject.Services.Entities.Payment;
+﻿using NewProject.Services.Entities.Payment;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +12,6 @@ namespace NewProject.Services.Interfaces
         Task<List<GetPaymentDto>> GetPayment(GetPaymentDto request);
         Task<List<GetPaymentDto>> GetAllPayment();
         Task<List<Payment_PercentageDto>> SavePayment(SavePaymentDto request);
-        Task<bool> UpdatePayment(UpdatePaymentDto request);
+   
     }
 }

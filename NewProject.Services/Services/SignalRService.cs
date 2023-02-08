@@ -85,5 +85,38 @@ namespace NewProject.Services.Services
                         }).ToList();
             return data;
         }
+        public async Task<string> Connection(Guid orderId)
+        {
+
+            var connetionid = (from signalRTB in _readOnlyUnitOfWork.SignalRRepository.GetAllAsQuerable()
+
+                               join user in _readOnlyUnitOfWork.UserRegisterRepository.GetAllAsQuerable()
+                               on signalRTB.UserId equals user.Did
+                               join order in _readOnlyUnitOfWork.OrderRepository.GetAllAsQuerable()
+                               on user.Did equals order.UserId
+                               // orderID
+                               where order.OrderId == orderId
+                               select new GetSignalRDto
+                               {
+                                   ConnectionId = signalRTB.ConnectionId,
+                                   // UserId = order.UserId,
+
+                               });
+            // return  connetionid.ToList();   
+            
+            if(connetionid != null) { 
+
+            foreach(var item in connetionid)
+            {
+              return  item.ConnectionId.ToString();
+            
+            }
+
+            }
+            return "Empty";
+            
+        }
     }
-}
+
+    }
+

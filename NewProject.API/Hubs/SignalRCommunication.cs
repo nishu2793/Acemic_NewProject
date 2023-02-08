@@ -12,7 +12,7 @@ namespace NewProject.API.Hubs
             SignalRRequest request = new SignalRRequest();
             request.ConnectionId = "aa";
             //request.UserId = 7845612345623;
-            await hubContext.Clients.All.SendAsync("sendMessageToAll", JsonConvert.SerializeObject(request, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
+            await hubContext.Clients.All.SendAsync("SendMessageToClient", JsonConvert.SerializeObject(request, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
         }
 
     }
