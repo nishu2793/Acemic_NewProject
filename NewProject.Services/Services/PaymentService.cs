@@ -7,6 +7,7 @@ using NewProject.Data.Repositories;
 using NewProject.Domain.Entities.Notification;
 using NewProject.Domain.Entities.Payment;
 using NewProject.Services.Entities.Notification;
+using NewProject.Services.Entities.Order;
 using NewProject.Services.Entities.Payment;
 using NewProject.Services.Interfaces;
 using Newtonsoft.Json;
@@ -157,6 +158,20 @@ namespace NewProject.Services.Services
                                         }).ToList();
             return GetpaymentPercentage;
 
+        }
+
+        public async Task<bool> UpdatePayment(UpdatePaymentDto request)
+        {
+            var data = await _readWriteUnitOfWork.PaymentRepository.GetFirstOrDefaultAsync(x => x.Paymentid == request.Paymentid);
+
+            if (data != null)
+            {
+                data.Paymentid = request.Paymentid;
+                data.Transfer_Details = request.Transfer_Details;
+                await _readWriteUnitOfWork.CommitAsync();
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -27,6 +27,7 @@ namespace NewProject.Domain.Entities.Payment
         public string? ResponseJSON { get; set; }
         public string? RequestJSON { get; set; }
         public string? Paymentorderid { get; set; }
+        public string? Transfer_Details { get; set; }
 
     }
 }

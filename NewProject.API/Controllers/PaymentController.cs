@@ -52,10 +52,17 @@ namespace NewProject.API.Controllers
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }
 
-/*        public string? GetUserId(SignalRDto request)
+        [HttpPost("UpdatePayment")]
+        public async Task<Dictionary<string, object>> UpdatePayment([FromBody] UpdatePaymentRequest request)
         {
-            var userId = MyCustomUserClass.FindUserId(request.User.Identity.Name);
-            return userId.ToString();
-        }*/
+            var updatePaymentDto = _mapper.Map<UpdatePaymentRequest, UpdatePaymentDto>(request);
+            var result = await _paymentService.UpdatePayment(updatePaymentDto);
+            return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
+        }
+        /*        public string? GetUserId(SignalRDto request)
+                {
+                    var userId = MyCustomUserClass.FindUserId(request.User.Identity.Name);
+                    return userId.ToString();
+                }*/
     }
 }

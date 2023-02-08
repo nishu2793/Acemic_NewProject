@@ -60,9 +60,12 @@ namespace NewProject.Services.Entities.Payment
         public DateTime? CreatedOn { get; set; }
         public string? Paymentorderid { get; set; }
         public string? PaymentStatus { get; set; }
-
+        public string? Transfer_Details { get; set; }
     }
 
-
-
+    public class UpdatePaymentDto
+    {
+        public string? Paymentid { get; set; }
+        public string? Transfer_Details { get; set; }
+    }
 }

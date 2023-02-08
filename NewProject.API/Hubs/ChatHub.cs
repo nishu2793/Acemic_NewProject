@@ -13,11 +13,12 @@ namespace NewProject.API.Hubs
         }
         public Task SendMessageToClient(string connectionId, string message)
         {
+            connectionId = Context.ConnectionId;
             return Clients.Client(connectionId).SendAsync("ReceiveMessageconectionid", message);
         }
 
         //public Task SendMessage(string message)
-        //{
+        //{zz
         //    return Clients.All.SendAsync("ReceiveMessage", message);
         //}
 

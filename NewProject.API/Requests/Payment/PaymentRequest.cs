@@ -17,6 +17,7 @@
         public string? ResponseJSON { get; set; }
         public string? RequestJSON { get; set; }
         public string? Paymentorderid { get; set; }
+        public string? Transfer_Details { get; set; }
 
     }
     public class GetPaymentRequest
@@ -38,7 +39,14 @@
         public string? RequestJSON { get; set; }
         public string? Paymentorderid { get; set; }
         public string? PaymentStatus { get; set; }
+        public string? Transfer_Details { get; set; }
 
     }
-   
+
+
+    public class UpdatePaymentRequest
+    {
+        public string? Paymentid { get; set; }
+        public string? Transfer_Details { get; set; }
+    }
 }
