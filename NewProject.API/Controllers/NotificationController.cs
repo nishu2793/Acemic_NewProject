@@ -36,6 +36,7 @@ namespace NewProject.API.Controllers
         {
             var result = await _notificationService.SendNotification(notificationModel);
             return Ok(result);
+
         }
     }
 }

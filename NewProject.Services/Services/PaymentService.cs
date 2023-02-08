@@ -88,7 +88,7 @@ namespace NewProject.Services.Services
             return data;
 
         }
-        public async Task<List<Payment_PercentageDto>> SavePayment(SavePaymentDto request)
+        public async Task<PaymentNotificationDto> SavePayment(SavePaymentDto request)
         {
             // Update paymet status in Order 
             var data = await _readWriteUnitOfWork.OrderRepository.GetFirstOrDefaultAsync(x => x.OrderId == request.Orderid);
@@ -127,13 +127,14 @@ namespace NewProject.Services.Services
 
             // Save Notification 
             var payNotify = new PaymentNotificationDto();
-            payNotify.Status = data.Status;
-            payNotify.Paymentorderid = savePayment.Paymentorderid;
-            payNotify.PaymentId = savePayment.Paymentid;
-            payNotify.OrderId = savePayment.Orderid.ToString();
-            payNotify.Amount = savePayment.Amount.ToString();
-            payNotify.Email = savePayment.EmailAddress;
-
+            {
+                payNotify.Status = data.Status;
+                payNotify.Paymentorderid = savePayment.Paymentorderid;
+                payNotify.PaymentId = savePayment.Paymentid;
+                payNotify.OrderId = savePayment.Orderid.ToString();
+                payNotify.Amount = savePayment.Amount.ToString();
+                payNotify.Email = savePayment.EmailAddress;
+            }
             var notification = new Notification()
             {
                 Did = new Guid(),
@@ -147,16 +148,16 @@ namespace NewProject.Services.Services
             await _readWriteUnitOfWork.CommitAsync();
 
             // Get all data from payment Percentage table
-            var GetpaymentPercentage = (from paymentTB in _readOnlyUnitOfWork.Payment_PercentageRepository.GetAllAsQuerable().OrderBy(P => P.Id)
-                                        select new Payment_PercentageDto
-                                        {
-                                            Id = paymentTB.Id,
-                                            Percentage = paymentTB.Percentage,
-                                            Name = paymentTB.Name,
-                                            AccountId = paymentTB.AccountId,
-                                        }).ToList();
-            return GetpaymentPercentage;
-
+            //var GetpaymentPercentage = (from paymentTB in _readOnlyUnitOfWork.Payment_PercentageRepository.GetAllAsQuerable().OrderBy(P => P.Id)
+            //                            select new Payment_PercentageDto
+            //                            {
+            //                                Id = paymentTB.Id,
+            //                                Percentage = paymentTB.Percentage,
+            //                                Name = paymentTB.Name,
+            //                                AccountId = paymentTB.AccountId,
+            //                            }).ToList();
+            //return GetpaymentPercentage;
+            return payNotify;
         }
     }
 }

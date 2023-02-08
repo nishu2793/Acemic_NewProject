@@ -49,7 +49,7 @@ namespace NewProject.API.Controllers
         public async Task<string> signalRConnectionID(string connectionId, string message)
         {
             await _hubContext.Clients.Client(connectionId).SendAsync("ReceiveMessageconectionid", connectionId, message);
-            return message;
+            return JsonConvert.SerializeObject(message);
         }
         [HttpGet("signalRTest")]
         public async Task<string> signalRTest(string user, string message)

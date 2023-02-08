@@ -13,5 +13,6 @@ namespace NewProject.Services.Interfaces
         Task<List<GetSignalRDto>> GetAllSignalR();
 
         Task<List<SaveSignalDto>> SaveSignalR(SaveSignalDto saveSignalDto);
+        Task<string> Connection(Guid orderId );
     }
 }
