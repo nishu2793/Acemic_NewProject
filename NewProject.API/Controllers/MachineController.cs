@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using NewProject.API.Requests.Machine;
-using NewProject.API.Requests.User;
 using NewProject.Services.Entities.Machine;
-using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
-using NewProject.Services.Services;
 using NewProject.Utility;
 
 namespace NewProject.API.Controllers

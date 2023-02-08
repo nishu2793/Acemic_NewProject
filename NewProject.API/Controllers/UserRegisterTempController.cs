@@ -57,7 +57,6 @@ namespace NewProject.API.Controllers
             var result = await _userRegisterTempService.SavePasswordTemp(savepasswordDto);
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }
-
         [HttpPost("UpdateUserRegisterTemp")]
         public async Task<Dictionary<string, object>> UpdateUserRegisterTemp([FromBody] UpdateUserRegisterTempRequest request)
         {
@@ -65,7 +64,6 @@ namespace NewProject.API.Controllers
             var result = await _userRegisterTempService.UpdateUserRegisterTemp(updateUserRegisterDto);
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }
-
         [HttpPost("DeleteUserRegisterTemp")]
         public async Task<Dictionary<string, object>> DeleteUserRegisterTemp([FromBody] DeleteUserRegisterTempRequest request)
         {

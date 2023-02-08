@@ -18,7 +18,6 @@ namespace NewProject.API.Controllers
         {
             _mapper = mapper;
             _adminLoginService = adminLoginService;
-
         }
       
         [HttpPost("GetCountry")]

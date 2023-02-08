@@ -1,9 +1,5 @@
-﻿using NewProject.Services.Entities.Payment;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NewProject.Services.Entities.Notification;
+using NewProject.Services.Entities.Payment;
 
 namespace NewProject.Services.Interfaces
 {
@@ -11,7 +7,7 @@ namespace NewProject.Services.Interfaces
     {
         Task<List<GetPaymentDto>> GetPayment(GetPaymentDto request);
         Task<List<GetPaymentDto>> GetAllPayment();
-        Task<List<Payment_PercentageDto>> SavePayment(SavePaymentDto request);
-   
+        Task<PaymentNotificationDto> SavePayment(SavePaymentDto request);
+        Task<bool> UpdatePayment(UpdatePaymentDto request);
     }
 }

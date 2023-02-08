@@ -18,7 +18,7 @@ namespace NewProject.API.Hubs
         }
 
         //public Task SendMessage(string message)
-        //{zz
+        //{
         //    return Clients.All.SendAsync("ReceiveMessage", message);
         //}
 

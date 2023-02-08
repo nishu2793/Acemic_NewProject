@@ -2,15 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using NewProject.API.Hubs;
-using NewProject.API.Requests.Order;
 using NewProject.API.Requests.Payment;
-using NewProject.Services.Entities.Order;
+using NewProject.API.Requests.SignalR;
 using NewProject.Services.Entities.Payment;
-using NewProject.Services.Entities.SignalR;
 using NewProject.Services.Interfaces;
-using NewProject.Services.Services;
 using NewProject.Utility;
-using Org.BouncyCastle.Asn1.Ocsp;
+using Newtonsoft.Json;
 
 namespace NewProject.API.Controllers
 {
@@ -21,12 +18,14 @@ namespace NewProject.API.Controllers
         private readonly IMapper _mapper;
         private readonly IPaymentService _paymentService;
         private readonly IHubContext<ChatHub> _hubContext;
+        private readonly ISignalRService _signalRService;
 
-        public PaymentController(IMapper mapper, IPaymentService paymentService, IHubContext<ChatHub> hubContext)
+        public PaymentController(IMapper mapper, IPaymentService paymentService, IHubContext<ChatHub> hubContext, ISignalRService signalRService)
         {
             _mapper = mapper;
             _paymentService = paymentService;
-            _hubContext = hubContext;   
+            _hubContext = hubContext; 
+            _signalRService = signalRService;
         }
         [HttpPost("GetPayment")]
         public async Task<Dictionary<string, object>> GetPayment([FromBody] GetPaymentRequest request)
@@ -49,6 +48,9 @@ namespace NewProject.API.Controllers
         {
             var savepaymentDto = _mapper.Map<SavePaymentRequest, SavePaymentDto>(request);
             var result = await _paymentService.SavePayment(savepaymentDto);
+            Guid orderid = new Guid(request.Orderid.ToString());
+            var connectionId = await _signalRService.Connection(orderid);
+            await _hubContext.Clients.Client(connectionId).SendAsync("ReceiveMessageconectionid", connectionId, JsonConvert.SerializeObject(result));
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }
 

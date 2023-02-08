@@ -51,14 +51,6 @@ namespace NewProject.API.Controllers
             await _hubContext.Clients.Client(connectionId).SendAsync("ReceiveMessageconectionid", connectionId, message);
             return JsonConvert.SerializeObject(message);
         }
-        [HttpGet("signalRTest")]
-        public async Task<string> signalRTest(string user, string message)
-        {
-            await _hubContext.Clients.All.SendAsync("ReceiveMessage", user, message).ConfigureAwait(false);
-
-            ConnectedUser.UserId.Count();
-            return message;
-        }
 
         [HttpPost("signalRJSON")]
         public async Task<string> signalRJSON(string user, SignalRRequest signalRJSON)

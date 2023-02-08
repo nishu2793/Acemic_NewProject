@@ -6,8 +6,6 @@ using NewProject.API.Requests.User;
 using NewProject.Services.Entities.User;
 using NewProject.Services.Interfaces;
 using NewProject.Utility;
-using Newtonsoft.Json;
-using NewProject.API.Requests.SignalR;
 
 namespace NewProject.API.Controllers
 {

@@ -16,5 +16,5 @@ namespace NewProject.Data.Repositories
 
         }
 
-}
+    }
 }
