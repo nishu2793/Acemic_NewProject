@@ -88,6 +88,7 @@ namespace NewProject.Services.Services
                             Did = userRegisterTempTB.Did,
                             EmailAddress = userRegisterTempTB.EmailAddress,
                             Otp = userRegisterTempTB.Otp,
+                            UserType = userRegisterTempTB.UserType,
                         }).ToList();
             if (saveUserRegisterTemp.EmailAddress != null)
             {

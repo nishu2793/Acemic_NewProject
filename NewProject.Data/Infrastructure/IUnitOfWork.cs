@@ -21,6 +21,7 @@ namespace NewProject.Data.Infrastructure
         INotificationRepository<TContext> NotificationRepository { get; }
 
         IPayment_PercentageRepository<TContext> Payment_PercentageRepository { get; }
+        IProviderAddressRepository<TContext> ProviderAddressRepository { get; }
         Task<int> CommitAsync();
 
     }
@@ -43,6 +44,8 @@ namespace NewProject.Data.Infrastructure
         public INotificationRepository<TContext> NotificationRepository { get; }
 
         public IPayment_PercentageRepository<TContext> Payment_PercentageRepository { get; }
+
+        public IProviderAddressRepository<TContext> ProviderAddressRepository { get; }
         public UnitOfWork(TContext context, IAccountsRepository<TContext> accountsRepository,
                 IUserRegisterRepository<TContext> userRegisterRepository,
                 IUserProfileRepository<TContext> userProfileRepository,
@@ -55,7 +58,7 @@ namespace NewProject.Data.Infrastructure
                   IOrderRepository<TContext> orderRepository,
                        IPaymentRepository<TContext> paymentRepository,
                        ISignalRRepository<TContext> signalRRepository,
-                       INotificationRepository<TContext> notificationRepository, IPayment_PercentageRepository<TContext> payment_PercentageRepository)
+                       INotificationRepository<TContext> notificationRepository, IPayment_PercentageRepository<TContext> payment_PercentageRepository, IProviderAddressRepository<TContext> providerAddressRepository)
         {
             this.Context = context;
             this.AccountsRepository = accountsRepository;
@@ -72,6 +75,7 @@ namespace NewProject.Data.Infrastructure
             this.SignalRRepository = signalRRepository;
             this.NotificationRepository = notificationRepository;
             this.Payment_PercentageRepository = payment_PercentageRepository;
+            this.ProviderAddressRepository = providerAddressRepository;
 
         }
         public async Task<int> CommitAsync()

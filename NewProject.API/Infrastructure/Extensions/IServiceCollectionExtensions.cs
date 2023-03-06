@@ -41,6 +41,7 @@ namespace NewProject.API.Infrastructure.Extensions
             services.AddTransient(typeof(ISignalRRepository<>), typeof(SignalRRepository<>));
             services.AddTransient(typeof(INotificationRepository<>), typeof(NotificationRepository<>));
             services.AddTransient(typeof(IPayment_PercentageRepository<>), typeof(Payment_PercentageRepository<>));
+            services.AddTransient(typeof(IProviderAddressRepository<>), typeof(ProviderAddressRepository<>));
             services.AddHttpClient<FcmSender>();
             services.AddHttpClient<ApnSender>();
         }

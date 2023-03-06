@@ -108,6 +108,7 @@ namespace NewProject.Data.Contexts
         public DbSet<Payment_Percentage> payment_Percentages { get; set; }
         public DbSet<SignalR> signalRs { get; set; }
         public DbSet<Notification> notifications { get; set; }
+        public DbSet<ProviderAddress> providerAddresses { get; set; } 
     }
 
     public interface IBaseContext

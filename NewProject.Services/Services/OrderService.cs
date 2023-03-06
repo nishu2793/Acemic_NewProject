@@ -75,9 +75,11 @@ namespace NewProject.Services.Services
         }
         public async Task<List<SaveOrderDto>> SaveOrder(SaveOrderDto request)
         {
+            Guid Id = Guid.NewGuid();
             var saveOrder = new Order()
             {
-                OrderId= new Guid(),
+
+                OrderId= Id,
                 MachineId = request.MachineId,
                 UserId = request.UserId,
                 Amount = request.Amount,
@@ -86,6 +88,7 @@ namespace NewProject.Services.Services
                 Status = "Draft",
                 StatusMessage = "Null",
                 CreatedOn = DateTime.UtcNow,
+                
             };
             await _readWriteUnitOfWork.OrderRepository.AddAsync(saveOrder);
             await _readWriteUnitOfWork.CommitAsync();

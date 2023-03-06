@@ -101,7 +101,7 @@ namespace NewProject.Services.Services
                 //Image= request.
                 CreatedOn = DateTime.UtcNow,
                 CreatedBy = request.Did,
-                UserType=request.UserType
+                UserType=data.UserType
             };
             await _readWriteUnitOfWork.UserRegisterRepository.AddAsync(saveUserRegister);
             await _readWriteUnitOfWork.CommitAsync();

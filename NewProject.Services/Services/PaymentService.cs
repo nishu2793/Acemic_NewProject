@@ -99,10 +99,11 @@ namespace NewProject.Services.Services
                     await _readWriteUnitOfWork.CommitAsync();
                 }
 
-            // Save payment 
+            // Save payment
+                Guid Id = Guid.NewGuid();
             var savePayment = new Payment()
             {
-                Did = new Guid(),
+                Did = Id,
                 Name = request.Name,
                 EmailAddress = request.EmailAddress,
                 Paymentid = request.Paymentid,
