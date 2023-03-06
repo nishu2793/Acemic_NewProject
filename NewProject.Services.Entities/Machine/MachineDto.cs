@@ -9,6 +9,7 @@ namespace NewProject.Services.Entities.Machine
     public class MachineDto
     {
         public Guid Did { get; set; }
+        public Guid? ProviderId { get; set; }
         public string? Address1 { get; set; }
         public string? Address2 { get; set; }
         public string? City { get; set; }
@@ -20,9 +21,13 @@ namespace NewProject.Services.Entities.Machine
         public bool? Active { get; set; }
         public string? Status { get; set; }
         public string? SerialNumber { get; set; }
-        public string? CreatedOn { get; set; }
-        public string? UpdatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
+        public DateTime? UpdatedOn { get; set; }
 
-
+        public bool? IsDeleted { get; set; }
+    }
+    public class DeleteMachineDto
+    {
+        public Guid? Did { get; set; }
     }
 }

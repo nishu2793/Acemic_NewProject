@@ -1,4 +1,5 @@
 ﻿using NewProject.Services.Entities.Machine;
+using NewProject.Services.Entities.Provider;
 using NewProject.Services.Entities.User;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,9 @@ namespace NewProject.Services.Interfaces
     {
         Task<List<MachineDto>> GetMachine(MachineDto request);
         Task<List<MachineDto>> GetAllMachine();
+        Task<List<MachineDto>> SaveMachine(MachineDto request);
+        Task<bool> UpdateMachine(MachineDto request);
+        Task<bool> DeleteMachine(DeleteMachineDto request);
+
     }
 }

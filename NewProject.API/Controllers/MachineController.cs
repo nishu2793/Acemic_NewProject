@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using NewProject.API.Requests.Machine;
+using NewProject.API.Requests.Provider;
 using NewProject.Services.Entities.Machine;
+using NewProject.Services.Entities.Provider;
 using NewProject.Services.Interfaces;
+using NewProject.Services.Services;
 using NewProject.Utility;
 
 namespace NewProject.API.Controllers
@@ -33,6 +36,27 @@ namespace NewProject.API.Controllers
         public async Task<Dictionary<string, object>> GetAllMachine()
         {
             var result = await _machineService.GetAllMachine();
+            return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
+        }
+        [HttpPost("SaveMachine")]
+        public async Task<Dictionary<string, object>> SaveMachine([FromBody] SaveMachineRequest request)
+        {
+            var SaveMachineDto = _mapper.Map<SaveMachineRequest, MachineDto>(request);
+            var result = await _machineService.SaveMachine(SaveMachineDto);
+            return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
+        }
+        [HttpPost("UpdateMachine")]
+        public async Task<Dictionary<string, object>> UpdateMachine([FromBody] UpdateMachineRequest request)
+        {
+            var UpdateMachineDto = _mapper.Map<UpdateMachineRequest, MachineDto>(request);
+            var result = await _machineService.UpdateMachine(UpdateMachineDto);
+            return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
+        }
+        [HttpPost("DeleteMachine")]
+        public async Task<Dictionary<string, object>> DeleteMachine([FromBody] DeleteMachineRequest request)
+        {
+            var deleteMachine = _mapper.Map<DeleteMachineRequest, DeleteMachineDto>(request);
+            var result = await _machineService.DeleteMachine(deleteMachine);
             return new Dictionary<string, object>() { { Constants.ResponseDataField, result } };
         }
     }

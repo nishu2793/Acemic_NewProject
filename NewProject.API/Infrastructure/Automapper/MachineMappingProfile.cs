@@ -14,6 +14,15 @@ namespace NewProject.API.Infrastructure.Automapper
         {
             CreateMap<GetMachineRequest, MachineDto>();
             CreateMap<MachineTable, MachineDto>().ReverseMap();
+
+            CreateMap<SaveMachineRequest, MachineDto>();
+            CreateMap<MachineTable, MachineDto>().ReverseMap();
+
+            CreateMap<UpdateMachineRequest, MachineDto>();
+            CreateMap<MachineTable, MachineDto>().ReverseMap();
+
+            CreateMap<DeleteMachineRequest, DeleteMachineDto>();
+            CreateMap<MachineTable, DeleteMachineDto>().ReverseMap();
         }
     }
 }
